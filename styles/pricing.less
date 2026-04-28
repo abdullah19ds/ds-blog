@@ -171,20 +171,43 @@
     padding: @s-5 0;
     font-family: @font-body; font-weight: 600; font-size: 1rem;
     color: @ink; cursor: pointer; list-style: none; gap: @s-5;
+    transition: color 200ms @ease-spring;
 
     &::-webkit-details-marker { display: none; }
 
+    &:hover { color: @accent; }
+
+    // Plus icon — rotated 45° to become a cross when open
     &::after {
-      content: '+'; flex-shrink: 0;
-      font-family: @font-mono; font-size: 1.2rem;
-      color: @accent; line-height: 1;
-      transition: transform 240ms @ease-spring;
+      content: '';
+      flex-shrink: 0;
+      width: 18px; height: 18px;
+      background:
+        linear-gradient(@accent, @accent) center / 100% 1.5px no-repeat,
+        linear-gradient(@accent, @accent) center / 1.5px 100% no-repeat;
+      transition: transform 360ms @ease-spring;
     }
   }
-  &[open] summary::after { content: '–'; }
+  details[open] > summary::after { transform: rotate(45deg); }
 
-  p {
-    padding-bottom: @s-5; color: @ink-muted; font-size: 0.95rem;
+  // Animated content wrapper — height set in JS for smooth open/close
+  .faq-panel {
+    overflow: hidden;
+    height: 0;
+    transition: height 360ms @ease-spring, opacity 280ms @ease-spring;
+    opacity: 0;
+    will-change: height, opacity;
+  }
+  details[open] > .faq-panel { opacity: 1; }
+
+  // While JS hasn't booted yet, render the [open] panel naturally so content
+  // is visible to no-JS users / SEO. JS replaces this with measured height.
+  details[open] > .faq-panel:not([data-faq-bound]) { height: auto; opacity: 1; }
+
+  .faq-panel > p {
+    padding: 0 0 @s-5;
+    margin: 0;
+    color: @ink-muted; font-size: 0.95rem;
     max-width: 60ch;
     a { color: @accent; text-decoration: underline; text-underline-offset: 3px; }
   }

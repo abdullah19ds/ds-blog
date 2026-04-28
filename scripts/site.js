@@ -80,9 +80,58 @@
     onScroll();
   }
 
-  // ── FAQ keyboard: toggle on Enter/Space ─────────────────
+  // ── FAQ accordion — smooth height animation on open/close ───────────────
   function initFAQ() {
-    document.querySelectorAll('.faq-item summary').forEach(function (summary) {
+    document.querySelectorAll('.faq-item details').forEach(function (details) {
+      var summary = details.querySelector('summary');
+      var panel   = details.querySelector('.faq-panel');
+      if (!summary || !panel) return;
+      panel.setAttribute('data-faq-bound', '');
+
+      // Set initial state to match [open] without flashing
+      if (details.open) {
+        panel.style.height = 'auto';
+        panel.style.opacity = '1';
+      } else {
+        panel.style.height = '0px';
+        panel.style.opacity = '0';
+      }
+
+      // Run on click so we control timing of the [open] attribute
+      summary.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (details.open) {
+          // CLOSE: from current height to 0
+          var startH = panel.scrollHeight;
+          panel.style.height = startH + 'px';
+          // Force reflow so the next change actually transitions
+          panel.offsetHeight; // eslint-disable-line no-unused-expressions
+          panel.style.height = '0px';
+          panel.style.opacity = '0';
+          var onEnd = function (ev) {
+            if (ev.propertyName !== 'height') return;
+            details.removeAttribute('open');
+            panel.removeEventListener('transitionend', onEnd);
+          };
+          panel.addEventListener('transitionend', onEnd);
+        } else {
+          // OPEN: 0 → measured height, then settle to auto
+          details.setAttribute('open', '');
+          var endH = panel.scrollHeight;
+          panel.style.height = '0px';
+          panel.offsetHeight; // eslint-disable-line no-unused-expressions
+          panel.style.height = endH + 'px';
+          panel.style.opacity = '1';
+          var onEnd = function (ev) {
+            if (ev.propertyName !== 'height') return;
+            panel.style.height = 'auto'; // let it grow if content reflows
+            panel.removeEventListener('transitionend', onEnd);
+          };
+          panel.addEventListener('transitionend', onEnd);
+        }
+      });
+
+      // Keyboard: Enter / Space already trigger the click above
       summary.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();

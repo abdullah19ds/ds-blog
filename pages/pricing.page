@@ -105,31 +105,41 @@
         <div class="faq-item reveal">
           <details open>
             <summary>What if my scope is between Sprint and Studio?</summary>
-            <p>Tell us what you need. If it doesn&rsquo;t fit a tier, we&rsquo;ll quote a flat fee within 24 hours. We don&rsquo;t do hourly billing.</p>
+            <div class="faq-panel">
+              <p>Tell us what you need. If it doesn&rsquo;t fit a tier, we&rsquo;ll quote a flat fee within 24 hours. We don&rsquo;t do hourly billing.</p>
+            </div>
           </details>
         </div>
         <div class="faq-item reveal">
           <details>
             <summary>Do you sign NDAs?</summary>
-            <p>Yes. Send yours at the start of the engagement and we&rsquo;ll counter-sign the same day.</p>
+            <div class="faq-panel">
+              <p>Yes. Send yours at the start of the engagement and we&rsquo;ll counter-sign the same day.</p>
+            </div>
           </details>
         </div>
         <div class="faq-item reveal">
           <details>
             <summary>Can you work with our existing brand?</summary>
-            <p>Of course — about a third of our work layers on top of an existing identity. We respect what&rsquo;s working and only push on what isn&rsquo;t.</p>
+            <div class="faq-panel">
+              <p>Of course — about a third of our work layers on top of an existing identity. We respect what&rsquo;s working and only push on what isn&rsquo;t.</p>
+            </div>
           </details>
         </div>
         <div class="faq-item reveal">
           <details>
             <summary>What happens after launch?</summary>
-            <p>Studio includes two weeks of post-launch support. After that, most clients move into a Partner engagement. You&rsquo;re never locked in.</p>
+            <div class="faq-panel">
+              <p>Studio includes two weeks of post-launch support. After that, most clients move into a Partner engagement. You&rsquo;re never locked in.</p>
+            </div>
           </details>
         </div>
         <div class="faq-item reveal">
           <details>
             <summary>How do we get started?</summary>
-            <p>Email <a href="mailto:hello@designshifu.com">hello@designshifu.com</a> with the metric you&rsquo;re trying to move and the deadline. We&rsquo;ll reply with a yes, a no, or a referral the same day.</p>
+            <div class="faq-panel">
+              <p>Email <a href="mailto:hello@designshifu.com">hello@designshifu.com</a> with the metric you&rsquo;re trying to move and the deadline. We&rsquo;ll reply with a yes, a no, or a referral the same day.</p>
+            </div>
           </details>
         </div>
       </dl>
