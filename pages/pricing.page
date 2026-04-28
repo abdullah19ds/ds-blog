@@ -138,10 +138,10 @@
 </section>
 
 <!-- CTA -->
-<section class="section section-cta" style="border-top:1px solid rgba(20,16,9,.1);">
+<section class="section section-cta section-cta-bordered">
   <div class="container">
     <div class="cta-card reveal">
-      <div>
+      <div class="cta-main">
         <p class="eyebrow eyebrow-accent">Ready to brief us?</p>
         <h2>Send us the deadline.<br>We do the rest.</h2>
         <p>No RFPs, no pitch decks. Just a short email with your metric and your timeline.</p>
@@ -150,6 +150,14 @@
           <a class="btn btn-outline" href="/about">About the studio</a>
         </div>
       </div>
+      <aside class="cta-aside" aria-hidden="true">
+        <span class="cta-aside-label">Reply window</span>
+        <span class="cta-aside-signature">24<em>h</em></span>
+        <span class="cta-aside-meta">
+          <span class="avail-dot"></span>
+          Same-day responses Mon&ndash;Fri
+        </span>
+      </aside>
     </div>
   </div>
 </section>

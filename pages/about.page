@@ -138,7 +138,7 @@
 <section class="section section-cta">
   <div class="container">
     <div class="cta-card reveal">
-      <div>
+      <div class="cta-main">
         <p class="eyebrow eyebrow-accent">Get started</p>
         <h2>Curious if we&rsquo;re a fit?</h2>
         <p>Send us the deadline and the metric. We&rsquo;ll reply the same day — yes, no, or a referral.</p>
@@ -147,6 +147,14 @@
           <a class="btn btn-outline" href="/blog">Read the blog</a>
         </div>
       </div>
+      <aside class="cta-aside" aria-hidden="true">
+        <span class="cta-aside-label">Studio status</span>
+        <span class="cta-aside-signature">06<em>yrs</em></span>
+        <span class="cta-aside-meta">
+          <span class="avail-dot"></span>
+          Booking Q3 projects
+        </span>
+      </aside>
     </div>
   </div>
 </section>

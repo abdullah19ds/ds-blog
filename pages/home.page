@@ -221,15 +221,23 @@
 <section class="section section-cta">
   <div class="container">
     <div class="cta-card reveal">
-      <div>
+      <div class="cta-main">
         <p class="eyebrow eyebrow-accent">Ready to ship?</p>
         <h2>Have a launch on the calendar?</h2>
-        <p>Tell us the deadline and the metric. We come back the same day with a plan.</p>
+        <p>Tell us the deadline and the metric. We come back the same day with a plan — yes, no, or a referral.</p>
         <div class="cta-actions">
-          <a class="btn btn-primary" href="/pricing">See pricing</a>
-          <a class="btn btn-outline" href="/blog">Read the blog</a>
+          <a class="btn btn-primary" href="mailto:hello@designshifu.com">Email the studio</a>
+          <a class="btn btn-outline" href="/pricing">See pricing</a>
         </div>
       </div>
+      <aside class="cta-aside" aria-hidden="true">
+        <span class="cta-aside-label">Currently</span>
+        <span class="cta-aside-signature">DS<em>&nbsp;&rarr;</em></span>
+        <span class="cta-aside-meta">
+          <span class="avail-dot"></span>
+          Booking Q3 &middot; Reply within 24h
+        </span>
+      </aside>
     </div>
   </div>
 </section>
