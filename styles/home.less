@@ -117,8 +117,15 @@
   font-weight: 400; line-height: 1;
   letter-spacing: -0.03em; color: @paper;
   font-variation-settings: 'opsz' 72;
+  // Tabular numerals so widths don't shift while counter ticks
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
   display: block; margin-bottom: @s-2;
-  em { color: @accent; font-variation-settings: 'opsz' 9; }
+  em {
+    color: @accent;
+    font-variation-settings: 'opsz' 9;
+    font-style: italic;
+  }
 }
 .result-label {
   font-size: 0.82rem; color: rgba(255,255,255,0.4);

@@ -259,21 +259,36 @@
         var el = entry.target;
         var target = parseFloat(el.getAttribute('data-count'));
         var suffix = el.getAttribute('data-suffix') || '';
-        var duration = 1400;
+        // Longer duration with snappier-front, slow-back curve = smoother feel
+        var duration = 2200;
         var start = performance.now();
+        // Track last rendered value so we don't repaint identical frames
+        var lastVal = -1;
 
         function tick(now) {
           var t = Math.min(1, (now - start) / duration);
-          var eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
-          var val = Math.floor(eased * target);
-          el.innerHTML = val + '<em>' + suffix + '</em>';
+          // easeOutQuint — long graceful settle at the end
+          var eased = 1 - Math.pow(1 - t, 5);
+          var val = target >= 10
+            ? Math.floor(eased * target)
+            : Math.round(eased * target * 10) / 10; // 1 decimal for small targets like 4.9
+          if (val !== lastVal) {
+            el.innerHTML = val + '<em>' + suffix + '</em>';
+            lastVal = val;
+          }
           if (t < 1) requestAnimationFrame(tick);
           else setFinal(el);
         }
-        requestAnimationFrame(tick);
+        // Apply a tiny stagger if multiple counters share a parent (e.g. results-strip)
+        var siblings = el.parentElement && el.parentElement.parentElement
+          ? el.parentElement.parentElement.querySelectorAll('[data-count]')
+          : [];
+        var ix = Array.prototype.indexOf.call(siblings, el);
+        var stagger = ix > -1 ? ix * 90 : 0;
+        setTimeout(function () { requestAnimationFrame(tick); }, stagger);
         io.unobserve(el);
       });
-    }, { threshold: 0.6 });
+    }, { threshold: 0.45 });
     els.forEach(function (el) { io.observe(el); });
   }
 
