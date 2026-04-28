@@ -7,70 +7,70 @@
   .lead { max-width: 52ch; }
 }
 
-// ─── Blog list layout — featured + 2-up grid ─────────────────────────────────
+// ─── Blog list layout — uniform 3-col grid ───────────────────────────────────
 .blog-list { padding: @s-9 0 @s-10; }
 
-.blog-featured {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: @s-7;
-  align-items: center;
-  padding-bottom: @s-7;
-  margin-bottom: @s-7;
-  border-bottom: 1px solid @hairline;
-
-  @media (max-width: @bp-md) { grid-template-columns: 1fr; }
-}
-
-.blog-featured .post-media {
-  aspect-ratio: 4 / 3;
-  background: @paper-deep;
-  border-radius: @r-lg;
-  overflow: hidden;
-  border: 1px solid @hairline;
-  img { width: 100%; height: 100%; object-fit: cover;
-    transition: transform 500ms @ease-spring; }
-  &:hover img { transform: scale(1.04); }
-}
-
-.blog-featured .post-body {
-  .post-meta { margin-bottom: @s-4; }
-  h2 {
-    font-size: ~"clamp(1.8rem, 3vw, 2.6rem)";
-    margin-bottom: @s-4;
-    a { color: @ink; }
-    a:hover { color: @accent; }
-  }
-  p { margin-bottom: @s-5; }
-}
-
-// ─── Post grid (remaining) ────────────────────────────────────────────────────
 .post-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: @s-5;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: @s-6 @s-5;
+}
+
+// Strict 3-up on desktop, 2-up on tablet, 1-up on phone
+.post-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  @media (max-width: @bp-lg) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: @bp-sm) { grid-template-columns: 1fr; }
 }
 
 .post-card {
+  position: relative;
   display: flex; flex-direction: column;
   border: 1px solid @hairline;
   border-radius: @r-lg; overflow: hidden;
   background: @paper;
-  transition: border-color 200ms @ease-spring, transform 280ms @ease-spring;
+  transition: border-color 220ms @ease-spring, transform 320ms @ease-spring,
+              box-shadow 320ms @ease-spring;
 
-  &:hover { border-color: @hairline-strong; transform: translateY(-3px); }
+  &:hover {
+    border-color: @ink;
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px -22px fade(@ink, 30%);
+  }
+  &:hover .post-card-media img { transform: scale(1.05); }
+  &:hover .post-read-more .arrow { transform: translateX(4px); }
 }
 
 .post-card-media {
-  aspect-ratio: 16 / 9; overflow: hidden;
+  display: block;
+  aspect-ratio: 4 / 3; overflow: hidden;
   background: @paper-deep;
-  img { width: 100%; height: 100%; object-fit: cover;
-    transition: transform 500ms @ease-spring; }
-  &:hover img { transform: scale(1.04); }
+  border-bottom: 1px solid @hairline;
+  position: relative;
+
+  img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 500ms @ease-spring;
+  }
+}
+
+// When a post has no cover image — show oversized monogram on tinted ground
+.post-card-media-fallback {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  font-family: @font-display;
+  font-size: ~"clamp(3rem, 7vw, 5.5rem)";
+  font-weight: 400; line-height: 1;
+  font-variation-settings: 'opsz' 144;
+  letter-spacing: -0.04em;
+  color: @ink; opacity: 0.12;
+  text-transform: uppercase;
 }
 
 .post-card-body {
-  padding: @s-5;
+  padding: @s-5 @s-5 @s-6;
   display: flex; flex-direction: column; flex: 1;
   gap: @s-3;
 }
@@ -99,10 +99,16 @@
 .post-read-more {
   margin-top: auto;
   font-family: @font-mono; font-size: 0.68rem;
-  letter-spacing: 0.08em; text-transform: uppercase; color: @accent;
+  letter-spacing: 0.1em; text-transform: uppercase; color: @accent;
   display: inline-flex; align-items: center; gap: @s-2;
-  transition: gap 200ms @ease-spring;
-  &:hover { color: @accent; gap: @s-3; }
+  text-decoration: none;
+
+  .arrow {
+    display: inline-block;
+    transition: transform 240ms @ease-spring;
+  }
+  &:hover { color: @accent; }
+  &:hover .arrow { transform: translateX(4px); }
 }
 
 // ─── Pagination ───────────────────────────────────────────────────────────────
@@ -122,8 +128,16 @@
 
 // ─── Empty state ──────────────────────────────────────────────────────────────
 .blog-empty {
-  padding: @s-10 0; text-align: center;
-  h2 { margin-bottom: @s-3; }
+  padding: @s-10 0;
+  border: 1px dashed @hairline-strong;
+  border-radius: @r-lg;
+  text-align: center;
+  background: @paper-deep;
+
+  .eyebrow { justify-content: center; margin-bottom: @s-3; }
+  .eyebrow::before { display: none; }
+  h2 { font-size: ~"clamp(1.6rem, 3vw, 2.2rem)"; margin-bottom: @s-3; max-width: 22ch; margin-left: auto; margin-right: auto; }
+  p  { max-width: 44ch; margin: 0 auto; }
 }
 
 // ─── Single post ──────────────────────────────────────────────────────────────

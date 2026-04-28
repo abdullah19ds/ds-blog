@@ -1,4 +1,4 @@
-<!-- Blog list: featured post + 2-up grid -->
+<!-- Blog list — uniform 3-column grid, CMS-driven -->
 <section class="blog-hero">
   <div class="container">
     <p class="eyebrow reveal">{collection.title}</p>
@@ -13,79 +13,56 @@
     {.section pagination}
       {.section items}
 
-        <!-- Featured post (first item) -->
-        {.repeated section @}
-          {.section featured}
-            <div class="blog-featured reveal">
-              {.section assetUrl}
-                <a class="post-media" href="{fullUrl}" tabindex="-1" aria-hidden="true">
-                  <img src="{assetUrl}?format=1000w" alt="{title}" loading="lazy">
-                </a>
-              {.end}
-              <div class="post-body">
+        <ul class="post-grid post-grid-3">
+          {.repeated section @}
+            <li class="post-card reveal">
+              <a class="post-card-media" href="{fullUrl}" aria-label="{title}">
+                {.section assetUrl}
+                  <img src="{assetUrl}?format=800w" alt="{title}" loading="lazy">
+                {.or}
+                  <span class="post-card-media-fallback" aria-hidden="true">{title|truncate 2}</span>
+                {.end}
+              </a>
+              <div class="post-card-body">
                 <p class="post-meta">
-                  <time datetime="{addedOn|date %Y-%m-%d}">{addedOn|date %B %d, %Y}</time>
+                  <time datetime="{addedOn|date %Y-%m-%d}">{addedOn|date %b %d, %Y}</time>
                   {.section categories}
+                    <span aria-hidden="true">·</span>
                     {.repeated section @}<span class="post-tag">{@}</span>{.end}
                   {.end}
                 </p>
                 <h2 class="post-title"><a href="{fullUrl}">{title}</a></h2>
                 {.section excerpt}
-                  <div>{excerpt|safe}</div>
+                  <div class="post-excerpt">{excerpt|safe}</div>
                 {.end}
-                <a class="post-read-more" href="{fullUrl}">Read article →</a>
-              </div>
-            </div>
-          {.end}
-        {.end}
-
-        <!-- Remaining posts in grid -->
-        <ul class="post-grid">
-          {.repeated section @}
-            {.section featured}{.or}
-              <li class="post-card reveal">
-                <a href="{fullUrl}" class="post-card-media" tabindex="-1" aria-hidden="true">
-                  {.section assetUrl}
-                    <img src="{assetUrl}?format=800w" alt="{title}" loading="lazy">
-                  {.end}
+                <a class="post-read-more" href="{fullUrl}" aria-label="Read {title}">
+                  Read article <span class="arrow" aria-hidden="true">→</span>
                 </a>
-                <div class="post-card-body">
-                  <p class="post-meta">
-                    <time datetime="{addedOn|date %Y-%m-%d}">{addedOn|date %B %d, %Y}</time>
-                    {.section categories}
-                      {.repeated section @}<span class="post-tag">{@}</span>{.end}
-                    {.end}
-                  </p>
-                  <h2 class="post-title"><a href="{fullUrl}">{title}</a></h2>
-                  {.section excerpt}
-                    <div class="post-excerpt">{excerpt|safe}</div>
-                  {.end}
-                  <a class="post-read-more" href="{fullUrl}">Read →</a>
-                </div>
-              </li>
-            {.end}
+              </div>
+            </li>
           {.end}
         </ul>
 
         <!-- Pagination -->
         <nav class="pagination" aria-label="Blog pages">
           {.section prevPage}
-            <a class="pagination-link" href="{fullUrl}" rel="prev">← Newer</a>
+            <a class="pagination-link" href="{fullUrl}" rel="prev">← Newer posts</a>
           {.or}
-            <span class="pagination-link is-disabled">← Newer</span>
+            <span class="pagination-link is-disabled">← Newer posts</span>
           {.end}
           {.section nextPage}
-            <a class="pagination-link" href="{fullUrl}" rel="next">Older →</a>
+            <a class="pagination-link" href="{fullUrl}" rel="next">Older posts →</a>
           {.or}
-            <span class="pagination-link is-disabled">Older →</span>
+            <span class="pagination-link is-disabled">Older posts →</span>
           {.end}
         </nav>
 
       {.or}
         <!-- Empty state -->
         <div class="blog-empty">
-          <h2>No posts yet.</h2>
-          <p>The first article is on its way. Check back soon.</p>
+          <p class="eyebrow">Nothing to read here yet</p>
+          <h2>The first article is on its way.</h2>
+          <p>Check back soon — or follow along on the channels in the footer.</p>
         </div>
       {.end}
     {.end}
