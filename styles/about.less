@@ -243,14 +243,15 @@
   background: linear-gradient(90deg, @ink, @accent);
   border-radius: inherit;
   transform-origin: left center;
-  animation: pov-bar-grow 1.4s @ease-spring forwards;
-  animation-delay: var(--bar-delay, 200ms);
+  transition: width 1.2s @ease-spring;
 }
-@keyframes pov-bar-grow {
-  to { width: var(--w, 50%); }
-}
-.pov-ledger-item:nth-child(2) .pov-ledger-bar-fill { --bar-delay: 320ms; }
-.pov-ledger-item:nth-child(3) .pov-ledger-bar-fill { --bar-delay: 440ms; }
+// JS adds .is-revealed once the ledger enters view; widths set per data-bar
+.pov-ledger-item[data-bar="6"]   .pov-ledger-item.is-revealed .pov-ledger-bar-fill { width: 6%; }
+.pov-ledger-item.is-revealed[data-bar="60"]  .pov-ledger-bar-fill { width: 60%; }
+.pov-ledger-item.is-revealed[data-bar="93"]  .pov-ledger-bar-fill { width: 93%; }
+.pov-ledger-item.is-revealed[data-bar="0"]   .pov-ledger-bar-fill { width: 0%; }
+.pov-ledger-item:nth-child(2).is-revealed .pov-ledger-bar-fill { transition-delay: 120ms; }
+.pov-ledger-item:nth-child(3).is-revealed .pov-ledger-bar-fill { transition-delay: 240ms; }
 
 // ─── Values section background ───────────────────────────────────
 .section-values-bg {

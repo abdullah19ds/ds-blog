@@ -277,6 +277,25 @@
     els.forEach(function (el) { io.observe(el); });
   }
 
+  // ── POV ledger bar reveal ───────────────────────────────
+  function initLedger() {
+    var items = document.querySelectorAll('.pov-ledger-item');
+    if (!items.length) return;
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      items.forEach(function (it) { it.classList.add('is-revealed'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    items.forEach(function (el) { io.observe(el); });
+  }
+
   // ── Auto-update copyright year ──────────────────────────
   function initCopyYear() {
     var el = document.querySelector('.copy-year');
@@ -364,6 +383,7 @@
     initSlider();
     initBillingToggle();
     initCounters();
+    initLedger();
 
     // Try to upgrade reveals + page transition with GSAP, then start Lenis
     // smooth scroll. All non-fatal on failure — IO/native scroll keep working.

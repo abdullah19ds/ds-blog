@@ -64,20 +64,20 @@
 
     <!-- Ledger strip: animated proof bars at the bottom of the section -->
     <div class="pov-ledger reveal">
-      <div class="pov-ledger-item">
+      <div class="pov-ledger-item" data-bar="60">
         <span class="pov-ledger-label">In business</span>
         <span class="pov-ledger-value" data-count="6" data-suffix=" yrs">0</span>
-        <span class="pov-ledger-bar"><span class="pov-ledger-bar-fill" style="--w: 60%"></span></span>
+        <span class="pov-ledger-bar"><span class="pov-ledger-bar-fill"></span></span>
       </div>
-      <div class="pov-ledger-item">
+      <div class="pov-ledger-item" data-bar="93">
         <span class="pov-ledger-label">Clients who renew or refer</span>
         <span class="pov-ledger-value" data-count="93" data-suffix="%">0</span>
-        <span class="pov-ledger-bar"><span class="pov-ledger-bar-fill" style="--w: 93%"></span></span>
+        <span class="pov-ledger-bar"><span class="pov-ledger-bar-fill"></span></span>
       </div>
-      <div class="pov-ledger-item">
+      <div class="pov-ledger-item" data-bar="0">
         <span class="pov-ledger-label">Spent on outbound sales, ever</span>
         <span class="pov-ledger-value pov-ledger-value-zero">$0</span>
-        <span class="pov-ledger-bar"><span class="pov-ledger-bar-fill" style="--w: 0%"></span></span>
+        <span class="pov-ledger-bar"><span class="pov-ledger-bar-fill"></span></span>
       </div>
     </div>
 
