@@ -92,6 +92,41 @@
     });
   }
 
+  // ── Pricing monthly/yearly toggle ───────────────────────
+  function initBillingToggle() {
+    var root = document.querySelector('[data-billing-toggle]');
+    if (!root) return;
+
+    var options = root.querySelectorAll('[data-billing]');
+    var amounts = document.querySelectorAll('.plan-amount');
+    var periods = document.querySelectorAll('.plan-period');
+
+    function setMode(mode) {
+      options.forEach(function (b) {
+        var active = b.getAttribute('data-billing') === mode;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      amounts.forEach(function (el) {
+        var v = el.getAttribute('data-' + mode);
+        if (!v) return;
+        el.classList.add('is-flipping');
+        setTimeout(function () {
+          el.textContent = v;
+          el.classList.remove('is-flipping');
+        }, 180);
+      });
+      periods.forEach(function (el) {
+        var v = el.getAttribute('data-' + mode + '-label');
+        if (v) el.textContent = v;
+      });
+    }
+
+    options.forEach(function (b) {
+      b.addEventListener('click', function () { setMode(b.getAttribute('data-billing')); });
+    });
+  }
+
   // ── Auto-update copyright year ──────────────────────────
   function initCopyYear() {
     var el = document.querySelector('.copy-year');
@@ -177,6 +212,7 @@
     initFAQ();
     initCopyYear();
     initSlider();
+    initBillingToggle();
   });
 
 }());

@@ -10,16 +10,25 @@
 <!-- Pricing plans -->
 <section class="section-pricing">
   <div class="container">
+
+    <!-- Billing-period toggle -->
+    <div class="billing-toggle reveal" data-billing-toggle>
+      <button type="button" class="billing-option is-active" data-billing="monthly" aria-pressed="true">Monthly</button>
+      <button type="button" class="billing-option" data-billing="yearly" aria-pressed="false">
+        Yearly <span class="billing-save">save 18%</span>
+      </button>
+    </div>
+
     <div class="pricing-grid">
 
-      <!-- Sprint -->
+      <!-- Sprint — flat, doesn't change between modes -->
       <article class="plan-card reveal">
         <div class="plan-head">
           <p class="plan-name">Sprint</p>
           <p class="plan-tagline">One thing, shipped fast.</p>
           <div class="plan-price">
             <span class="plan-currency">$</span>
-            <span class="plan-amount">4,800</span>
+            <span class="plan-amount" data-monthly="4,800" data-yearly="4,800">4,800</span>
             <span class="plan-period">flat</span>
           </div>
         </div>
@@ -41,8 +50,8 @@
           <p class="plan-tagline">A full launch, end to end.</p>
           <div class="plan-price">
             <span class="plan-currency">$</span>
-            <span class="plan-amount">14,000</span>
-            <span class="plan-period">flat</span>
+            <span class="plan-amount" data-monthly="14,000" data-yearly="11,480">14,000</span>
+            <span class="plan-period" data-monthly-label="flat" data-yearly-label="flat">flat</span>
           </div>
         </div>
         <hr class="plan-divider">
@@ -63,8 +72,8 @@
           <p class="plan-tagline">Your design team, on tap.</p>
           <div class="plan-price">
             <span class="plan-currency">$</span>
-            <span class="plan-amount">7,200</span>
-            <span class="plan-period">/ mo</span>
+            <span class="plan-amount" data-monthly="7,200" data-yearly="5,900">7,200</span>
+            <span class="plan-period" data-monthly-label="/ mo" data-yearly-label="/ mo, billed yearly">/ mo</span>
           </div>
         </div>
         <hr class="plan-divider">

@@ -10,6 +10,46 @@
 // ─── Pricing grid — featured center, flanked asymmetrically ──────────────────
 .section-pricing { padding: @s-9 0; }
 
+// ─── Billing toggle ──────────────────────────────────────────────────────────
+.billing-toggle {
+  display: flex;
+  width: max-content;
+  margin: 0 auto @s-7;
+  background: @paper-deep;
+  border: 1px solid @hairline-strong;
+  border-radius: 999px;
+  padding: 4px;
+}
+
+.billing-option {
+  display: inline-flex; align-items: center; gap: @s-2;
+  padding: 10px 22px;
+  border: 0; background: transparent;
+  border-radius: 999px;
+  font-family: @font-body; font-weight: 600; font-size: 0.85rem;
+  color: @ink-muted; letter-spacing: -0.005em;
+  cursor: pointer;
+  transition: color 240ms @ease-spring, background 240ms @ease-spring;
+
+  &:hover { color: @ink; }
+
+  &.is-active {
+    color: @paper;
+    background: @ink;
+    box-shadow: 0 2px 12px fade(@ink, 25%);
+  }
+}
+
+.billing-save {
+  font-family: @font-mono; font-size: 0.62rem;
+  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  color: @accent;
+  background: fade(@accent, 12%);
+  padding: 3px 8px; border-radius: 999px;
+
+  .is-active & { color: @paper; background: fade(@paper, 18%); }
+}
+
 .pricing-grid {
   display: grid;
   grid-template-columns: 1fr 1.15fr 1fr;   // featured center is wider
@@ -70,7 +110,13 @@
   color: @ink;
 }
 .plan-currency { font-size: 1.4rem; color: @ink-muted; margin-right: 2px; }
-.plan-amount   { font-size: ~"clamp(2.8rem, 5vw, 3.8rem)"; letter-spacing: -0.03em; }
+.plan-amount   {
+  font-size: ~"clamp(2.8rem, 5vw, 3.8rem)";
+  letter-spacing: -0.03em;
+  display: inline-block;
+  transition: opacity 200ms @ease-spring, transform 320ms @ease-spring;
+  &.is-flipping { opacity: 0; transform: translateY(-8px); }
+}
 .plan-period   { font-size: 0.9rem; font-family: @font-body; color: @ink-muted; margin-left: 6px; }
 
 .plan-divider {
