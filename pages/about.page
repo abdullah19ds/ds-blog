@@ -28,34 +28,59 @@
   </div>
 </section>
 
-<!-- Point of view -->
+<!-- Point of view — sticky heading + numbered tenets + decorative ledger -->
 <section class="section section-pov">
   <div class="container">
-    <header class="section-head section-head-left">
-      <p class="eyebrow">Our point of view</p>
-      <h2>Design that earns its keep.</h2>
-    </header>
     <div class="pov-grid">
-      <div class="prose reveal">
-        <p>Most design work fails because the brief is wrong. Teams ask for a redesign when they need positioning. They ask for a logo when they need a customer. We start by asking which decision the design has to make easier — then work backwards from there.</p>
-        <p>We&rsquo;re partial to short engagements with clear deliverables. We&rsquo;d rather ship something useful in two weeks than something polished in two quarters. If you need a 90-page brand bible, we are not the right studio.</p>
-        <p>Every project we take on has a stated metric and a stated deadline. If we can&rsquo;t write both in one sentence, we&rsquo;re not ready to start.</p>
+
+      <!-- Sticky title column -->
+      <aside class="pov-aside">
+        <div class="pov-aside-inner reveal">
+          <p class="eyebrow">Our point of view</p>
+          <h2>Design that<br><em>earns its keep.</em></h2>
+          <p class="pov-aside-meta">Three principles we won&rsquo;t bend on.</p>
+        </div>
+      </aside>
+
+      <!-- Numbered tenets list — large, editorial -->
+      <ol class="pov-tenets" role="list">
+        <li class="pov-tenet reveal">
+          <span class="pov-tenet-num" aria-hidden="true">01</span>
+          <h3 class="pov-tenet-headline">The brief is the bug.</h3>
+          <p>Most design work fails because the brief is wrong. Teams ask for a redesign when they need positioning. They ask for a logo when they need a customer. We start by asking which decision the design has to make easier — then work backwards from there.</p>
+        </li>
+        <li class="pov-tenet reveal">
+          <span class="pov-tenet-num" aria-hidden="true">02</span>
+          <h3 class="pov-tenet-headline">Useful beats perfect.</h3>
+          <p>We&rsquo;re partial to short engagements with clear deliverables. We&rsquo;d rather ship something useful in two weeks than something polished in two quarters. If you need a 90-page brand bible, we are not the right studio.</p>
+        </li>
+        <li class="pov-tenet reveal">
+          <span class="pov-tenet-num" aria-hidden="true">03</span>
+          <h3 class="pov-tenet-headline">Metric or it didn&rsquo;t happen.</h3>
+          <p>Every project we take on has a stated metric and a stated deadline. If we can&rsquo;t write both in one sentence, we&rsquo;re not ready to start.</p>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Ledger strip: animated proof bars at the bottom of the section -->
+    <div class="pov-ledger reveal">
+      <div class="pov-ledger-item">
+        <span class="pov-ledger-label">In business</span>
+        <span class="pov-ledger-value" data-count="6" data-suffix=" yrs">0</span>
+        <span class="pov-ledger-bar"><span class="pov-ledger-bar-fill" style="--w: 60%"></span></span>
       </div>
-      <div class="pov-stats reveal">
-        <div class="stat">
-          <span class="stat-value">6 yrs</span>
-          <span class="stat-label">In business</span>
-        </div>
-        <div class="stat">
-          <span class="stat-value">93%</span>
-          <span class="stat-label">Clients who renew or refer</span>
-        </div>
-        <div class="stat">
-          <span class="stat-value">$0</span>
-          <span class="stat-label">Spent on outbound sales, ever</span>
-        </div>
+      <div class="pov-ledger-item">
+        <span class="pov-ledger-label">Clients who renew or refer</span>
+        <span class="pov-ledger-value" data-count="93" data-suffix="%">0</span>
+        <span class="pov-ledger-bar"><span class="pov-ledger-bar-fill" style="--w: 93%"></span></span>
+      </div>
+      <div class="pov-ledger-item">
+        <span class="pov-ledger-label">Spent on outbound sales, ever</span>
+        <span class="pov-ledger-value pov-ledger-value-zero">$0</span>
+        <span class="pov-ledger-bar"><span class="pov-ledger-bar-fill" style="--w: 0%"></span></span>
       </div>
     </div>
+
   </div>
 </section>
 

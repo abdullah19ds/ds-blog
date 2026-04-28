@@ -89,44 +89,168 @@
   }
 }
 
-// ─── Point of view / prose section ───────────────────────────────────────────
+// ─── Point of view section — sticky aside + numbered tenets + ledger ─────────
 .section-pov {
-  .section-head { max-width: 540px; }
   .pov-grid {
-    display: grid; grid-template-columns: 1.4fr 1fr;
+    display: grid;
+    grid-template-columns: 0.9fr 1.4fr;
     gap: @s-9;
     align-items: start;
-    @media (max-width: @bp-md) { grid-template-columns: 1fr; }
+    @media (max-width: @bp-md) { grid-template-columns: 1fr; gap: @s-7; }
   }
 }
 
-.pov-stats {
-  display: flex; flex-direction: column; gap: @s-5;
-  padding: @s-6;
-  background: @paper-deep;
-  border: 1px solid @hairline;
-  border-radius: @r-lg;
+// Sticky title column
+.pov-aside {
+  position: sticky;
+  top: calc(64px + @s-7);
+  align-self: start;
 
-  .stat {
-    padding-bottom: @s-5;
+  @media (max-width: @bp-md) { position: static; }
+}
+.pov-aside-inner {
+  .eyebrow { margin-bottom: @s-4; }
+  h2 {
+    font-size: ~"clamp(2.2rem, 4.5vw, 3.6rem)";
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: @s-4;
+  }
+  .pov-aside-meta {
+    font-family: @font-mono;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: @ink-muted;
+    max-width: none;
+  }
+}
+
+// Numbered tenets list — editorial
+.pov-tenets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid @hairline;
+}
+.pov-tenet {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: @s-3 @s-5;
+  align-items: baseline;
+  padding: @s-7 0;
+  border-bottom: 1px solid @hairline;
+
+  // Hover: shift the number toward the headline
+  transition: padding 320ms @ease-spring;
+  &:hover .pov-tenet-num { color: @accent; transform: translateX(4px); }
+
+  @media (max-width: @bp-sm) {
+    grid-template-columns: 1fr;
+    gap: @s-3;
+    padding: @s-6 0;
+  }
+}
+.pov-tenet-num {
+  font-family: @font-mono;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: @ink-muted;
+  align-self: start;
+  padding-top: 6px;
+  transition: color 240ms @ease-spring, transform 320ms @ease-spring;
+}
+.pov-tenet-headline {
+  font-family: @font-display;
+  font-size: ~"clamp(1.4rem, 2.6vw, 2rem)";
+  font-weight: 400;
+  font-variation-settings: 'opsz' 36;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0 0 @s-3;
+  grid-column: 2;
+  @media (max-width: @bp-sm) { grid-column: 1; }
+}
+.pov-tenet p {
+  grid-column: 2;
+  margin: 0;
+  color: @ink-muted;
+  font-size: 1rem;
+  max-width: 56ch;
+  @media (max-width: @bp-sm) { grid-column: 1; }
+}
+
+// Ledger strip — animated proof at bottom of POV section
+.pov-ledger {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: @s-9;
+  padding-top: @s-7;
+  border-top: 1px solid @hairline;
+
+  @media (max-width: @bp-md) { grid-template-columns: 1fr; gap: @s-5; padding-top: @s-6; }
+}
+.pov-ledger-item {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: @s-3;
+  padding: 0 @s-6;
+  border-right: 1px solid @hairline;
+  &:first-child { padding-left: 0; }
+  &:last-child { padding-right: 0; border-right: 0; }
+
+  @media (max-width: @bp-md) {
+    border-right: 0;
+    padding: 0 0 @s-5;
     border-bottom: 1px solid @hairline;
-    &:last-child { padding-bottom: 0; border-bottom: 0; }
-  }
-  .stat-value {
-    font-family: @font-display;
-    font-size: ~"clamp(2rem, 4vw, 2.6rem)";
-    font-weight: 400;
-    font-variation-settings: 'opsz' 36;
-    color: @ink;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    display: block; margin-bottom: 4px;
-  }
-  .stat-label {
-    font-size: 0.85rem; color: @ink-muted;
-    letter-spacing: 0.02em;
+    &:last-child { border-bottom: 0; padding-bottom: 0; }
   }
 }
+.pov-ledger-label {
+  font-family: @font-mono;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: @ink-muted;
+  order: 1;
+}
+.pov-ledger-value {
+  font-family: @font-display;
+  font-weight: 400;
+  font-variation-settings: 'opsz' 72;
+  font-size: ~"clamp(2.4rem, 5vw, 3.6rem)";
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: @ink;
+  order: 2;
+}
+.pov-ledger-value-zero { color: @accent; font-style: italic; font-variation-settings: 'opsz' 9; }
+.pov-ledger-bar {
+  height: 4px;
+  background: @hairline;
+  border-radius: 2px;
+  overflow: hidden;
+  display: block;
+  order: 3;
+}
+.pov-ledger-bar-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, @ink, @accent);
+  border-radius: inherit;
+  transform-origin: left center;
+  animation: pov-bar-grow 1.4s @ease-spring forwards;
+  animation-delay: var(--bar-delay, 200ms);
+}
+@keyframes pov-bar-grow {
+  to { width: var(--w, 50%); }
+}
+.pov-ledger-item:nth-child(2) .pov-ledger-bar-fill { --bar-delay: 320ms; }
+.pov-ledger-item:nth-child(3) .pov-ledger-bar-fill { --bar-delay: 440ms; }
 
 // ─── Values section background ───────────────────────────────────
 .section-values-bg {
