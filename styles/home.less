@@ -125,11 +125,104 @@
   letter-spacing: 0.02em;
 }
 
-// ─── Testimonial section ──────────────────────────────────────────────────────
+// ─── Testimonial section + slider ─────────────────────────────────────────────
 .section-testimonial {
   background: @paper-deep;
   border-top: 1px solid @hairline;
   border-bottom: 1px solid @hairline;
+  overflow: hidden;
+  .section-head { max-width: 640px; margin-bottom: @s-7; }
+}
+
+.testimonial-slider { position: relative; }
+
+.testimonial-track {
+  display: flex;
+  transition: transform 600ms @ease-spring;
+  will-change: transform;
+}
+
+.testimonial-slide {
+  flex: 0 0 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: @s-6 0 @s-4;
+
+  blockquote {
+    font-family: @font-display;
+    font-size: ~"clamp(1.4rem, 2.8vw, 2.2rem)";
+    font-weight: 400;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+    color: @ink;
+    font-style: italic;
+    font-variation-settings: 'opsz' 24;
+    margin: 0 0 @s-5;
+    max-width: 50ch;
+
+    &::before {
+      content: '\201C';
+      display: block;
+      font-family: @font-display;
+      font-size: 4rem;
+      line-height: 0.5;
+      color: @accent;
+      margin-bottom: @s-2;
+      font-variation-settings: 'opsz' 144;
+      font-style: normal;
+    }
+  }
+  figcaption {
+    display: flex; align-items: center; gap: @s-3;
+    .avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid @hairline-strong;
+      background: @paper;
+      flex-shrink: 0;
+    }
+    strong { font-family: @font-body; font-weight: 600; font-size: 0.95rem; color: @ink; display: block; }
+    span   { color: @ink-muted; font-size: 0.85rem; display: block; }
+  }
+}
+
+.testimonial-controls {
+  display: flex; align-items: center; gap: @s-4;
+  margin-top: @s-5;
+  padding-top: @s-5;
+  border-top: 1px solid @hairline;
+}
+
+.testimonial-btn {
+  display: inline-grid; place-items: center;
+  width: 44px; height: 44px;
+  background: @paper;
+  border: 1px solid @hairline-strong;
+  border-radius: 50%;
+  color: @ink;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 200ms @ease-spring, border-color 200ms @ease-spring, transform 200ms @ease-spring;
+
+  &:hover { background: @ink; color: @paper; border-color: @ink; }
+  &:active { transform: scale(0.94); }
+}
+
+.testimonial-dots {
+  display: flex; align-items: center; gap: @s-2;
+  margin-left: auto;
+
+  button {
+    width: 26px; height: 6px;
+    border: 0; border-radius: 3px;
+    background: @hairline-strong;
+    cursor: pointer;
+    padding: 0;
+    transition: background 240ms @ease-spring, width 240ms @ease-spring;
+
+    &.is-active { background: @ink; width: 36px; }
+    &:hover { background: @ink-muted; }
+  }
 }
 
 // ─── CTA section ──────────────────────────────────────────────────────────────
