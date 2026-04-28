@@ -34,19 +34,19 @@
 <div class="results-strip">
   <div class="container">
     <div class="result-item reveal">
-      <span class="result-value">2<em>×</em></span>
+      <span class="result-value" data-count="2" data-suffix="×">0<em>×</em></span>
       <span class="result-label">Average landing-page conversion lift</span>
     </div>
     <div class="result-item reveal">
-      <span class="result-value">47<em>%</em></span>
+      <span class="result-value" data-count="47" data-suffix="%">0<em>%</em></span>
       <span class="result-label">Faster time-to-first-design vs in-house hire</span>
     </div>
     <div class="result-item reveal">
-      <span class="result-value">38<em>k</em></span>
+      <span class="result-value" data-count="38" data-suffix="k">0<em>k</em></span>
       <span class="result-label">Design hours delivered since 2019</span>
     </div>
     <div class="result-item reveal">
-      <span class="result-value">93<em>%</em></span>
+      <span class="result-value" data-count="93" data-suffix="%">0<em>%</em></span>
       <span class="result-label">Clients who renew or refer within 6 months</span>
     </div>
   </div>

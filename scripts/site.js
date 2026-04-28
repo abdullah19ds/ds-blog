@@ -201,6 +201,47 @@
     });
   }
 
+  // ── Animated number counters ────────────────────────────
+  function initCounters() {
+    var els = document.querySelectorAll('[data-count]');
+    if (!els.length) return;
+
+    function setFinal(el) {
+      var target = parseFloat(el.getAttribute('data-count'));
+      var suffix = el.getAttribute('data-suffix') || '';
+      // Preserve the <em> styling around the suffix
+      el.innerHTML = target + '<em>' + suffix + '</em>';
+    }
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      els.forEach(setFinal);
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var target = parseFloat(el.getAttribute('data-count'));
+        var suffix = el.getAttribute('data-suffix') || '';
+        var duration = 1400;
+        var start = performance.now();
+
+        function tick(now) {
+          var t = Math.min(1, (now - start) / duration);
+          var eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+          var val = Math.floor(eased * target);
+          el.innerHTML = val + '<em>' + suffix + '</em>';
+          if (t < 1) requestAnimationFrame(tick);
+          else setFinal(el);
+        }
+        requestAnimationFrame(tick);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.6 });
+    els.forEach(function (el) { io.observe(el); });
+  }
+
   // ── Auto-update copyright year ──────────────────────────
   function initCopyYear() {
     var el = document.querySelector('.copy-year');
@@ -287,6 +328,7 @@
     initCopyYear();
     initSlider();
     initBillingToggle();
+    initCounters();
 
     // Try to upgrade reveals + add page transition with GSAP. Non-fatal on
     // failure — IO-based .reveal already works.
