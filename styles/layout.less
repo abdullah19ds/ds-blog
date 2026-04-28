@@ -196,19 +196,66 @@
   margin-top: @s-10;
   background: @ink;
   color: @paper;
-  padding: @s-9 0 @s-5;
+  padding: 0 0 @s-5;
+  position: relative;
+  overflow: hidden;
+
+  // soft warm halo top-right
+  &::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 480px; height: 480px; border-radius: 50%;
+    background: @accent; opacity: 0.05;
+    pointer-events: none;
+    filter: ~"blur(20px)";
+  }
+}
+
+// Big editorial lockup at the top of the footer
+.footer-lockup {
+  padding: @s-9 @s-6 @s-7;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+  z-index: 1;
+}
+.footer-lockup-text {
+  display: block;
+  font-family: @font-display;
+  font-weight: 400;
+  font-variation-settings: 'opsz' 144;
+  font-size: ~"clamp(2.6rem, 7vw, 6rem)";
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: @paper;
+  max-width: 16ch;
+
+  em {
+    color: @accent;
+    font-variation-settings: 'opsz' 9;
+    font-style: italic;
+    margin-left: 0.3ch;
+  }
 }
 
 .footer-inner {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: @s-8;
-  padding-bottom: @s-7;
-  border-bottom: 1px solid rgba(255,255,255,0.10);
+  grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+  gap: @s-7 @s-8;
+  padding: @s-8 0 @s-7;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   margin-bottom: @s-5;
+  position: relative;
+  z-index: 1;
 
+  @media (max-width: @bp-lg) {
+    grid-template-columns: 1.4fr 1fr 1fr;
+    .footer-contact { grid-column: 1 / -1; padding-top: @s-5; border-top: 1px solid rgba(255,255,255,0.08); }
+  }
   @media (max-width: @bp-md) {
     grid-template-columns: 1fr 1fr;
+    .footer-brand { grid-column: 1 / -1; }
+    .footer-contact { grid-column: 1 / -1; }
   }
   @media (max-width: @bp-sm) {
     grid-template-columns: 1fr;
@@ -221,39 +268,79 @@
   .brand-name { color: @paper; }
   .footer-tagline {
     margin-top: @s-4;
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.45);
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.55);
     max-width: 28ch;
     line-height: 1.5;
   }
 }
 
-.footer-col h4 {
-  font-family: @font-mono; font-size: 0.68rem; font-weight: 500;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  margin-bottom: @s-4;
-}
-.footer-col .nav-list {
-  flex-direction: column; align-items: flex-start; gap: @s-3;
-}
-.footer-col a {
-  color: rgba(255,255,255,0.60);
-  font-size: 0.92rem;
-  &:hover { color: @paper; }
+.footer-cta-btn {
+  margin-top: @s-5;
+  background: @paper; color: @ink; border-color: @paper;
+  &::before { background: @accent; }
+  &:hover { color: @paper; border-color: @accent; }
+  .arrow {
+    display: inline-block;
+    transition: transform 240ms @ease-spring;
+  }
+  &:hover .arrow { transform: translateX(4px); }
 }
 
-// Footer never shows the orange active-link styling — different context
+.footer-col h4 {
+  font-family: @font-mono; font-size: 0.65rem; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.32);
+  margin-bottom: @s-5;
+}
+.footer-col .nav-list,
+.footer-contact-list {
+  flex-direction: column; align-items: flex-start; gap: @s-3;
+  display: flex;
+  list-style: none; padding: 0; margin: 0;
+}
+
+// Footer link state: matches navbar pattern (muted on rest, ink-on-hover with
+// orange underline reveal on active/hover — but in the dark footer we use
+// a paper-on-rest-muted, paper-on-hover, accent underline).
+.site-footer .nav-item > a,
+.footer-contact-list a {
+  position: relative;
+  display: inline-block;
+  color: rgba(255,255,255,0.60);
+  font-size: 0.95rem;
+  padding: 2px 0;
+  text-decoration: none;
+  transition: color 200ms @ease-spring;
+
+  &::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -3px;
+    height: 2px; background: @accent; border-radius: 2px;
+    transform: scaleX(0); transform-origin: left center;
+    transition: transform 280ms @ease-spring;
+  }
+  &:hover { color: @paper; }
+  &:hover::after { transform: scaleX(1); }
+}
+
 .site-footer .nav-item.is-active > a {
   color: @paper;
-  &::after { display: none; }
+  &::after { transform: scaleX(1); }
 }
-.site-footer .nav-item > a { color: rgba(255,255,255,0.60); }
-.site-footer .nav-item > a:hover { color: @paper; }
 
 .footer-bottom {
   display: flex; justify-content: space-between; align-items: center;
   font-family: @font-mono; font-size: 0.72rem;
   color: rgba(255,255,255,0.30);
   gap: @s-4; flex-wrap: wrap;
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1;
+  padding-top: @s-5;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-top: @s-5;
+}
+.footer-bottom-meta {
+  display: inline-flex; align-items: center; gap: @s-2;
+  .avail-dot { width: 6px; height: 6px; }
 }
