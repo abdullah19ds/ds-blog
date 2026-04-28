@@ -11,6 +11,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
+  <!-- Animation libraries (loaded before site.js so init can use them) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
   <squarespace:script src="site.js" combo="true" />
 
   <!-- Squarespace auto-injects site.css, CSRF token, statistics, social meta -->
@@ -25,7 +29,7 @@
     <div class="site-header-inner">
       <a class="brand" href="/" aria-label="DesignShifu — home">
         <span class="brand-mark" aria-hidden="true">DS</span>
-        <span class="brand-name">{website.siteTitle}</span>
+        <span class="brand-name">DS Blog</span>
       </a>
 
       <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
@@ -73,7 +77,7 @@
         <div class="footer-brand">
           <a class="brand" href="/">
             <span class="brand-mark" aria-hidden="true">DS</span>
-            <span class="brand-name">{website.siteTitle}</span>
+            <span class="brand-name">DS Blog</span>
           </a>
           <p class="footer-tagline">Design that ships.<br>Strategy that compounds.</p>
         </div>
@@ -90,7 +94,7 @@
       </div>
 
       <div class="footer-bottom">
-        <span>&copy; {website.siteTitle}. All rights reserved.</span>
+        <span>&copy; <span class="copy-year">2026</span> DS Blog. All rights reserved.</span>
         <span>Built on Squarespace Developer Mode.</span>
       </div>
     </div>

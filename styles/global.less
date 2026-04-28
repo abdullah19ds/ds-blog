@@ -80,7 +80,7 @@ a:hover          { color: @accent; }
   &:focus { left: 12px; top: 12px; }
 }
 
-// Scroll reveal — set by JS
+// Scroll reveal — set by JS (legacy class)
 .reveal {
   opacity: 0;
   transform: translateY(24px);
@@ -90,14 +90,49 @@ a:hover          { color: @accent; }
   opacity: 1;
   transform: translateY(0);
 }
-
-// Stagger helpers
 .reveal:nth-child(1) { transition-delay: 0ms; }
 .reveal:nth-child(2) { transition-delay: 80ms; }
 .reveal:nth-child(3) { transition-delay: 160ms; }
 .reveal:nth-child(4) { transition-delay: 240ms; }
 .reveal:nth-child(5) { transition-delay: 320ms; }
 .reveal:nth-child(6) { transition-delay: 400ms; }
+
+// New class: GSAP-driven reveals (rises from below). JS sets initial state and
+// animates on enter via ScrollTrigger. Fallback (no JS / no GSAP) below.
+.reveal-up {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0);
+  will-change: transform, opacity;
+}
+// If JS or GSAP is unavailable, .gsap-disabled is set on <html> and elements
+// reveal via plain CSS transition.
+.gsap-disabled .reveal-up {
+  animation: reveal-up-fallback 700ms @ease-spring forwards;
+}
+@keyframes reveal-up-fallback {
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+// Page-load curtain (sweeps up over content, then off-screen)
+.page-curtain {
+  position: fixed; inset: 0;
+  background: @ink;
+  z-index: 9999;
+  pointer-events: none;
+  transform: translateY(0);
+  will-change: transform;
+}
+
+// Underlined text-link utility (for body copy)
+.link-underline {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: fade(@ink, 30%);
+  transition: text-decoration-color 200ms @ease-spring, color 200ms @ease-spring;
+  &:hover { color: @accent; text-decoration-color: @accent; }
+}
 
 // Reduce motion
 @media (prefers-reduced-motion: reduce) {
