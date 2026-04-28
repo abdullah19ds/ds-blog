@@ -148,14 +148,22 @@
   background: @paper-deep;
   border-radius: @r-xl;
   aspect-ratio: 4 / 3;
-  display: flex; align-items: center; justify-content: center;
+  display: block;
   border: 1px solid @hairline;
   overflow: hidden;
+  position: relative;
+
+  img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 700ms @ease-spring, filter 700ms @ease-spring;
+    filter: ~"grayscale(20%) contrast(1.05)";
+  }
 }
-.service-visual-icon {
-  font-family: @font-mono; font-size: 4rem;
-  color: @ink; opacity: 0.06;
-  letter-spacing: -0.05em;
+.service-item:hover .service-visual img {
+  transform: scale(1.04);
+  filter: ~"grayscale(0%) contrast(1.05)";
 }
 
 // ─── Process steps ────────────────────────────────────────────────────────────

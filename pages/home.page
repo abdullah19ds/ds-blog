@@ -24,7 +24,9 @@
     </div>
   </div>
   <div class="hero-visual" aria-hidden="true">
-    <span class="hero-marquee-label">Selected work — 2024</span>
+    <img class="hero-visual-img" src="https://picsum.photos/seed/dsblog-hero/1200/1400" alt="" loading="eager">
+    <span class="hero-visual-letter">DS</span>
+    <span class="hero-marquee-label">Selected work &mdash; 2024</span>
   </div>
 </section>
 
@@ -71,8 +73,8 @@
           </ul>
           <a class="btn btn-ghost btn-sm" href="/pricing">See pricing <span class="arrow" aria-hidden="true">→</span></a>
         </div>
-        <div class="service-visual" aria-hidden="true">
-          <span class="service-visual-icon">Aa</span>
+        <div class="service-visual">
+          <img src="https://picsum.photos/seed/dsblog-brand/900/700" alt="Brand identity work" loading="lazy">
         </div>
       </article>
 
@@ -88,8 +90,8 @@
           </ul>
           <a class="btn btn-ghost btn-sm" href="/pricing">See pricing <span class="arrow" aria-hidden="true">→</span></a>
         </div>
-        <div class="service-visual" aria-hidden="true">
-          <span class="service-visual-icon">[]</span>
+        <div class="service-visual">
+          <img src="https://picsum.photos/seed/dsblog-product/900/700" alt="Product design work" loading="lazy">
         </div>
       </article>
 
@@ -105,8 +107,8 @@
           </ul>
           <a class="btn btn-ghost btn-sm" href="/pricing">See pricing <span class="arrow" aria-hidden="true">→</span></a>
         </div>
-        <div class="service-visual" aria-hidden="true">
-          <span class="service-visual-icon">∞</span>
+        <div class="service-visual">
+          <img src="https://picsum.photos/seed/dsblog-partner/900/700" alt="Design partner work" loading="lazy">
         </div>
       </article>
     </div>
