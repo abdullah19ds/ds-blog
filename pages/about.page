@@ -70,7 +70,7 @@
 </section>
 
 <!-- Values — bordered grid, no boxed cards -->
-<section class="section" style="background:var(--paper-deep,#e9e0d0);border-top:1px solid rgba(20,16,9,.1);border-bottom:1px solid rgba(20,16,9,.1);">
+<section class="section section-values-bg">
   <div class="container">
     <header class="section-head section-head-left">
       <p class="eyebrow">How we operate</p>
