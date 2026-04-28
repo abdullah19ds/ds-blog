@@ -109,6 +109,41 @@
     return loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js')
       .then(function () { return loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js'); });
   }
+  function loadLenis() {
+    if (window.Lenis) return Promise.resolve();
+    if (prefersReducedMotion) return Promise.reject(new Error('reduced-motion'));
+    return loadScript('https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/bundled/lenis.min.js');
+  }
+
+  // ── Lenis smooth scroll ─────────────────────────────────
+  function initSmoothScroll() {
+    if (prefersReducedMotion || !window.Lenis) return;
+    try {
+      var lenis = new window.Lenis({
+        duration: 1.15,
+        // easeOutExpo-ish — gentle, damped
+        easing: function (t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); },
+        smoothWheel: true,
+        // Disable smooth on touch — native momentum is already great
+        smoothTouch: false,
+        touchMultiplier: 1.6,
+      });
+      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
+
+      // Keep ScrollTrigger in sync if it's loaded
+      if (window.ScrollTrigger) {
+        lenis.on('scroll', window.ScrollTrigger.update);
+        window.gsap && window.gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+        window.gsap && window.gsap.ticker.lagSmoothing(0);
+      }
+
+      // Pause Lenis when nav drawer or modal needs body scroll lock — the
+      // nav already toggles .is-open; if that gets used in the future, hook
+      // here. For now Lenis just runs.
+      window.__lenis = lenis; // expose for debugging
+    } catch (e) { /* fail silent — native scroll continues */ }
+  }
 
   // ── GSAP-enhanced reveals (replaces the IO version when GSAP is available)
   function enhanceRevealsWithGSAP() {
@@ -330,12 +365,14 @@
     initBillingToggle();
     initCounters();
 
-    // Try to upgrade reveals + add page transition with GSAP. Non-fatal on
-    // failure — IO-based .reveal already works.
-    loadGSAP().then(function () {
-      enhanceRevealsWithGSAP();
-      initPageTransition();
-    }).catch(function () { /* GSAP unavailable — CSS transitions stay */ });
+    // Try to upgrade reveals + page transition with GSAP, then start Lenis
+    // smooth scroll. All non-fatal on failure — IO/native scroll keep working.
+    loadGSAP()
+      .then(function () { enhanceRevealsWithGSAP(); initPageTransition(); })
+      .catch(function () {})
+      .then(function () { return loadLenis(); })
+      .then(function () { initSmoothScroll(); })
+      .catch(function () { /* Lenis unavailable — native scroll stays */ });
   });
 
 }());

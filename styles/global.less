@@ -80,6 +80,15 @@ a:hover          { color: @accent; }
   &:focus { left: 12px; top: 12px; }
 }
 
+// Lenis smooth-scroll runtime classes (prevent the browser's native smooth
+// behaviour from competing). Lenis adds .lenis to <html> when active.
+html.lenis,
+html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-scrolling iframe { pointer-events: none; }
+
 // Page-load curtain (sweeps up over content, then off-screen)
 .page-curtain {
   position: fixed; inset: 0;
