@@ -10,40 +10,39 @@
 <section class="blog-list">
   <div class="container">
 
-    {.section pagination}
-      {.section items}
-
-        <ul class="post-grid post-grid-3">
-          {.repeated section @}
-            <li class="post-card reveal">
-              <a class="post-card-media" href="{fullUrl}" aria-label="{title}">
-                {.section assetUrl}
-                  <img src="{assetUrl}?format=800w" alt="{title}" loading="lazy">
-                {.or}
-                  <span class="post-card-media-fallback" aria-hidden="true">{title|truncate 2}</span>
+    {.section items}
+      <ul class="post-grid post-grid-3">
+        {.repeated section @}
+          <li class="post-card reveal">
+            <a class="post-card-media" href="{fullUrl}" aria-label="{title}">
+              {.section assetUrl}
+                <img src="{assetUrl}?format=800w" alt="{title}" loading="lazy">
+              {.or}
+                <span class="post-card-media-fallback" aria-hidden="true">{title|truncate 2}</span>
+              {.end}
+            </a>
+            <div class="post-card-body">
+              <p class="post-meta">
+                <time datetime="{addedOn|date %Y-%m-%d}">{addedOn|date %b %d, %Y}</time>
+                {.section categories}
+                  <span aria-hidden="true">·</span>
+                  {.repeated section @}<span class="post-tag">{@}</span>{.end}
                 {.end}
+              </p>
+              <h2 class="post-title"><a href="{fullUrl}">{title}</a></h2>
+              {.section excerpt}
+                <div class="post-excerpt">{excerpt|safe}</div>
+              {.end}
+              <a class="post-read-more" href="{fullUrl}" aria-label="Read {title}">
+                Read article <span class="arrow" aria-hidden="true">→</span>
               </a>
-              <div class="post-card-body">
-                <p class="post-meta">
-                  <time datetime="{addedOn|date %Y-%m-%d}">{addedOn|date %b %d, %Y}</time>
-                  {.section categories}
-                    <span aria-hidden="true">·</span>
-                    {.repeated section @}<span class="post-tag">{@}</span>{.end}
-                  {.end}
-                </p>
-                <h2 class="post-title"><a href="{fullUrl}">{title}</a></h2>
-                {.section excerpt}
-                  <div class="post-excerpt">{excerpt|safe}</div>
-                {.end}
-                <a class="post-read-more" href="{fullUrl}" aria-label="Read {title}">
-                  Read article <span class="arrow" aria-hidden="true">→</span>
-                </a>
-              </div>
-            </li>
-          {.end}
-        </ul>
+            </div>
+          </li>
+        {.end}
+      </ul>
 
-        <!-- Pagination -->
+      <!-- Pagination — keys only present when more than pageSize posts exist -->
+      {.section pagination}
         <nav class="pagination" aria-label="Blog pages">
           {.section prevPage}
             <a class="pagination-link" href="{fullUrl}" rel="prev">← Newer posts</a>
@@ -56,15 +55,15 @@
             <span class="pagination-link is-disabled">Older posts →</span>
           {.end}
         </nav>
-
-      {.or}
-        <!-- Empty state -->
-        <div class="blog-empty">
-          <p class="eyebrow">Nothing to read here yet</p>
-          <h2>The first article is on its way.</h2>
-          <p>Check back soon — or follow along on the channels in the footer.</p>
-        </div>
       {.end}
+
+    {.or}
+      <!-- Empty state -->
+      <div class="blog-empty">
+        <p class="eyebrow">Nothing to read here yet</p>
+        <h2>The first article is on its way.</h2>
+        <p>Check back soon — or follow along on the channels in the footer.</p>
+      </div>
     {.end}
 
   </div>
