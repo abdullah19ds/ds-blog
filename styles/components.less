@@ -2,6 +2,10 @@
 // Directional-fill on hover (Design-taste rule: enter from left)
 .btn {
   position: relative; overflow: hidden;
+  // isolation creates a new stacking context so ::before with z-index:-1 sits
+  // BEHIND text content but ON TOP of the parent background. Fixes "text
+  // disappears on hover" caused by the directional fill covering the label.
+  isolation: isolate;
   display: inline-flex; align-items: center; justify-content: center; gap: @s-2;
   padding: 13px 26px;
   border-radius: @r-sm;
@@ -13,6 +17,7 @@
   &::before {
     content: '';
     position: absolute; inset: 0;
+    z-index: -1;
     transform: translateX(-100%);
     transition: transform 360ms @ease-spring;
   }
@@ -37,21 +42,26 @@
   &:hover { color: @ink; border-color: @hairline-strong; }
 }
 
+// Ghost button: unboxed, arrow can translate without clipping
 .btn-ghost {
   background: transparent; color: @ink-muted;
-  border: 0; padding-left: 0; padding-right: 0;
+  border: 0;
+  padding: @s-2 0;
+  overflow: visible;
+  isolation: auto;
 
   span.arrow {
     display: inline-block;
     transition: transform 240ms @ease-spring;
   }
   &:hover { color: @ink; }
-  &:hover span.arrow { transform: translateX(4px); }
+  &:hover span.arrow { transform: translateX(6px); }
   &::before { display: none; }
 }
 
-.btn-sm { padding: 9px 18px; font-size: 0.82rem; }
+.btn-sm { padding: 10px 20px; font-size: 0.82rem; }
 .btn-lg { padding: 16px 34px; font-size: 1rem; }
+.btn-ghost.btn-sm { padding: @s-2 0; }
 
 // ─── Stat row ─────────────────────────────────────────────────────────────────
 .stat-row {
