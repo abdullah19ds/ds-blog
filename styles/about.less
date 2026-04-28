@@ -89,43 +89,147 @@
   }
 }
 
-// ─── Point of view / prose section ───────────────────────────────────────────
+// ─── Point of view section — sticky aside + numbered tenets + ledger ─────────
 .section-pov {
-  .section-head { max-width: 540px; }
   .pov-grid {
-    display: grid; grid-template-columns: 1.4fr 1fr;
+    display: grid;
+    grid-template-columns: 0.85fr 1.4fr;
     gap: @s-9;
     align-items: start;
-    @media (max-width: @bp-md) { grid-template-columns: 1fr; }
+    @media (max-width: @bp-md) { grid-template-columns: 1fr; gap: @s-7; }
   }
 }
 
-.pov-stats {
-  display: flex; flex-direction: column; gap: @s-5;
-  padding: @s-6;
-  background: @paper-deep;
-  border: 1px solid @hairline;
-  border-radius: @r-lg;
+.pov-aside {
+  position: sticky;
+  top: calc(64px + @s-7);
+  align-self: start;
+  @media (max-width: @bp-md) { position: static; }
+}
+.pov-aside-inner {
+  .eyebrow { margin-bottom: @s-4; }
+  h2 {
+    font-size: ~"clamp(2.2rem, 4.5vw, 3.6rem)";
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: @s-4;
+    em { color: @accent; font-style: italic; font-variation-settings: 'opsz' 9; }
+  }
+  .pov-aside-meta {
+    font-family: @font-mono;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: @ink-muted;
+    max-width: none;
+  }
+}
 
-  .stat {
-    padding-bottom: @s-5;
+// Numbered tenets list — editorial, hairline-separated
+.pov-tenets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid @hairline;
+}
+.pov-tenet {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: @s-5;
+  align-items: baseline;
+  padding: @s-7 0;
+  border-bottom: 1px solid @hairline;
+
+  &:hover .pov-tenet-num {
+    color: @accent;
+    transform: translateX(4px);
+  }
+  &:hover .pov-tenet-headline { color: @accent; }
+
+  @media (max-width: @bp-sm) {
+    grid-template-columns: 1fr;
+    gap: @s-3;
+    padding: @s-6 0;
+  }
+}
+.pov-tenet-num {
+  font-family: @font-mono;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: @ink-muted;
+  align-self: start;
+  padding-top: 6px;
+  transition: color 240ms @ease-spring, transform 320ms @ease-spring;
+}
+.pov-tenet-body { min-width: 0; }
+.pov-tenet-headline {
+  font-family: @font-display;
+  font-size: ~"clamp(1.4rem, 2.6vw, 2rem)";
+  font-weight: 400;
+  font-variation-settings: 'opsz' 36;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0 0 @s-3;
+  transition: color 240ms @ease-spring;
+}
+.pov-tenet-body p {
+  margin: 0;
+  color: @ink-muted;
+  font-size: 1rem;
+  max-width: 56ch;
+}
+
+// Ledger strip below tenets
+.pov-ledger {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: @s-9;
+  padding-top: @s-7;
+  border-top: 1px solid @hairline;
+
+  @media (max-width: @bp-md) { grid-template-columns: 1fr; gap: @s-5; padding-top: @s-6; }
+}
+.pov-ledger-item {
+  display: flex;
+  flex-direction: column;
+  gap: @s-3;
+  padding: 0 @s-6;
+  border-right: 1px solid @hairline;
+  &:first-child { padding-left: 0; }
+  &:last-child { padding-right: 0; border-right: 0; }
+
+  @media (max-width: @bp-md) {
+    border-right: 0;
+    padding: 0 0 @s-5;
     border-bottom: 1px solid @hairline;
-    &:last-child { padding-bottom: 0; border-bottom: 0; }
+    &:last-child { border-bottom: 0; padding-bottom: 0; }
   }
-  .stat-value {
-    font-family: @font-display;
-    font-size: ~"clamp(2rem, 4vw, 2.6rem)";
-    font-weight: 400;
-    font-variation-settings: 'opsz' 36;
-    color: @ink;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    display: block; margin-bottom: 4px;
-  }
-  .stat-label {
-    font-size: 0.85rem; color: @ink-muted;
-    letter-spacing: 0.02em;
-  }
+}
+.pov-ledger-label {
+  font-family: @font-mono;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: @ink-muted;
+}
+.pov-ledger-value {
+  font-family: @font-display;
+  font-weight: 400;
+  font-variation-settings: 'opsz' 72;
+  font-size: ~"clamp(2.4rem, 5vw, 3.6rem)";
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: @ink;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.pov-ledger-value-zero {
+  color: @accent;
+  font-style: italic;
+  font-variation-settings: 'opsz' 9;
 }
 
 // ─── Values section background ───────────────────────────────────
