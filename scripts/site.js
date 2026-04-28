@@ -18,6 +18,23 @@
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hasGSAP = function () { return typeof window.gsap !== 'undefined'; };
 
+  // Dynamically load GSAP + ScrollTrigger (Squarespace prefers <squarespace:script>
+  // in templates, so we inject the CDN from JS rather than from site.region <head>).
+  function loadScript(src) {
+    return new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = src; s.async = false;
+      s.onload = resolve; s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+  function loadGSAP() {
+    if (hasGSAP()) return Promise.resolve();
+    if (prefersReducedMotion) return Promise.reject(new Error('reduced-motion'));
+    return loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js')
+      .then(function () { return loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js'); });
+  }
+
   // ── Mobile nav toggle ───────────────────────────────────
   function initNav() {
     var toggle = document.querySelector('.nav-toggle');
@@ -367,16 +384,13 @@
     initCounters();
     initCopyYear();
 
-    // GSAP loads with `defer`, so it may arrive after DOMContentLoaded.
-    // Wait until window load before calling reveal/page-transition init.
-    if (document.readyState === 'complete') {
+    // Load GSAP + plugins, then enable scroll reveals + page transition.
+    // If load fails or reduced-motion is on, fall back to CSS/IO reveals.
+    loadGSAP().then(function () {
       initReveal();
       initPageTransition();
-    } else {
-      window.addEventListener('load', function () {
-        initReveal();
-        initPageTransition();
-      });
-    }
+    }).catch(function () {
+      initReveal();
+    });
   });
 }());
