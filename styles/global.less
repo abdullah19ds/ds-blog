@@ -80,6 +80,16 @@ a:hover          { color: @accent; }
   &:focus { left: 12px; top: 12px; }
 }
 
+// Page-load curtain (sweeps up over content, then off-screen)
+.page-curtain {
+  position: fixed; inset: 0;
+  background: @ink;
+  z-index: 9999;
+  pointer-events: none;
+  transform: translateY(0);
+  will-change: transform;
+}
+
 // Scroll reveal — set by JS
 .reveal {
   opacity: 0;

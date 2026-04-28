@@ -92,6 +92,80 @@
     });
   }
 
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Dynamic loader for GSAP (kept out of <head> to avoid template parser issues)
+  function loadScript(src) {
+    return new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = src; s.async = false;
+      s.onload = resolve; s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+  function loadGSAP() {
+    if (window.gsap) return Promise.resolve();
+    if (prefersReducedMotion) return Promise.reject(new Error('reduced-motion'));
+    return loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js')
+      .then(function () { return loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js'); });
+  }
+
+  // ── GSAP-enhanced reveals (replaces the IO version when GSAP is available)
+  function enhanceRevealsWithGSAP() {
+    if (!window.gsap) return false;
+    try {
+      if (window.ScrollTrigger) gsap.registerPlugin(window.ScrollTrigger);
+      var els = document.querySelectorAll('.reveal');
+      els.forEach(function (el) {
+        // override the CSS transition with a GSAP tween for nicer easing
+        gsap.fromTo(el,
+          { opacity: 0, y: 28 },
+          {
+            opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+            onStart: function () { el.classList.add('is-visible'); }
+          }
+        );
+      });
+      return true;
+    } catch (e) { return false; }
+  }
+
+  // ── Page-transition curtain ─────────────────────────────
+  function initPageTransition() {
+    if (prefersReducedMotion || !window.gsap) return;
+    var curtain = document.createElement('div');
+    curtain.className = 'page-curtain';
+    document.body.appendChild(curtain);
+
+    // Initial entry: cover, then slide up off-screen
+    gsap.set(curtain, { y: 0 });
+    gsap.to(curtain, {
+      y: '-100%', duration: 0.85, ease: 'power3.inOut', delay: 0.05,
+      onComplete: function () { gsap.set(curtain, { y: '100%' }); }
+    });
+
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a');
+      if (!a) return;
+      var href = a.getAttribute('href');
+      if (!href) return;
+      var isExternal = /^(https?:|\/\/)/.test(href) && href.indexOf(location.host) === -1;
+      if (isExternal) return;
+      if (href.charAt(0) === '#') return;
+      if (/^(mailto:|tel:)/.test(href)) return;
+      if (a.target === '_blank') return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+      e.preventDefault();
+      gsap.set(curtain, { y: '100%' });
+      gsap.to(curtain, {
+        y: 0, duration: 0.55, ease: 'power3.inOut',
+        onComplete: function () { window.location.href = href; }
+      });
+    });
+  }
+
   // ── Pricing monthly/yearly toggle ───────────────────────
   function initBillingToggle() {
     var root = document.querySelector('[data-billing-toggle]');
@@ -213,6 +287,13 @@
     initCopyYear();
     initSlider();
     initBillingToggle();
+
+    // Try to upgrade reveals + add page transition with GSAP. Non-fatal on
+    // failure — IO-based .reveal already works.
+    loadGSAP().then(function () {
+      enhanceRevealsWithGSAP();
+      initPageTransition();
+    }).catch(function () { /* GSAP unavailable — CSS transitions stay */ });
   });
 
 }());
