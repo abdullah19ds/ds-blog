@@ -5,97 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{website.siteTitle}</title>
   <meta name="description" content="{website.siteDescription}">
-  <meta property="og:title" content="{website.siteTitle}">
-  <meta property="og:description" content="{website.siteDescription}">
-  <meta property="og:type" content="website">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
   <squarespace:script src="site.js" combo="true" />
 </head>
 <body class="{squarespace.page-classes}" id="{squarespace.page-id}">
 
-  <header id="header">
-    <div class="container">
-      <a href="/" class="site-logo">
-        <div class="logo-mark">D</div>
-        Design<span>Shifu</span>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-sqsp-section="header">
+    <div class="container site-header-inner">
+      <a class="brand" href="/" aria-label="{website.siteTitle} home">
+        <span class="brand-mark" aria-hidden="true">DS</span>
+        <span class="brand-name">{website.siteTitle}</span>
       </a>
-
-      <nav class="header-nav" id="mainNavEl">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div id="primary-nav" class="primary-nav">
         <squarespace:navigation navigationId="mainNav" template="navigation" />
-      </nav>
-
-      <div class="header-cta">
-        <a href="/contact" class="btn btn-outline">Let's Talk</a>
-        <a href="/pricing" class="btn btn-primary">Get Started</a>
-        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <a class="btn btn-primary nav-cta" href="/pricing">Start a project</a>
       </div>
     </div>
   </header>
 
-  <main id="canvas">
-    <section id="page" role="main" data-content-field="main-content">
-      {squarespace.main-content}
-    </section>
+  <main id="main" role="main" data-content-field="main-content">
+    {squarespace.main-content}
   </main>
 
-  <footer id="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="/" class="site-logo">
-            <div class="logo-mark">D</div>
-            Design<span>Shifu</span>
-          </a>
-          <p>We craft exceptional digital experiences that elevate brands and drive meaningful results for businesses worldwide.</p>
-        </div>
-
-        <div class="footer-col">
-          <h5>Services</h5>
-          <ul>
-            <li><a href="/services/branding">Brand Identity</a></li>
-            <li><a href="/services/ui-ux">UI/UX Design</a></li>
-            <li><a href="/services/web">Web Design</a></li>
-            <li><a href="/services/motion">Motion Design</a></li>
-            <li><a href="/services/print">Print & Packaging</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h5>Company</h5>
-          <ul>
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/pricing">Pricing</a></li>
-            <li><a href="/careers">Careers</a></li>
-            <li><a href="/contact">Contact</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h5>Legal</h5>
-          <ul>
-            <li><a href="/privacy">Privacy Policy</a></li>
-            <li><a href="/terms">Terms of Service</a></li>
-            <li><a href="/cookies">Cookie Policy</a></li>
-          </ul>
-        </div>
+  <footer class="site-footer" data-sqsp-section="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <span class="brand-mark" aria-hidden="true">DS</span>
+        <p class="footer-tagline">Design that ships. Strategy that compounds.</p>
       </div>
-
-      <div class="footer-bottom">
-        <p>&copy; 2024 DesignShifu. All rights reserved.</p>
-        <div class="footer-socials">
-          <a href="#" aria-label="Twitter">𝕏</a>
-          <a href="#" aria-label="Instagram">▣</a>
-          <a href="#" aria-label="LinkedIn">in</a>
-          <a href="#" aria-label="Dribbble">◉</a>
-        </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <squarespace:navigation navigationId="footerNav" template="navigation" />
+      </nav>
+      <div class="footer-meta">
+        <squarespace:block-field id="footerBlocks" columns="12" label="Footer Content" />
       </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; {website.siteTitle}. All rights reserved.</p>
+      <p class="muted">Built with care, shipped on Squarespace.</p>
     </div>
   </footer>
 

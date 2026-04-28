@@ -1,116 +1,53 @@
 {.section item}
+<article class="post" data-content-field="main-content">
 
-<article class="post-detail">
-
-  <!-- Post Header -->
-  <div class="container">
-    <div class="post-detail-hero">
-      <div class="post-detail-meta">
-        <span class="post-detail-cat">{.section categories}{.section 0}{@}{.end}{.end}</span>
-        <span class="meta-sep">·</span>
-        <span class="post-detail-date">{addedOn|date %B %d, %Y}</span>
-        <span class="meta-sep">·</span>
-        <span class="post-detail-read">5 min read</span>
-      </div>
-
-      <h1>{title}</h1>
-
-      {.section excerpt}
-      <p class="post-detail-excerpt">{excerpt}</p>
+  <header class="post-header">
+    <div class="container container-narrow">
+      <p class="post-breadcrumb"><a href="{collection.fullUrl}">&larr; {collection.title}</a></p>
+      <p class="post-meta">
+        <time datetime="{addedOn|date %Y-%m-%d}">{addedOn|date %B %d, %Y}</time>
+        {.section author.displayName}
+          <span class="post-meta-sep" aria-hidden="true">&middot;</span>
+          <span>By {author.displayName}</span>
+        {.end}
+      </p>
+      <h1 class="post-title">{title}</h1>
+      {.section categories}
+        <p class="post-tags">
+          {.repeated section @}<span class="post-tag">{@}</span>{.end}
+        </p>
       {.end}
-
-      <div class="post-detail-author">
-        <div class="author-av">{author.displayName|slice 0,2|upper}</div>
-        <div>
-          <div class="author-name">{author.displayName}</div>
-          <div class="author-title">Design Writer · DesignShifu</div>
-        </div>
-      </div>
     </div>
-  </div>
+  </header>
 
-  <!-- Featured Image -->
   {.section assetUrl}
-  <div class="container">
-    <div class="post-detail-image">
-      <img src="{assetUrl}" alt="{title}">
-    </div>
-  </div>
-  {.end}
-  {.section assetUrl|not}
-  <div class="container">
-    <div class="post-detail-image">✦</div>
-  </div>
+    <figure class="post-cover">
+      <img src="{assetUrl}?format=2000w" alt="{title}">
+    </figure>
   {.end}
 
-  <!-- Post Body -->
-  <div class="container">
-    <div class="post-detail-body">
-      {body}
+  <div class="container container-narrow">
+    <div class="post-body">
+      {body|safe}
     </div>
 
-    <!-- Tags -->
-    {.section tags}
-    <div class="post-detail-tags">
-      <span class="tags-label">Tags:</span>
-      {.repeated section @}
-        <a href="/blog?tag={@|url-encode}">{@}</a>
+    <footer class="post-footer">
+      {.section sourceUrl}
+        <p class="post-source"><a href="{sourceUrl}" target="_blank" rel="noopener">View original source &rarr;</a></p>
       {.end}
-    </div>
-    {.end}
-
-    <!-- Share -->
-    <div class="post-detail-share">
-      <span class="share-label">Share:</span>
-      <a href="https://twitter.com/intent/tweet?text={title|url-encode}&url={fullUrl|url-encode}" target="_blank" rel="noopener" aria-label="Share on Twitter">𝕏</a>
-      <a href="https://www.linkedin.com/sharing/share-offsite/?url={fullUrl|url-encode}" target="_blank" rel="noopener" aria-label="Share on LinkedIn">in</a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u={fullUrl|url-encode}" target="_blank" rel="noopener" aria-label="Share on Facebook">f</a>
-    </div>
+      <div class="post-share">
+        {@|apply sqs-share-buttons}
+      </div>
+    </footer>
   </div>
 
 </article>
 
-{.end}
-
-<!-- Related Posts -->
-{.section collection}
-  {.section items}
-  <section class="related-posts">
-    <div class="container">
-      <div class="section-header">
-        <div class="tag">Keep Reading</div>
-        <h2>More <span>Design Insights</span></h2>
-      </div>
-
-      <div class="related-grid">
-        {.repeated section @}
-          {.section index|lt 3}
-          <article class="post-card">
-            <a href="{fullUrl}">
-              <div class="post-image">
-                {.section assetUrl}
-                  <img src="{assetUrl}" alt="{title}">
-                {.end}
-                {.section assetUrl|not}
-                  <div class="post-img-placeholder">✦</div>
-                {.end}
-              </div>
-            </a>
-            <div class="post-content">
-              <div class="post-meta">
-                <span class="post-cat">{.section categories}{.section 0}{@}{.end}{.end}</span>
-                <span class="dot-sep">·</span>
-                <span class="post-date">{addedOn|date %b %d, %Y}</span>
-              </div>
-              <h3><a href="{fullUrl}">{title}</a></h3>
-              <p>{excerpt}</p>
-              <a href="{fullUrl}" class="read-more">Read Article</a>
-            </div>
-          </article>
-          {.end}
-        {.end}
-      </div>
-    </div>
-  </section>
-  {.end}
+<section class="post-cta">
+  <div class="container container-narrow">
+    <h2>Want this kind of clarity for your brand?</h2>
+    <p>We help design-led teams ship work that actually performs. Let's talk.</p>
+    <a href="/pricing" class="btn btn-primary">See pricing</a>
+  </div>
+</section>
 {.end}

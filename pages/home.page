@@ -1,319 +1,130 @@
-<!-- Hero -->
-<section class="hero noise-bg">
-  <div class="glow-blob glow-blob-purple" style="width:600px;height:600px;top:-200px;right:-100px;"></div>
-  <div class="glow-blob glow-blob-pink" style="width:400px;height:400px;bottom:-100px;left:-50px;"></div>
+<section class="hero">
+  <div class="container hero-inner">
+    <p class="eyebrow">
+      <span class="status-dot" aria-hidden="true"></span>
+      Booking projects for next quarter
+    </p>
+    <h1 class="hero-title">
+      Design that <em>moves</em> the metric that matters.
+    </h1>
+    <p class="hero-lead">
+      DesignShifu is a small studio for ambitious brands. We turn complicated products into clear stories, and clear stories into compounding growth.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="/pricing">View pricing</a>
+      <a class="btn btn-ghost" href="/about">How we work</a>
+    </div>
+    <ul class="hero-trust">
+      <li><strong>120+</strong><span>brands shipped</span></li>
+      <li><strong>4.9</strong><span>avg client rating</span></li>
+      <li><strong>10 days</strong><span>typical first launch</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section-services">
   <div class="container">
-    <div class="hero-grid">
+    <header class="section-head">
+      <p class="eyebrow">What we do</p>
+      <h2>Three practices, one taste.</h2>
+      <p class="section-lead">Pick a track, or combine them. We move fast because the work is the proposal.</p>
+    </header>
 
-      <div class="hero-content">
-        <div class="badge">
-          <span class="dot"></span>
-          Available for new projects
+    <div class="service-grid">
+      <article class="service-card">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h10M4 17h16"/></svg>
         </div>
+        <h3>Brand identity</h3>
+        <p>Logos, systems, and guidelines that hold up at every size. We ship a working brand kit, not a 90-page deck.</p>
+        <ul class="service-list">
+          <li>Wordmark + monogram</li>
+          <li>Type, color, motion tokens</li>
+          <li>Launch templates</li>
+        </ul>
+      </article>
 
-        <h1>We Design <span>Digital</span> Experiences That Convert</h1>
-
-        <p class="hero-desc">
-          From brand identity to full web experiences — DesignShifu crafts beautiful,
-          strategic designs that make your brand impossible to ignore.
-        </p>
-
-        <div class="hero-actions">
-          <a href="/pricing" class="btn btn-primary">
-            View Pricing
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a href="/about" class="btn btn-outline">Our Story</a>
+      <article class="service-card service-card-feature">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 14h6"/></svg>
         </div>
+        <h3>Web &amp; product</h3>
+        <p>Marketing sites, dashboards, and onboarding flows. Designed for conversion, built to ship on Squarespace, Webflow, or your stack.</p>
+        <ul class="service-list">
+          <li>Landing &amp; marketing</li>
+          <li>Product UI &amp; flows</li>
+          <li>Performance &amp; SEO baseline</li>
+        </ul>
+      </article>
 
-        <div class="hero-trust">
-          <div class="avatars">
-            <div class="av">MK</div>
-            <div class="av">JL</div>
-            <div class="av">SR</div>
-            <div class="av">+</div>
-          </div>
-          <div class="trust-text">
-            Trusted by <strong>200+ businesses</strong> worldwide
-          </div>
+      <article class="service-card">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M3 12h18"/></svg>
         </div>
-      </div>
-
-      <div class="hero-visual">
-        <div class="hero-mockup">
-          <div class="mockup-bar">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="url-bar">designshifu.com</div>
-          </div>
-          <div class="mockup-content">
-            <div class="mc-header">
-              <div class="mc-logo"></div>
-              <div class="mc-lines">
-                <div class="line"></div>
-                <div class="line"></div>
-              </div>
-            </div>
-            <div class="mc-hero-block">
-              <div class="mc-h1"></div>
-              <div class="mc-h1-2"></div>
-              <div class="mc-p"></div>
-              <div class="mc-p"></div>
-              <div class="mc-btns">
-                <div class="mc-btn"></div>
-                <div class="mc-btn"></div>
-              </div>
-            </div>
-            <div class="mc-cards">
-              <div class="mc-card"><div class="mc-icon"></div><div class="mc-line"></div><div class="mc-line"></div></div>
-              <div class="mc-card"><div class="mc-icon"></div><div class="mc-line"></div><div class="mc-line"></div></div>
-              <div class="mc-card"><div class="mc-icon"></div><div class="mc-line"></div><div class="mc-line"></div></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="floating-badge top-badge">
-          <div class="badge-icon">⭐</div>
-          <div class="badge-text">
-            <div class="badge-num">4.9</div>
-            <div class="badge-label">Client Rating</div>
-          </div>
-        </div>
-
-        <div class="floating-badge bottom-badge">
-          <div class="badge-icon">🚀</div>
-          <div class="badge-text">
-            <div class="badge-num">48h</div>
-            <div class="badge-label">Avg Turnaround</div>
-          </div>
-        </div>
-      </div>
-
+        <h3>Design partner</h3>
+        <p>Continuous design support for teams without an in-house lead. Async, predictable, on a flat monthly fee.</p>
+        <ul class="service-list">
+          <li>Weekly delivery rhythm</li>
+          <li>Slack + Notion workflow</li>
+          <li>Pause anytime</li>
+        </ul>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- Stats -->
-<div class="container">
-  <div class="stats-grid">
-    <div class="stat-item">
-      <div class="stat-number">200+</div>
-      <div class="stat-label">Projects Delivered</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">98%</div>
-      <div class="stat-label">Client Satisfaction</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">6yrs</div>
-      <div class="stat-label">Industry Experience</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">40+</div>
-      <div class="stat-label">Countries Served</div>
-    </div>
-  </div>
-</div>
-
-<!-- Clients -->
-<section class="clients">
+<section class="section section-process">
   <div class="container">
-    <p class="clients-label">Trusted by leading companies</p>
-    <div class="clients-logos">
-      <span class="client-logo">Acme Corp</span>
-      <span class="client-logo">NovaTech</span>
-      <span class="client-logo">Pixel Labs</span>
-      <span class="client-logo">Vertice</span>
-      <span class="client-logo">Orbis</span>
-      <span class="client-logo">Foresight</span>
-    </div>
+    <header class="section-head">
+      <p class="eyebrow">How it ships</p>
+      <h2>Four weeks from kickoff to launch.</h2>
+    </header>
+    <ol class="process-steps">
+      <li>
+        <span class="step-num">01</span>
+        <h3>Map</h3>
+        <p>We audit the product, the audience, and the metric. You get a one-page strategy, not a slide deck.</p>
+      </li>
+      <li>
+        <span class="step-num">02</span>
+        <h3>Sketch</h3>
+        <p>Two directions, fast. We commit early and iterate in the open so nothing is precious.</p>
+      </li>
+      <li>
+        <span class="step-num">03</span>
+        <h3>Build</h3>
+        <p>Production design and front-end. Reviewed daily, approved weekly, shipped on Friday.</p>
+      </li>
+      <li>
+        <span class="step-num">04</span>
+        <h3>Compound</h3>
+        <p>Launch is week one. Everything after is iteration with data, not opinion.</p>
+      </li>
+    </ol>
   </div>
 </section>
 
-<!-- Services -->
-<section class="services" id="services">
-  <div class="container">
-    <div class="section-header">
-      <div class="tag">What We Do</div>
-      <h2>Design Services That <span>Move Brands</span> Forward</h2>
-      <p>Every pixel intentional. Every design strategically crafted to achieve your business goals.</p>
-    </div>
-
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">🎨</div>
-        <h3>Brand Identity</h3>
-        <p>Complete brand systems that tell your story and make lasting impressions — from logo to brand guidelines.</p>
-        <ul class="service-features">
-          <li>Logo Design & Variations</li>
-          <li>Color System & Typography</li>
-          <li>Brand Guidelines Document</li>
-          <li>Business Card & Stationery</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">💻</div>
-        <h3>UI/UX Design</h3>
-        <p>User-centered interfaces that delight users and drive conversions across every digital touchpoint.</p>
-        <ul class="service-features">
-          <li>User Research & Wireframes</li>
-          <li>Interactive Prototypes</li>
-          <li>Design Systems</li>
-          <li>Usability Testing</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">🌐</div>
-        <h3>Web Design</h3>
-        <p>Stunning, high-converting websites built with modern aesthetics and performance-first architecture.</p>
-        <ul class="service-features">
-          <li>Landing Page Design</li>
-          <li>E-commerce Design</li>
-          <li>Responsive for All Devices</li>
-          <li>SEO-Optimized Structure</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">✨</div>
-        <h3>Motion Design</h3>
-        <p>Bring your brand to life with animations, explainer videos, and micro-interactions that captivate.</p>
-        <ul class="service-features">
-          <li>Logo Animation</li>
-          <li>Explainer Videos</li>
-          <li>Social Media Motion</li>
-          <li>UI Micro-interactions</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">📦</div>
-        <h3>Print & Packaging</h3>
-        <p>Tangible brand experiences from product packaging to marketing collateral that stands out on shelves.</p>
-        <ul class="service-features">
-          <li>Product Packaging Design</li>
-          <li>Brochures & Flyers</li>
-          <li>Signage & Banners</li>
-          <li>Trade Show Materials</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">📱</div>
-        <h3>Social Media</h3>
-        <p>Consistent, on-brand social media templates and content that grows your audience organically.</p>
-        <ul class="service-features">
-          <li>Template Systems</li>
-          <li>Content Calendar Design</li>
-          <li>Story & Reel Covers</li>
-          <li>Highlight Covers</li>
-        </ul>
-      </div>
-    </div>
+<section class="section section-testimonial">
+  <div class="container container-narrow">
+    <figure class="testimonial">
+      <blockquote>
+        &ldquo;DesignShifu rewrote our landing page in nine days. Conversion to trial doubled the same week. They are the cheapest senior designer we&rsquo;ve ever hired.&rdquo;
+      </blockquote>
+      <figcaption>
+        <strong>Maya Okonkwo</strong>
+        <span>Head of Growth, Lumen</span>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
-<!-- Process -->
-<section class="process-section" id="process">
-  <div class="container">
-    <div class="section-header">
-      <div class="tag">How It Works</div>
-      <h2>Our <span>Streamlined</span> Design Process</h2>
-      <p>A proven four-step process that keeps projects on track and clients delighted.</p>
-    </div>
-
-    <div class="process-steps">
-      <div class="step">
-        <div class="step-number">01</div>
-        <h4>Discovery</h4>
-        <p>We deep-dive into your brand, goals, audience, and competitive landscape to build strategy.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">02</div>
-        <h4>Concept</h4>
-        <p>Multiple unique directions are explored, refined, and presented for your feedback.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">03</div>
-        <h4>Refinement</h4>
-        <p>We iterate on your chosen direction until every detail is precisely right.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">04</div>
-        <h4>Delivery</h4>
-        <p>Final files in all formats, source files, and a handoff call to ensure a smooth launch.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Testimonials -->
-<section class="testimonials">
-  <div class="container">
-    <div class="section-header">
-      <div class="tag">Testimonials</div>
-      <h2>What Our <span>Clients Say</span></h2>
-      <p>Don't take our word for it — hear from the businesses we've helped transform.</p>
-    </div>
-
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <div class="quote">"</div>
-        <p>DesignShifu completely transformed our brand. The new identity increased our conversion rate by 34% in just two months. Absolutely phenomenal work.</p>
-        <div class="author">
-          <div class="avatar">MK</div>
-          <div>
-            <div class="name">Marcus Kim</div>
-            <div class="role">CEO, NovaTech Solutions</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="quote">"</div>
-        <p>The UI/UX redesign exceeded every expectation. Our app's user retention jumped 60% and the team loved every interaction they had with DesignShifu.</p>
-        <div class="author">
-          <div class="avatar">SL</div>
-          <div>
-            <div class="name">Sarah Lin</div>
-            <div class="role">Product Lead, Pixel Labs</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="quote">"</div>
-        <p>Fast, professional, and incredibly talented. They delivered a full brand identity in 5 days that perfectly captured our vision. We will work together again.</p>
-        <div class="author">
-          <div class="avatar">JR</div>
-          <div>
-            <div class="name">James Rodriguez</div>
-            <div class="role">Founder, Orbis Agency</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-  <div class="container">
-    <div class="cta-inner noise-bg">
-      <div class="glow-blob glow-blob-purple"></div>
-      <div class="tag">Ready to Start?</div>
-      <h2>Let's Build Something <span>Extraordinary</span></h2>
-      <p>Join 200+ businesses that chose DesignShifu to elevate their brand presence.</p>
-      <div class="cta-actions">
-        <a href="/pricing" class="btn btn-primary">
-          See Our Plans
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="/contact" class="btn btn-outline">Schedule a Call</a>
-      </div>
+<section class="section section-cta">
+  <div class="container container-narrow cta-card">
+    <h2>Have a launch on the calendar?</h2>
+    <p>Tell us the deadline and the metric. We&rsquo;ll come back the same day with a plan.</p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="/pricing">See pricing</a>
+      <a class="btn btn-ghost" href="/blog">Read the blog</a>
     </div>
   </div>
 </section>

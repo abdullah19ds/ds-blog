@@ -1,259 +1,109 @@
-<!-- Pricing Hero -->
-<section class="pricing-hero noise-bg">
-  <div class="glow-blob glow-blob-purple" style="width:400px;height:400px;top:-100px;left:50%;transform:translateX(-50%);opacity:0.12;"></div>
-  <div class="container">
-    <div class="tag">Transparent Pricing</div>
-    <h1>Simple Plans, <span>Exceptional</span> Design</h1>
-    <p>No hidden fees. No surprise invoices. Pick the plan that fits your needs.</p>
-
-    <div class="billing-toggle">
-      <button class="active" id="monthlyBtn">Monthly</button>
-      <button id="annualBtn">
-        Annual
-        <span class="save-badge">Save 20%</span>
-      </button>
-    </div>
+<section class="page-hero">
+  <div class="container container-narrow">
+    <p class="eyebrow">Pricing</p>
+    <h1>Flat fees. No retainers you can&rsquo;t cancel.</h1>
+    <p class="lead">
+      Three ways to work with us. Pick the one that fits your shipping calendar.
+    </p>
   </div>
 </section>
 
-<!-- Pricing Cards -->
-<section class="pricing-section">
+<section class="section section-pricing">
   <div class="container">
     <div class="pricing-grid">
 
-      <!-- Starter -->
-      <div class="pricing-card">
-        <div class="plan-name">Starter</div>
-        <div class="plan-price">
-          <span class="currency">$</span>
-          <span class="amount" data-monthly="499" data-annual="399">499</span>
-          <span class="period">/mo</span>
-        </div>
-        <p class="plan-desc">Perfect for startups and small businesses launching their brand presence.</p>
-
+      <article class="plan-card">
+        <header class="plan-head">
+          <h2 class="plan-name">Sprint</h2>
+          <p class="plan-tagline">One thing, shipped fast.</p>
+          <p class="plan-price"><span class="plan-currency">$</span>4,800<span class="plan-period">flat</span></p>
+        </header>
         <ul class="plan-features">
-          <li><span class="check"></span><span>1 Active Design Request</span></li>
-          <li><span class="check"></span><span>48-Hour Delivery</span></li>
-          <li><span class="check"></span><span>Unlimited Revisions</span></li>
-          <li><span class="check"></span><span>Brand Identity (Logo + 1 variation)</span></li>
-          <li><span class="check"></span><span>Social Media Kit (5 templates)</span></li>
-          <li><span class="check"></span><span>Source Files Included</span></li>
-          <li class="disabled"><span class="check"></span><span>Web/App Design</span></li>
-          <li class="disabled"><span class="check"></span><span>Motion Design</span></li>
-          <li class="disabled"><span class="check"></span><span>Priority Support</span></li>
+          <li>One landing page or feature flow</li>
+          <li>Strategy + design + front-end</li>
+          <li>Two-week delivery</li>
+          <li>One round of revisions</li>
         </ul>
+        <a class="btn btn-ghost plan-cta" href="mailto:hello@designshifu.com?subject=Sprint%20enquiry">Start a sprint</a>
+      </article>
 
-        <a href="/contact" class="plan-cta">Get Started</a>
-      </div>
-
-      <!-- Pro (Featured) -->
-      <div class="pricing-card featured">
-        <div class="popular-badge">Most Popular</div>
-        <div class="plan-name">Pro</div>
-        <div class="plan-price">
-          <span class="currency">$</span>
-          <span class="amount" data-monthly="999" data-annual="799">999</span>
-          <span class="period">/mo</span>
-        </div>
-        <p class="plan-desc">The go-to plan for growing brands that need consistent, high-quality design output.</p>
-
+      <article class="plan-card plan-card-feature">
+        <span class="plan-badge">Most popular</span>
+        <header class="plan-head">
+          <h2 class="plan-name">Studio</h2>
+          <p class="plan-tagline">A full launch, end to end.</p>
+          <p class="plan-price"><span class="plan-currency">$</span>14,000<span class="plan-period">flat</span></p>
+        </header>
         <ul class="plan-features">
-          <li><span class="check"></span><span>2 Active Design Requests</span></li>
-          <li><span class="check"></span><span>24-Hour Priority Delivery</span></li>
-          <li><span class="check"></span><span>Unlimited Revisions</span></li>
-          <li><span class="check"></span><span>Full Brand Identity System</span></li>
-          <li><span class="check"></span><span>Social Media Kit (Unlimited)</span></li>
-          <li><span class="check"></span><span>Web Design (Up to 5 pages)</span></li>
-          <li><span class="check"></span><span>UI/UX Design</span></li>
-          <li><span class="check"></span><span>Source Files Included</span></li>
-          <li class="disabled"><span class="check"></span><span>Motion Design</span></li>
+          <li>Brand system + 5-page marketing site</li>
+          <li>Strategy doc + visual identity</li>
+          <li>Four-week delivery</li>
+          <li>Two rounds of revisions</li>
+          <li>Two weeks of post-launch support</li>
         </ul>
+        <a class="btn btn-primary plan-cta" href="mailto:hello@designshifu.com?subject=Studio%20enquiry">Book the Studio</a>
+      </article>
 
-        <a href="/contact" class="plan-cta">Get Started</a>
-      </div>
-
-      <!-- Agency -->
-      <div class="pricing-card">
-        <div class="plan-name">Agency</div>
-        <div class="plan-price">
-          <span class="currency">$</span>
-          <span class="amount" data-monthly="1999" data-annual="1599">1,999</span>
-          <span class="period">/mo</span>
-        </div>
-        <p class="plan-desc">For agencies and scaling businesses that need a dedicated design partner.</p>
-
+      <article class="plan-card">
+        <header class="plan-head">
+          <h2 class="plan-name">Partner</h2>
+          <p class="plan-tagline">Your design team, on tap.</p>
+          <p class="plan-price"><span class="plan-currency">$</span>7,200<span class="plan-period">/ month</span></p>
+        </header>
         <ul class="plan-features">
-          <li><span class="check"></span><span>Unlimited Active Requests</span></li>
-          <li><span class="check"></span><span>Same-Day Delivery</span></li>
-          <li><span class="check"></span><span>Unlimited Revisions</span></li>
-          <li><span class="check"></span><span>Complete Brand System</span></li>
-          <li><span class="check"></span><span>Full Web Design (Unlimited Pages)</span></li>
-          <li><span class="check"></span><span>UI/UX + Design Systems</span></li>
-          <li><span class="check"></span><span>Motion Design & Animations</span></li>
-          <li><span class="check"></span><span>Print & Packaging Design</span></li>
-          <li><span class="check"></span><span>Dedicated Account Manager</span></li>
+          <li>One senior designer, dedicated</li>
+          <li>Weekly delivery rhythm</li>
+          <li>Slack + Notion workflow</li>
+          <li>Pause anytime, no notice</li>
         </ul>
-
-        <a href="/contact" class="plan-cta">Get Started</a>
-      </div>
+        <a class="btn btn-ghost plan-cta" href="mailto:hello@designshifu.com?subject=Partner%20enquiry">Become a partner</a>
+      </article>
 
     </div>
 
-    <!-- One-time projects note -->
-    <div style="text-align:center;margin-top:48px;padding:24px;background:rgba(108,99,255,0.06);border:1px solid rgba(108,99,255,0.2);border-radius:16px;max-width:600px;margin-left:auto;margin-right:auto;">
-      <p style="font-size:15px;color:#9B9BB4;line-height:1.6;">
-        Need a <strong style="color:#fff;">one-time project</strong> instead of a subscription?
-        We offer custom quotes for single deliverables.
-        <a href="/contact" style="color:#6C63FF;font-weight:700;text-decoration:underline;text-underline-offset:3px;">Let's talk →</a>
-      </p>
+    <p class="pricing-footnote">All plans are invoiced in USD. Production-ready files delivered in Figma, Squarespace, or your stack of choice.</p>
+  </div>
+</section>
+
+<section class="section section-faq">
+  <div class="container container-narrow">
+    <header class="section-head">
+      <p class="eyebrow">FAQ</p>
+      <h2>Common questions, honest answers.</h2>
+    </header>
+
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>What if we need something between Sprint and Studio?</summary>
+        <p>Tell us the scope. If it doesn&rsquo;t fit a tier, we&rsquo;ll quote a flat fee within 24 hours. We don&rsquo;t do hourly billing.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do you sign NDAs?</summary>
+        <p>Yes. Send yours at the start of the engagement and we&rsquo;ll counter-sign the same day.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can you work with our existing brand?</summary>
+        <p>Of course. About a third of our work is layered on top of an existing identity. We&rsquo;ll respect what&rsquo;s working and only push on what isn&rsquo;t.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What happens after launch?</summary>
+        <p>Studio includes two weeks of post-launch support. After that, most clients move into a Partner engagement. You&rsquo;re never locked in.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How do we get started?</summary>
+        <p>Email <a href="mailto:hello@designshifu.com">hello@designshifu.com</a> with the metric you&rsquo;re trying to move and the deadline. We&rsquo;ll reply with a yes, a no, or a referral the same day.</p>
+      </details>
     </div>
   </div>
 </section>
 
-<!-- Comparison Table -->
-<section class="comparison">
-  <div class="container">
-    <div class="section-header">
-      <div class="tag">Compare Plans</div>
-      <h2>What's <span>Included</span> in Each Plan</h2>
-    </div>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Feature</th>
-          <th class="plan-col">Starter</th>
-          <th class="plan-col featured-col">Pro</th>
-          <th class="plan-col">Agency</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="feature-name">Active Design Requests</td>
-          <td class="plan-val">1</td>
-          <td class="plan-val featured-col">2</td>
-          <td class="plan-val">Unlimited</td>
-        </tr>
-        <tr>
-          <td class="feature-name">Delivery Speed</td>
-          <td class="plan-val">48 hours</td>
-          <td class="plan-val featured-col">24 hours</td>
-          <td class="plan-val">Same day</td>
-        </tr>
-        <tr>
-          <td class="feature-name">Revisions</td>
-          <td class="plan-val">Unlimited</td>
-          <td class="plan-val featured-col">Unlimited</td>
-          <td class="plan-val">Unlimited</td>
-        </tr>
-        <tr>
-          <td class="feature-name">Brand Identity Design</td>
-          <td class="plan-val"><span class="tick">✓</span></td>
-          <td class="plan-val featured-col"><span class="tick">✓</span></td>
-          <td class="plan-val"><span class="tick">✓</span></td>
-        </tr>
-        <tr>
-          <td class="feature-name">Social Media Templates</td>
-          <td class="plan-val">5 templates</td>
-          <td class="plan-val featured-col">Unlimited</td>
-          <td class="plan-val">Unlimited</td>
-        </tr>
-        <tr>
-          <td class="feature-name">Web Design</td>
-          <td class="plan-val"><span class="cross">✗</span></td>
-          <td class="plan-val featured-col">Up to 5 pages</td>
-          <td class="plan-val">Unlimited</td>
-        </tr>
-        <tr>
-          <td class="feature-name">UI/UX Design</td>
-          <td class="plan-val"><span class="cross">✗</span></td>
-          <td class="plan-val featured-col"><span class="tick">✓</span></td>
-          <td class="plan-val"><span class="tick">✓</span></td>
-        </tr>
-        <tr>
-          <td class="feature-name">Motion Design</td>
-          <td class="plan-val"><span class="cross">✗</span></td>
-          <td class="plan-val featured-col"><span class="cross">✗</span></td>
-          <td class="plan-val"><span class="tick">✓</span></td>
-        </tr>
-        <tr>
-          <td class="feature-name">Print & Packaging</td>
-          <td class="plan-val"><span class="cross">✗</span></td>
-          <td class="plan-val featured-col"><span class="cross">✗</span></td>
-          <td class="plan-val"><span class="tick">✓</span></td>
-        </tr>
-        <tr>
-          <td class="feature-name">Source Files</td>
-          <td class="plan-val"><span class="tick">✓</span></td>
-          <td class="plan-val featured-col"><span class="tick">✓</span></td>
-          <td class="plan-val"><span class="tick">✓</span></td>
-        </tr>
-        <tr>
-          <td class="feature-name">Dedicated Account Manager</td>
-          <td class="plan-val"><span class="cross">✗</span></td>
-          <td class="plan-val featured-col"><span class="cross">✗</span></td>
-          <td class="plan-val"><span class="tick">✓</span></td>
-        </tr>
-        <tr>
-          <td class="feature-name">Pause or Cancel Anytime</td>
-          <td class="plan-val"><span class="tick">✓</span></td>
-          <td class="plan-val featured-col"><span class="tick">✓</span></td>
-          <td class="plan-val"><span class="tick">✓</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="pricing-faq">
-  <div class="container">
-    <div class="section-header">
-      <div class="tag">FAQ</div>
-      <h2>Frequently Asked <span>Questions</span></h2>
-    </div>
-
-    <div class="faq-grid">
-      <div class="faq-item">
-        <h4>How does the subscription work?</h4>
-        <p>You subscribe to a monthly plan, submit design requests via our project board, and we deliver within the stated timeframe. Pause or cancel anytime — no contracts.</p>
-      </div>
-      <div class="faq-item">
-        <h4>What if I need a one-time project?</h4>
-        <p>We also accept one-time project commissions with custom quotes. Contact us and describe your project for a tailored proposal.</p>
-      </div>
-      <div class="faq-item">
-        <h4>How do revisions work?</h4>
-        <p>All plans include unlimited revisions. We iterate until you're 100% satisfied. We don't close a request until you approve it.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Do I own the final designs?</h4>
-        <p>Yes — full IP and ownership transfers to you upon delivery. We also provide all source files (Figma, AI, PSD) with every project.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Can I pause my subscription?</h4>
-        <p>Absolutely. If you're going on vacation or need to pause for any reason, you can freeze your billing cycle and resume when ready.</p>
-      </div>
-      <div class="faq-item">
-        <h4>What design tools do you use?</h4>
-        <p>Primarily Figma for UI/UX, Adobe Illustrator for brand/print, After Effects for motion, and Webflow or Framer for web design delivery.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section" style="padding-top:0;">
-  <div class="container">
-    <div class="cta-inner noise-bg">
-      <div class="glow-blob glow-blob-purple"></div>
-      <div class="tag">Start Today</div>
-      <h2>Not Sure Which Plan? <span>Let's Talk.</span></h2>
-      <p>Book a free 15-minute call and we'll help you pick the perfect plan for your goals.</p>
-      <div class="cta-actions">
-        <a href="/contact" class="btn btn-primary">Book a Free Call</a>
-        <a href="/about" class="btn btn-outline">Learn About Us</a>
-      </div>
+<section class="section section-cta">
+  <div class="container container-narrow cta-card">
+    <h2>Ready to brief us?</h2>
+    <p>Send the deadline, the metric, and the audience. We&rsquo;ll do the rest.</p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="mailto:hello@designshifu.com">Email us</a>
+      <a class="btn btn-ghost" href="/about">Read about us</a>
     </div>
   </div>
 </section>

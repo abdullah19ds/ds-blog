@@ -1,3 +1,27 @@
-{.repeated section items}
-<a href="{fullUrl}" class="{.section active}active-link{.end}">{navigationTitle}</a>
-{.end}
+<ul class="nav-list">
+  {.repeated section items}
+    <li class="nav-item {.section active}is-active{.end}">
+      {.section collection}
+        <a href="{fullUrl}">{navigationTitle}</a>
+      {.end}
+      {.section externalLink}
+        <a href="{url}" {.section newWindow}target="_blank" rel="noopener"{.end}>{title}</a>
+      {.end}
+      {.section folder}
+        <a href="#" class="nav-folder-toggle" aria-haspopup="true">{title}</a>
+        <ul class="nav-folder">
+          {.repeated section items}
+            <li class="nav-folder-item">
+              {.section collection}
+                <a href="{fullUrl}">{navigationTitle}</a>
+              {.end}
+              {.section externalLink}
+                <a href="{url}" {.section newWindow}target="_blank" rel="noopener"{.end}>{title}</a>
+              {.end}
+            </li>
+          {.end}
+        </ul>
+      {.end}
+    </li>
+  {.end}
+</ul>

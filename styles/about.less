@@ -1,236 +1,55 @@
-// About Hero
-.about-hero {
-  padding: 140px 0 80px;
+// Values grid
+.section-values { background: @bg-elev; border-top: 1px solid @border; border-bottom: 1px solid @border; }
+
+.value-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: @space-4;
+}
+@media (max-width: @bp-md) { .value-grid { grid-template-columns: 1fr; } }
+
+.value-grid li {
+  .card();
+  padding: @space-6;
+
+  h3 {
+    margin-bottom: @space-3;
+    padding-left: @space-4;
+    position: relative;
+  }
+  h3::before {
+    content: '';
+    position: absolute; left: 0; top: 0.4em;
+    width: 8px; height: 8px;
+    background: @gradient; border-radius: 50%;
+  }
+}
+
+// Team grid
+.team-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: @space-4;
+}
+@media (max-width: @bp-md) { .team-grid { grid-template-columns: 1fr; } }
+
+.team-card {
+  .card();
+  padding: @space-6;
   text-align: center;
-  position: relative;
 
-  .glow-blob {
-    width: 500px;
-    height: 500px;
-    top: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0.12;
+  .team-avatar {
+    width: 64px; height: 64px;
+    display: grid; place-items: center;
+    background: @gradient;
+    color: white;
+    border-radius: 50%;
+    .heading-font();
+    font-size: 1.3rem; letter-spacing: 0.05em;
+    margin: 0 auto @space-4;
   }
 
-  .tag { margin-bottom: 20px; }
-
-  h1 {
-    font-size: clamp(40px, 6vw, 72px);
-    margin-bottom: 24px;
-
-    span {
-      background: @accentGradient;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+  h3 { margin-bottom: @space-1; }
+  .team-role {
+    color: @accent-2;
+    font-size: 0.85rem;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    margin-bottom: @space-3;
   }
-
-  .about-hero-desc {
-    font-size: 20px;
-    color: @textSecondary;
-    max-width: 600px;
-    margin: 0 auto 48px;
-    line-height: 1.7;
-  }
-}
-
-// Mission section
-.mission {
-  padding: 80px 0 120px;
-
-  .mission-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .mission-content {
-    .tag { margin-bottom: 16px; }
-
-    h2 {
-      font-size: clamp(28px, 3.5vw, 44px);
-      margin-bottom: 20px;
-      line-height: 1.2;
-
-      span {
-        background: @accentGradient;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-    }
-
-    p {
-      font-size: 16px;
-      color: @textSecondary;
-      line-height: 1.75;
-      margin-bottom: 16px;
-    }
-  }
-
-  .mission-visual {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-
-    .value-card {
-      background: @cardColor;
-      border: 1px solid @borderColor;
-      border-radius: @radiusMd;
-      padding: 24px;
-      transition: all @transitionBase;
-
-      &:hover {
-        border-color: rgba(108, 99, 255, 0.4);
-        transform: translateY(-3px);
-      }
-
-      .value-icon {
-        font-size: 28px;
-        margin-bottom: 12px;
-      }
-
-      h4 {
-        font-size: 15px;
-        margin-bottom: 6px;
-      }
-
-      p {
-        font-size: 13px;
-        color: @textSecondary;
-        line-height: 1.6;
-      }
-    }
-
-    .value-card:nth-child(2) { margin-top: 24px; }
-    .value-card:nth-child(4) { margin-top: 24px; }
-  }
-}
-
-// Team section
-.team {
-  padding: 120px 0;
-  background: @surfaceColor;
-  border-top: 1px solid @borderColor;
-  border-bottom: 1px solid @borderColor;
-
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-  }
-
-  .team-card {
-    text-align: center;
-
-    .team-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      margin: 0 auto 16px;
-      background: @accentGradient;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      font-weight: 800;
-      color: white;
-      font-family: 'Syne', sans-serif;
-      border: 3px solid @borderColor;
-      transition: border-color @transitionBase;
-    }
-
-    &:hover .team-avatar { border-color: @accentColor; }
-
-    h4 {
-      font-size: 16px;
-      margin-bottom: 4px;
-    }
-
-    .role {
-      font-size: 13px;
-      color: @accentColor;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    p {
-      font-size: 13px;
-      color: @textSecondary;
-      line-height: 1.6;
-    }
-  }
-}
-
-// Values section
-.values {
-  padding: 120px 0;
-
-  .values-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-
-    .value-item {
-      padding: 32px;
-      border: 1px solid @borderColor;
-      border-radius: @radiusLg;
-      transition: all @transitionBase;
-
-      &:hover {
-        border-color: rgba(108, 99, 255, 0.4);
-        background: @cardColor;
-        transform: translateY(-3px);
-      }
-
-      .vi-number {
-        font-size: 48px;
-        font-weight: 900;
-        font-family: 'Syne', sans-serif;
-        color: @borderColor;
-        line-height: 1;
-        margin-bottom: 16px;
-        transition: color @transitionBase;
-      }
-
-      &:hover .vi-number { color: rgba(108, 99, 255, 0.3); }
-
-      h3 {
-        font-size: 20px;
-        font-family: 'Inter', sans-serif;
-        font-weight: 700;
-        margin-bottom: 10px;
-      }
-
-      p {
-        font-size: 14px;
-        color: @textSecondary;
-        line-height: 1.7;
-      }
-    }
-  }
-}
-
-@media (max-width: 1024px) {
-  .team .team-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 768px) {
-  .about-hero { padding: 100px 0 60px; }
-  .mission { padding: 60px 0 80px; }
-  .mission .mission-grid { grid-template-columns: 1fr; gap: 40px; }
-  .mission .mission-visual { grid-template-columns: 1fr 1fr; }
-  .mission .mission-visual .value-card:nth-child(2),
-  .mission .mission-visual .value-card:nth-child(4) { margin-top: 0; }
-  .team { padding: 80px 0; }
-  .values { padding: 80px 0; }
-  .values .values-grid { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 480px) {
-  .team .team-grid { grid-template-columns: repeat(2, 1fr); }
-  .mission .mission-visual { grid-template-columns: 1fr; }
 }

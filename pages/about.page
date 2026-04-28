@@ -1,188 +1,89 @@
-<!-- About Hero -->
-<section class="about-hero noise-bg">
-  <div class="glow-blob glow-blob-purple"></div>
-  <div class="container">
-    <div class="tag">Our Story</div>
-    <h1>Design With <span>Purpose,</span> Results With Proof</h1>
-    <p class="about-hero-desc">
-      We're a boutique design studio obsessed with one thing: creating work that doesn't just look
-      beautiful — it performs, converts, and leaves a lasting impression.
+<section class="page-hero">
+  <div class="container container-narrow">
+    <p class="eyebrow">About</p>
+    <h1>A small studio with strong opinions about clarity.</h1>
+    <p class="lead">
+      DesignShifu was founded on a simple bet: design is the cheapest growth lever most companies never pull. We&rsquo;ve spent the last six years pulling it for our clients.
     </p>
-    <div style="display:flex;justify-content:center;gap:12px;">
-      <a href="/pricing" class="btn btn-primary">Work With Us</a>
-      <a href="/blog" class="btn btn-outline">Read Our Blog</a>
-    </div>
   </div>
 </section>
 
-<!-- Stats Row -->
-<div class="container">
-  <div class="stats-grid">
-    <div class="stat-item">
-      <div class="stat-number">2018</div>
-      <div class="stat-label">Founded</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">12</div>
-      <div class="stat-label">Team Members</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">200+</div>
-      <div class="stat-label">Projects Done</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">40+</div>
-      <div class="stat-label">Countries</div>
-    </div>
-  </div>
-</div>
-
-<!-- Mission -->
-<section class="mission">
-  <div class="container">
-    <div class="mission-grid">
-      <div class="mission-content">
-        <div class="tag">Our Mission</div>
-        <h2>We Believe Great Design <span>Changes Everything</span></h2>
-        <p>
-          DesignShifu was born from a simple belief: every business deserves world-class design,
-          not just the ones with enterprise budgets. We built a studio that combines top-tier talent
-          with an efficient process to deliver stunning results at every budget level.
-        </p>
-        <p>
-          Our multidisciplinary team brings together brand strategists, UI/UX designers, motion
-          artists, and web designers united by a shared passion for craft and a relentless focus
-          on your outcomes.
-        </p>
-        <p>
-          Since 2018, we've helped startups launch with confidence, established brands reinvent
-          themselves, and growing businesses scale their visual presence globally.
-        </p>
-      </div>
-
-      <div class="mission-visual">
-        <div class="value-card">
-          <div class="value-icon">🎯</div>
-          <h4>Strategy-First</h4>
-          <p>Every design decision is grounded in brand strategy and business goals.</p>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">⚡</div>
-          <h4>Fast Delivery</h4>
-          <p>We move fast without compromising quality — 48h turnarounds are standard.</p>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">♾️</div>
-          <h4>Unlimited Revisions</h4>
-          <p>We iterate until you're 100% satisfied. No nickel-and-diming revisions.</p>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">🔒</div>
-          <h4>NDA Protected</h4>
-          <p>All projects are covered by strict non-disclosure agreements by default.</p>
-        </div>
-      </div>
-    </div>
+<section class="section">
+  <div class="container container-narrow prose">
+    <h2>Our point of view</h2>
+    <p>
+      Most design work fails because the brief is wrong. Teams ask for a redesign when they need positioning. They ask for a logo when they need a customer. We start by asking which decision the design has to make easier, then we work backwards from there.
+    </p>
+    <p>
+      We&rsquo;re partial to short engagements with clear deliverables. We&rsquo;d rather ship something useful in two weeks than something polished in two quarters. If you need a 90-page brand bible, we are not the right studio.
+    </p>
   </div>
 </section>
 
-<!-- Team -->
-<section class="team">
+<section class="section section-values">
   <div class="container">
-    <div class="section-header">
-      <div class="tag">The Team</div>
-      <h2>Meet the <span>Designers</span> Behind the Work</h2>
-      <p>A small, mighty team of specialists who care deeply about craft and client outcomes.</p>
-    </div>
+    <header class="section-head">
+      <p class="eyebrow">How we operate</p>
+      <h2>Four rules we won&rsquo;t bend.</h2>
+    </header>
+    <ul class="value-grid">
+      <li>
+        <h3>Ship the obvious thing first</h3>
+        <p>The boring 80% always beats the clever 100%. We design what users actually need before we design what would look good in a portfolio.</p>
+      </li>
+      <li>
+        <h3>Strategy is a deliverable</h3>
+        <p>Every engagement starts with a one-page strategy doc. If we can&rsquo;t write the why in one page, we&rsquo;re not ready to design.</p>
+      </li>
+      <li>
+        <h3>Async by default</h3>
+        <p>We protect maker time. Most communication happens in Notion and Slack threads, not on calls. Calls are reserved for decisions.</p>
+      </li>
+      <li>
+        <h3>One throat to choke</h3>
+        <p>You get one senior designer as your partner from kickoff to launch. No account managers, no handoffs, no junior shadow team.</p>
+      </li>
+    </ul>
+  </div>
+</section>
 
+<section class="section section-team">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow">The team</p>
+      <h2>Senior, by design.</h2>
+      <p class="section-lead">Three principals, no juniors. Every project is led by someone with at least eight years of in-house and agency experience.</p>
+    </header>
     <div class="team-grid">
-      <div class="team-card">
-        <div class="team-avatar">AK</div>
-        <h4>Abdullah K.</h4>
-        <p class="role">Founder & Creative Director</p>
-        <p>6+ years leading brand and digital design projects for clients worldwide.</p>
-      </div>
-
-      <div class="team-card">
-        <div class="team-avatar">RL</div>
-        <h4>Rina Lestari</h4>
-        <p class="role">Lead UI/UX Designer</p>
-        <p>Expert in user research, interaction design, and building scalable design systems.</p>
-      </div>
-
-      <div class="team-card">
-        <div class="team-avatar">DM</div>
-        <h4>David Martinez</h4>
-        <p class="role">Brand Identity Specialist</p>
-        <p>Crafts logos and brand systems that are both timeless and strategically powerful.</p>
-      </div>
-
-      <div class="team-card">
-        <div class="team-avatar">YN</div>
-        <h4>Yuki Nakamura</h4>
-        <p class="role">Motion Designer</p>
-        <p>Brings brands to life through animation, video, and interactive micro-interactions.</p>
-      </div>
+      <article class="team-card">
+        <div class="team-avatar" aria-hidden="true">AS</div>
+        <h3>Abdullah S.</h3>
+        <p class="team-role">Founder &amp; design lead</p>
+        <p>Brand systems, marketing sites, and the occasional pricing page rewrite that pays for itself in a week.</p>
+      </article>
+      <article class="team-card">
+        <div class="team-avatar" aria-hidden="true">RP</div>
+        <h3>Rina P.</h3>
+        <p class="team-role">Product designer</p>
+        <p>Onboarding flows, dashboard UX, and turning vague PRDs into shipped features.</p>
+      </article>
+      <article class="team-card">
+        <div class="team-avatar" aria-hidden="true">JC</div>
+        <h3>Jonas C.</h3>
+        <p class="team-role">Front-end engineer</p>
+        <p>Webflow, Squarespace, Next.js. He keeps Lighthouse green so you don&rsquo;t have to.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- Values -->
-<section class="values">
-  <div class="container">
-    <div class="section-header">
-      <div class="tag">Our Values</div>
-      <h2>Principles That <span>Guide</span> Our Work</h2>
-      <p>These aren't just words on a wall — they shape every decision we make.</p>
-    </div>
-
-    <div class="values-grid">
-      <div class="value-item">
-        <div class="vi-number">01</div>
-        <h3>Obsessive Craft</h3>
-        <p>We sweat the details others ignore. The kerning, the shadow, the micro-animation — everything matters and gets intentional thought.</p>
-      </div>
-      <div class="value-item">
-        <div class="vi-number">02</div>
-        <h3>Radical Transparency</h3>
-        <p>No hidden fees, no surprise pivots. You know exactly where your project stands at every stage of the process.</p>
-      </div>
-      <div class="value-item">
-        <div class="vi-number">03</div>
-        <h3>Results Over Aesthetics</h3>
-        <p>Beautiful design that doesn't perform is just decoration. We measure success by your business outcomes, not our portfolio shots.</p>
-      </div>
-      <div class="value-item">
-        <div class="vi-number">04</div>
-        <h3>Long-term Partnerships</h3>
-        <p>We don't chase one-off projects. We build relationships that grow with your business over months and years.</p>
-      </div>
-      <div class="value-item">
-        <div class="vi-number">05</div>
-        <h3>Continuous Learning</h3>
-        <p>Design evolves constantly. Our team dedicates time every week to learning new tools, trends, and techniques.</p>
-      </div>
-      <div class="value-item">
-        <div class="vi-number">06</div>
-        <h3>Inclusive Design</h3>
-        <p>Accessible, inclusive experiences aren't optional — they're the baseline for everything we create.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-  <div class="container">
-    <div class="cta-inner noise-bg">
-      <div class="glow-blob glow-blob-purple"></div>
-      <div class="tag">Join Our Client Family</div>
-      <h2>Ready to Work <span>Together?</span></h2>
-      <p>Let's create something that makes your competitors jealous and your customers loyal.</p>
-      <div class="cta-actions">
-        <a href="/pricing" class="btn btn-primary">See Pricing Plans</a>
-        <a href="/contact" class="btn btn-outline">Get in Touch</a>
-      </div>
+<section class="section section-cta">
+  <div class="container container-narrow cta-card">
+    <h2>Curious if we&rsquo;re a fit?</h2>
+    <p>Send us the deadline and the metric. We&rsquo;ll come back the same day.</p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="/pricing">See pricing</a>
+      <a class="btn btn-ghost" href="/blog">Read the blog</a>
     </div>
   </div>
 </section>

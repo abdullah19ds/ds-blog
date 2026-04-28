@@ -1,114 +1,62 @@
-<!-- Blog Hero -->
 <section class="blog-hero">
   <div class="container">
-    <div class="tag">Our Blog</div>
-    <h1>Design Insights & <span>Creative Stories</span></h1>
-    <p>Expert perspectives on branding, UI/UX, design trends, and building remarkable digital products.</p>
-
-    <div class="blog-categories">
-      <button class="cat-btn active">All Posts</button>
-      <button class="cat-btn">Branding</button>
-      <button class="cat-btn">UI/UX</button>
-      <button class="cat-btn">Web Design</button>
-      <button class="cat-btn">Motion</button>
-      <button class="cat-btn">Strategy</button>
-    </div>
+    <p class="eyebrow">{collection.title}</p>
+    <h1>Notes on craft, strategy, and shipping</h1>
+    <p class="lead">Field reports from the studio — what's working, what isn't, and what we're paying attention to next.</p>
   </div>
 </section>
 
-{.section collection}
+<section class="blog-list-section">
+  <div class="container">
 
-  {.section items}
+    {.section pagination}
+      {.section items}
+        <ul class="post-grid">
+          {.repeated section @}
+            <li class="post-card">
+              <a href="{fullUrl}" class="post-card-link">
+                {.section assetUrl}
+                  <div class="post-card-media">
+                    <img src="{assetUrl}?format=1000w" alt="{title}" loading="lazy">
+                  </div>
+                {.end}
+                <div class="post-card-body">
+                  <p class="post-meta">
+                    <time datetime="{addedOn|date %Y-%m-%d}">{addedOn|date %B %d, %Y}</time>
+                    {.section categories}
+                      {.repeated section @}<span class="post-tag">{@}</span>{.end}
+                    {.end}
+                  </p>
+                  <h2 class="post-card-title">{title}</h2>
+                  {.section excerpt}
+                    <div class="post-card-excerpt">{excerpt|safe}</div>
+                  {.end}
+                  <span class="post-card-cta">Read article <span aria-hidden="true">&rarr;</span></span>
+                </div>
+              </a>
+            </li>
+          {.end}
+        </ul>
 
-    <!-- Featured Post (first item) -->
-    {.section 0}
-    <section class="blog-featured">
-      <div class="container">
-        <a href="{fullUrl}" class="featured-post">
-          <div class="fp-image">
-            {.section assetUrl}
-              <img src="{assetUrl}" alt="{title}">
-            {.end}
-            {.section assetUrl|not}
-              <div class="fp-image-placeholder">✦</div>
-            {.end}
-          </div>
-          <div class="fp-content">
-            <div class="fp-meta">
-              <span class="fp-cat">{.section categories}{.repeated section @}<span>{@}</span>{.alternates with}, {.end}{.end}</span>
-              <span class="fp-read-time">5 min read</span>
-            </div>
-            <h2>{title}</h2>
-            <p>{excerpt}</p>
-            <div class="fp-author">
-              <div class="author-av">{author.displayName|slice 0,2|upper}</div>
-              <div class="author-info">
-                <div class="name">{author.displayName}</div>
-                <div class="date">{addedOn|date %B %d, %Y}</div>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </section>
+        <nav class="pagination" aria-label="Blog pagination">
+          {.section prevPage}
+            <a class="pagination-link" href="{fullUrl}" rel="prev">&larr; Newer</a>
+          {.or}
+            <span class="pagination-link is-disabled">&larr; Newer</span>
+          {.end}
+          {.section nextPage}
+            <a class="pagination-link" href="{fullUrl}" rel="next">Older &rarr;</a>
+          {.or}
+            <span class="pagination-link is-disabled">Older &rarr;</span>
+          {.end}
+        </nav>
+      {.or}
+        <div class="empty-state">
+          <h2>No posts yet</h2>
+          <p>The first article is on its way. Check back soon.</p>
+        </div>
+      {.end}
     {.end}
 
-  {.end}
-
-  <!-- Posts Grid (items 1+) -->
-  <section class="blog-posts">
-    <div class="container">
-      <div class="posts-grid">
-        {.repeated section items}
-          {.section index|ne 0}
-          <article class="post-card">
-            <a href="{fullUrl}">
-              <div class="post-image">
-                {.section assetUrl}
-                  <img src="{assetUrl}" alt="{title}">
-                {.end}
-                {.section assetUrl|not}
-                  <div class="post-img-placeholder">✦</div>
-                {.end}
-              </div>
-            </a>
-            <div class="post-content">
-              <div class="post-meta">
-                <span class="post-cat">{.section categories}{.section 0}{@}{.end}{.end}</span>
-                <span class="dot-sep">·</span>
-                <span class="post-date">{addedOn|date %b %d, %Y}</span>
-              </div>
-              <h3><a href="{fullUrl}">{title}</a></h3>
-              <p>{excerpt}</p>
-              <a href="{fullUrl}" class="read-more">Read Article</a>
-            </div>
-          </article>
-          {.end}
-        {.end}
-      </div>
-
-      <!-- Pagination -->
-      <nav class="pagination">
-        {.section pagination}
-          {.section prevPage}
-            <a href="{prevPageUrl}">&larr;</a>
-          {.end}
-
-          {.repeated section pageLinks}
-            {.section active}
-              <a href="{url}" class="current">{pageNum}</a>
-            {.end}
-            {.section active|not}
-              <a href="{url}">{pageNum}</a>
-            {.end}
-          {.end}
-
-          {.section nextPage}
-            <a href="{nextPageUrl}">&rarr;</a>
-          {.end}
-        {.end}
-      </nav>
-    </div>
-  </section>
-
-{.end}
+  </div>
+</section>

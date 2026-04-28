@@ -1,211 +1,94 @@
-// Card component
+// Buttons
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: @space-2;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 500; font-size: 0.95rem;
+  white-space: nowrap;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.btn-primary {
+  background: @gradient;
+  color: white;
+  box-shadow: 0 8px 24px fade(@accent, 30%);
+}
+.btn-primary:hover { color: white; transform: translateY(-1px); box-shadow: 0 12px 32px fade(@accent, 40%); }
+
+.btn-ghost {
+  background: transparent;
+  color: @text;
+  border: 1px solid @border-strong;
+}
+.btn-ghost:hover { background: @bg-card; color: @text; }
+
+// Status dot (live indicator)
+.status-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 0 fade(#4ade80, 60%);
+  animation: pulse 1.8s ease-out infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 fade(#4ade80, 60%); }
+  70% { box-shadow: 0 0 0 8px fade(#4ade80, 0%); }
+  100% { box-shadow: 0 0 0 0 fade(#4ade80, 0%); }
+}
+
+// Card-like surfaces
 .card {
-  background: @cardColor;
-  border: 1px solid @borderColor;
-  border-radius: @radiusLg;
-  padding: 32px;
-  transition: all @transitionBase;
+  background: @bg-card;
+  border: 1px solid @border;
+  border-radius: @r-lg;
+  padding: @space-6;
+  transition: border-color 200ms ease, transform 200ms ease;
+}
+.card:hover { border-color: @border-strong; }
 
-  &:hover {
-    border-color: rgba(108, 99, 255, 0.4);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-  }
+// CTA card (used at end of pages)
+.cta-card {
+  background: linear-gradient(135deg, fade(@accent, 14%), fade(@accent-2, 10%)), @bg-card;
+  border: 1px solid @border-strong;
+  border-radius: @r-xl;
+  padding: @space-8;
+  text-align: center;
+
+  h2 { margin-bottom: @space-3; }
+  p { margin-bottom: @space-5; max-width: 520px; margin-left: auto; margin-right: auto; }
+}
+.cta-actions {
+  display: inline-flex; gap: @space-3; flex-wrap: wrap; justify-content: center;
 }
 
-// Stats grid
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: @borderColor;
-  border: 1px solid @borderColor;
-  border-radius: @radiusLg;
-  overflow: hidden;
-  margin: 64px 0;
+// Testimonial
+.testimonial {
+  text-align: center;
+  padding: @space-7 @space-5;
 
-  .stat-item {
-    background: @surfaceColor;
-    padding: 40px 32px;
-    text-align: center;
-
-    .stat-number {
-      font-size: 48px;
-      font-weight: 800;
-      font-family: 'Syne', sans-serif;
-      background: @accentGradient;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .stat-label {
-      font-size: 14px;
-      color: @textSecondary;
-      font-weight: 500;
-    }
+  blockquote {
+    .heading-font();
+    font-size: clamp(1.4rem, 2.6vw, 2rem);
+    line-height: 1.35;
+    color: @text;
+    margin-bottom: @space-5;
+    text-wrap: balance;
   }
+  figcaption {
+    display: flex; flex-direction: column; gap: @space-1;
+    color: @text-muted; font-size: 0.95rem;
+  }
+  figcaption strong { color: @text; }
 }
 
-// Process steps
-.process-steps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 28px;
-    left: calc(12.5% + 28px);
-    right: calc(12.5% + 28px);
-    height: 1px;
-    background: linear-gradient(90deg, transparent, @accentColor, transparent);
-  }
-
-  .step {
-    text-align: center;
-
-    .step-number {
-      width: 56px;
-      height: 56px;
-      background: @accentGradient;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: 800;
-      color: white;
-      margin: 0 auto 20px;
-      position: relative;
-      z-index: 1;
-    }
-
-    h4 {
-      font-size: 16px;
-      margin-bottom: 8px;
-      color: @textPrimary;
-    }
-
-    p {
-      font-size: 13px;
-      color: @textSecondary;
-      line-height: 1.6;
-    }
-  }
-}
-
-// Testimonial card
-.testimonial-card {
-  background: @cardColor;
-  border: 1px solid @borderColor;
-  border-radius: @radiusLg;
-  padding: 32px;
-
-  .quote {
-    font-size: 36px;
-    color: @accentColor;
-    line-height: 1;
-    margin-bottom: 16px;
-    font-family: Georgia, serif;
-  }
-
-  p {
-    font-size: 15px;
-    color: @textSecondary;
-    line-height: 1.7;
-    margin-bottom: 24px;
-  }
-
-  .author {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    .avatar {
-      width: 40px;
-      height: 40px;
-      background: @accentGradient;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      font-weight: 700;
-      color: white;
-      flex-shrink: 0;
-    }
-
-    .name {
-      font-size: 14px;
-      font-weight: 700;
-      color: @textPrimary;
-    }
-
-    .role {
-      font-size: 12px;
-      color: @textSecondary;
-    }
-  }
-}
-
-// Noise overlay for sections
-.noise-bg {
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  & > * { position: relative; z-index: 1; }
-}
-
-// Glow blobs
-.glow-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-  opacity: 0.15;
-
-  &-purple {
-    background: radial-gradient(circle, #6C63FF 0%, transparent 70%);
-  }
-
-  &-pink {
-    background: radial-gradient(circle, #B06AFF 0%, transparent 70%);
-  }
-
-  &-blue {
-    background: radial-gradient(circle, #4FC3F7 0%, transparent 70%);
-  }
-}
-
-@media (max-width: 768px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    margin: 40px 0;
-
-    .stat-item { padding: 28px 20px; }
-    .stat-item .stat-number { font-size: 36px; }
-  }
-
-  .process-steps {
-    grid-template-columns: repeat(2, 1fr);
-    &::before { display: none; }
-  }
-}
-
-@media (max-width: 480px) {
-  .stats-grid { grid-template-columns: 1fr 1fr; }
-  .process-steps { grid-template-columns: 1fr; }
+// Tag / pill
+.post-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  background: fade(@accent, 14%);
+  color: lighten(@accent, 20%);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
