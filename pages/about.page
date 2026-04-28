@@ -1,37 +1,29 @@
-<!-- About hero — asymmetric grid -->
+<!-- About hero — asymmetric grid with photographic right column -->
 <section class="about-page-hero">
   <div class="about-hero-text reveal">
     <p class="eyebrow">About</p>
     <h1>Small studio.<br><em>Strong opinions</em><br>about clarity.</h1>
     <p class="lead">DesignShifu was founded on a simple bet: design is the cheapest growth lever most companies never pull. We&rsquo;ve spent six years pulling it for our clients.</p>
-    <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
+    <div class="about-hero-actions">
       <a class="btn btn-primary" href="/pricing">Work with us</a>
       <a class="btn btn-ghost" href="/blog">Read the blog <span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </div>
-  <div class="about-hero-aside reveal">
-    <p class="aside-label">Quick facts</p>
+  <figure class="about-hero-image reveal">
+    <img src="https://picsum.photos/seed/dsblog-studio/1100/1300" alt="Inside the studio" loading="eager">
+    <figcaption>The studio, on a Friday ship day.</figcaption>
+  </figure>
+</section>
+
+<!-- Quick facts strip -->
+<section class="about-facts-strip">
+  <div class="container">
     <dl class="quick-facts">
-      <div class="fact">
-        <dt class="fact-key">Founded</dt>
-        <dd class="fact-val">2019</dd>
-      </div>
-      <div class="fact">
-        <dt class="fact-key">Location</dt>
-        <dd class="fact-val">Remote-first</dd>
-      </div>
-      <div class="fact">
-        <dt class="fact-key">Team size</dt>
-        <dd class="fact-val">3 principals</dd>
-      </div>
-      <div class="fact">
-        <dt class="fact-key">Clients served</dt>
-        <dd class="fact-val">120+</dd>
-      </div>
-      <div class="fact">
-        <dt class="fact-key">Avg delivery</dt>
-        <dd class="fact-val">10 days</dd>
-      </div>
+      <div class="fact"><dt class="fact-key">Founded</dt><dd class="fact-val">2019</dd></div>
+      <div class="fact"><dt class="fact-key">Location</dt><dd class="fact-val">Remote-first</dd></div>
+      <div class="fact"><dt class="fact-key">Team</dt><dd class="fact-val">3 principals</dd></div>
+      <div class="fact"><dt class="fact-key">Clients</dt><dd class="fact-val">120+</dd></div>
+      <div class="fact"><dt class="fact-key">Avg delivery</dt><dd class="fact-val">10 days</dd></div>
     </dl>
   </div>
 </section>
@@ -49,20 +41,18 @@
         <p>We&rsquo;re partial to short engagements with clear deliverables. We&rsquo;d rather ship something useful in two weeks than something polished in two quarters. If you need a 90-page brand bible, we are not the right studio.</p>
         <p>Every project we take on has a stated metric and a stated deadline. If we can&rsquo;t write both in one sentence, we&rsquo;re not ready to start.</p>
       </div>
-      <div class="reveal" style="align-self:start;">
-        <div class="stat-row" style="flex-direction:column;align-items:flex-start;border-top:0;padding-top:0;gap:20px;">
-          <div class="stat">
-            <span class="stat-value">6 yrs</span>
-            <span class="stat-label">In business</span>
-          </div>
-          <div class="stat">
-            <span class="stat-value">93%</span>
-            <span class="stat-label">Clients who renew or refer</span>
-          </div>
-          <div class="stat">
-            <span class="stat-value">$0</span>
-            <span class="stat-label">Spent on outbound sales, ever</span>
-          </div>
+      <div class="pov-stats reveal">
+        <div class="stat">
+          <span class="stat-value">6 yrs</span>
+          <span class="stat-label">In business</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">93%</span>
+          <span class="stat-label">Clients who renew or refer</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">$0</span>
+          <span class="stat-label">Spent on outbound sales, ever</span>
         </div>
       </div>
     </div>
@@ -111,22 +101,34 @@
     </header>
     <div class="team-grid">
       <article class="team-card reveal">
-        <div class="team-avatar" aria-hidden="true">AS</div>
-        <p class="team-name">Abdullah S.</p>
-        <p class="team-role">Founder &amp; design lead</p>
-        <p>Brand systems, marketing sites, and the occasional pricing page rewrite that pays for itself in a week.</p>
+        <div class="team-photo">
+          <img src="https://picsum.photos/seed/ds-abdullah/600/700" alt="Abdullah Shafiq" loading="lazy">
+        </div>
+        <div class="team-meta">
+          <p class="team-name">Abdullah Shafiq</p>
+          <p class="team-role">Founder &amp; design lead</p>
+          <p>Brand systems, marketing sites, and the occasional pricing-page rewrite that pays for itself in a week.</p>
+        </div>
       </article>
       <article class="team-card reveal">
-        <div class="team-avatar" aria-hidden="true">RP</div>
-        <p class="team-name">Rina P.</p>
-        <p class="team-role">Product designer</p>
-        <p>Onboarding flows, dashboard UX, and turning vague PRDs into shipped features on time.</p>
+        <div class="team-photo">
+          <img src="https://picsum.photos/seed/ds-rina/600/700" alt="Rina Pradana" loading="lazy">
+        </div>
+        <div class="team-meta">
+          <p class="team-name">Rina Pradana</p>
+          <p class="team-role">Product designer</p>
+          <p>Onboarding flows, dashboard UX, and turning vague PRDs into shipped features on time.</p>
+        </div>
       </article>
       <article class="team-card reveal">
-        <div class="team-avatar" aria-hidden="true">JC</div>
-        <p class="team-name">Jonas C.</p>
-        <p class="team-role">Front-end engineer</p>
-        <p>Squarespace, Webflow, Next.js. He keeps Lighthouse green so you don&rsquo;t have to think about it.</p>
+        <div class="team-photo">
+          <img src="https://picsum.photos/seed/ds-jonas/600/700" alt="Jonas Cervantes" loading="lazy">
+        </div>
+        <div class="team-meta">
+          <p class="team-name">Jonas Cervantes</p>
+          <p class="team-role">Front-end engineer</p>
+          <p>Squarespace, Webflow, Next.js. He keeps Lighthouse green so you don&rsquo;t have to think about it.</p>
+        </div>
       </article>
     </div>
   </div>
