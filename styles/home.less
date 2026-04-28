@@ -1,0 +1,550 @@
+// Hero section
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 0 80px;
+
+  .glow-blob {
+    &:nth-child(1) {
+      width: 600px;
+      height: 600px;
+      top: -200px;
+      right: -100px;
+    }
+    &:nth-child(2) {
+      width: 400px;
+      height: 400px;
+      bottom: -100px;
+      left: -50px;
+    }
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .hero-content {
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(108, 99, 255, 0.1);
+      border: 1px solid rgba(108, 99, 255, 0.3);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      color: @accentColor;
+      margin-bottom: 24px;
+
+      .dot {
+        width: 6px;
+        height: 6px;
+        background: #4CAF50;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+    }
+
+    h1 {
+      margin-bottom: 24px;
+      line-height: 1.1;
+
+      span {
+        background: @accentGradient;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+
+    .hero-desc {
+      font-size: 18px;
+      color: @textSecondary;
+      line-height: 1.75;
+      margin-bottom: 40px;
+      max-width: 500px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-trust {
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      .avatars {
+        display: flex;
+
+        .av {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          border: 2px solid @darkBg;
+          margin-left: -10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 12px;
+          font-weight: 700;
+          color: white;
+
+          &:first-child { margin-left: 0; }
+          &:nth-child(1) { background: #FF6B6B; }
+          &:nth-child(2) { background: #4ECDC4; }
+          &:nth-child(3) { background: @accentColor; }
+          &:nth-child(4) { background: #F7DC6F; color: #333; }
+        }
+      }
+
+      .trust-text {
+        font-size: 13px;
+        color: @textSecondary;
+
+        strong { color: @textPrimary; }
+      }
+    }
+  }
+
+  .hero-visual {
+    position: relative;
+
+    .hero-mockup {
+      background: @cardColor;
+      border: 1px solid @borderColor;
+      border-radius: @radiusLg;
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+
+      .mockup-bar {
+        background: @surfaceColor;
+        border-bottom: 1px solid @borderColor;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .dot {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          &:nth-child(1) { background: #FF5F57; }
+          &:nth-child(2) { background: #FFBD2E; }
+          &:nth-child(3) { background: #28CA41; }
+        }
+
+        .url-bar {
+          flex: 1;
+          background: @cardColor;
+          border: 1px solid @borderColor;
+          border-radius: 6px;
+          padding: 4px 12px;
+          font-size: 11px;
+          color: @textSecondary;
+          margin-left: 8px;
+        }
+      }
+
+      .mockup-content {
+        padding: 24px;
+
+        .mc-header {
+          display: flex;
+          gap: 12px;
+          margin-bottom: 20px;
+          align-items: center;
+
+          .mc-logo {
+            width: 40px;
+            height: 40px;
+            background: @accentGradient;
+            border-radius: 10px;
+            flex-shrink: 0;
+          }
+
+          .mc-lines {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+
+            .line {
+              height: 10px;
+              background: @borderColor;
+              border-radius: 4px;
+              &:first-child { width: 60%; }
+              &:last-child { width: 40%; }
+            }
+          }
+        }
+
+        .mc-hero-block {
+          background: linear-gradient(135deg, rgba(108, 99, 255, 0.15) 0%, rgba(176, 106, 255, 0.1) 100%);
+          border: 1px solid rgba(108, 99, 255, 0.2);
+          border-radius: @radiusMd;
+          padding: 28px;
+          margin-bottom: 16px;
+
+          .mc-h1 {
+            height: 16px;
+            background: @textPrimary;
+            border-radius: 4px;
+            width: 80%;
+            margin-bottom: 10px;
+            opacity: 0.9;
+          }
+
+          .mc-h1-2 {
+            height: 16px;
+            background: @accentColor;
+            border-radius: 4px;
+            width: 55%;
+            margin-bottom: 14px;
+            opacity: 0.8;
+          }
+
+          .mc-p {
+            height: 8px;
+            background: @borderColor;
+            border-radius: 4px;
+            margin-bottom: 6px;
+
+            &:nth-child(3) { width: 90%; }
+            &:nth-child(4) { width: 70%; }
+          }
+
+          .mc-btns {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+
+            .mc-btn {
+              height: 32px;
+              border-radius: 100px;
+
+              &:first-child {
+                width: 100px;
+                background: @accentGradient;
+              }
+              &:last-child {
+                width: 90px;
+                background: transparent;
+                border: 1px solid @borderColor;
+              }
+            }
+          }
+        }
+
+        .mc-cards {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 10px;
+
+          .mc-card {
+            background: @surfaceColor;
+            border: 1px solid @borderColor;
+            border-radius: 10px;
+            padding: 14px;
+
+            .mc-icon {
+              width: 28px;
+              height: 28px;
+              background: rgba(108, 99, 255, 0.2);
+              border-radius: 7px;
+              margin-bottom: 8px;
+            }
+
+            .mc-line {
+              height: 7px;
+              background: @borderColor;
+              border-radius: 3px;
+              margin-bottom: 5px;
+
+              &:first-of-type { width: 70%; }
+              &:last-of-type { width: 50%; }
+            }
+          }
+        }
+      }
+    }
+
+    .floating-badge {
+      position: absolute;
+      background: @cardColor;
+      border: 1px solid @borderColor;
+      border-radius: @radiusMd;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+
+      &.top-badge {
+        top: -20px;
+        right: -20px;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      &.bottom-badge {
+        bottom: -20px;
+        left: -20px;
+        animation: float 3s ease-in-out infinite 1.5s;
+      }
+
+      .badge-icon {
+        font-size: 24px;
+      }
+
+      .badge-text {
+        .badge-num {
+          font-size: 18px;
+          font-weight: 800;
+          font-family: 'Syne', sans-serif;
+          color: @accentColor;
+          line-height: 1;
+        }
+
+        .badge-label {
+          font-size: 11px;
+          color: @textSecondary;
+          margin-top: 2px;
+        }
+      }
+    }
+  }
+}
+
+// Services section
+.services {
+  padding: 120px 0;
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .service-card {
+    .card();
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: @accentGradient;
+      opacity: 0;
+      transition: opacity @transitionBase;
+    }
+
+    &:hover::before { opacity: 1; }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(108, 99, 255, 0.12);
+      border: 1px solid rgba(108, 99, 255, 0.2);
+      border-radius: @radiusMd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 14px;
+      color: @textSecondary;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .service-features {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: @textSecondary;
+
+        &::before {
+          content: '✓';
+          width: 18px;
+          height: 18px;
+          background: rgba(108, 99, 255, 0.15);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 10px;
+          color: @accentColor;
+          flex-shrink: 0;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
+
+// Process section
+.process-section {
+  padding: 120px 0;
+  background: @surfaceColor;
+  border-top: 1px solid @borderColor;
+  border-bottom: 1px solid @borderColor;
+}
+
+// Clients section
+.clients {
+  padding: 80px 0;
+
+  .clients-label {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: @textSecondary;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  .clients-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+
+    .client-logo {
+      font-size: 16px;
+      font-weight: 700;
+      color: @textSecondary;
+      opacity: 0.5;
+      letter-spacing: -0.02em;
+      transition: opacity @transitionBase;
+      font-family: 'Syne', sans-serif;
+
+      &:hover { opacity: 0.8; }
+    }
+  }
+}
+
+// Testimonials
+.testimonials {
+  padding: 120px 0;
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+// CTA section
+.cta-section {
+  padding: 120px 0;
+
+  .cta-inner {
+    background: linear-gradient(135deg, rgba(108, 99, 255, 0.15) 0%, rgba(176, 106, 255, 0.08) 100%);
+    border: 1px solid rgba(108, 99, 255, 0.3);
+    border-radius: @radiusXl;
+    padding: 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    .glow-blob {
+      width: 400px;
+      height: 400px;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    h2 {
+      font-size: clamp(32px, 4vw, 52px);
+      margin-bottom: 16px;
+
+      span {
+        background: @accentGradient;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+
+    p {
+      font-size: 18px;
+      color: @textSecondary;
+      margin-bottom: 40px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@media (max-width: 1024px) {
+  .hero .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero .hero-visual { display: none; }
+  .services .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .testimonials .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 100px 0 60px; min-height: auto; }
+  .services { padding: 80px 0; }
+  .services .services-grid { grid-template-columns: 1fr; }
+  .process-section { padding: 80px 0; }
+  .testimonials { padding: 80px 0; }
+  .testimonials .testimonials-grid { grid-template-columns: 1fr; }
+  .cta-section { padding: 80px 0; }
+  .cta-section .cta-inner { padding: 48px 24px; }
+  .clients { padding: 48px 0; }
+  .clients .clients-logos { gap: 32px; }
+}

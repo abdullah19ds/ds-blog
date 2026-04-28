@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap');
+
+// tweak: { "type": "font", "title": "Heading Font" }
+.heading-font {
+  font-family: 'Syne', 'Inter', sans-serif;
+  font-weight: 800;
+}
+
+// tweak: { "type": "font", "title": "Body Font" }
+.body-font {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+}
+
+body {
+  .body-font();
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  .heading-font();
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+h4, h5, h6 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(40px, 6vw, 80px); }
+h2 { font-size: clamp(28px, 4vw, 52px); }
+h3 { font-size: clamp(20px, 2.5vw, 32px); }
+h4 { font-size: clamp(18px, 2vw, 24px); }
+h5 { font-size: 18px; }
+h6 { font-size: 16px; }
+
+p { line-height: 1.7; }
+
+.text-gradient {
+  background: linear-gradient(135deg, #6C63FF 0%, #B06AFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.lead {
+  font-size: clamp(17px, 2vw, 20px);
+  color: @textSecondary;
+  line-height: 1.7;
+}
+
+.caption {
+  font-size: 13px;
+  color: @textSecondary;
+  letter-spacing: 0.03em;
+}
+
+strong, b { font-weight: 700; }
+em, i { font-style: italic; }
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.9em;
+  background: @cardColor;
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: @accentColor;
+}

@@ -1,0 +1,3 @@
+{.repeated section items}
+<a href="{fullUrl}" class="{.section active}active-link{.end}">{navigationTitle}</a>
+{.end}

@@ -1,0 +1,116 @@
+{.section item}
+
+<article class="post-detail">
+
+  <!-- Post Header -->
+  <div class="container">
+    <div class="post-detail-hero">
+      <div class="post-detail-meta">
+        <span class="post-detail-cat">{.section categories}{.section 0}{@}{.end}{.end}</span>
+        <span class="meta-sep">·</span>
+        <span class="post-detail-date">{addedOn|date %B %d, %Y}</span>
+        <span class="meta-sep">·</span>
+        <span class="post-detail-read">5 min read</span>
+      </div>
+
+      <h1>{title}</h1>
+
+      {.section excerpt}
+      <p class="post-detail-excerpt">{excerpt}</p>
+      {.end}
+
+      <div class="post-detail-author">
+        <div class="author-av">{author.displayName|slice 0,2|upper}</div>
+        <div>
+          <div class="author-name">{author.displayName}</div>
+          <div class="author-title">Design Writer · DesignShifu</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured Image -->
+  {.section assetUrl}
+  <div class="container">
+    <div class="post-detail-image">
+      <img src="{assetUrl}" alt="{title}">
+    </div>
+  </div>
+  {.end}
+  {.section assetUrl|not}
+  <div class="container">
+    <div class="post-detail-image">✦</div>
+  </div>
+  {.end}
+
+  <!-- Post Body -->
+  <div class="container">
+    <div class="post-detail-body">
+      {body}
+    </div>
+
+    <!-- Tags -->
+    {.section tags}
+    <div class="post-detail-tags">
+      <span class="tags-label">Tags:</span>
+      {.repeated section @}
+        <a href="/blog?tag={@|url-encode}">{@}</a>
+      {.end}
+    </div>
+    {.end}
+
+    <!-- Share -->
+    <div class="post-detail-share">
+      <span class="share-label">Share:</span>
+      <a href="https://twitter.com/intent/tweet?text={title|url-encode}&url={fullUrl|url-encode}" target="_blank" rel="noopener" aria-label="Share on Twitter">𝕏</a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url={fullUrl|url-encode}" target="_blank" rel="noopener" aria-label="Share on LinkedIn">in</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u={fullUrl|url-encode}" target="_blank" rel="noopener" aria-label="Share on Facebook">f</a>
+    </div>
+  </div>
+
+</article>
+
+{.end}
+
+<!-- Related Posts -->
+{.section collection}
+  {.section items}
+  <section class="related-posts">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag">Keep Reading</div>
+        <h2>More <span>Design Insights</span></h2>
+      </div>
+
+      <div class="related-grid">
+        {.repeated section @}
+          {.section index|lt 3}
+          <article class="post-card">
+            <a href="{fullUrl}">
+              <div class="post-image">
+                {.section assetUrl}
+                  <img src="{assetUrl}" alt="{title}">
+                {.end}
+                {.section assetUrl|not}
+                  <div class="post-img-placeholder">✦</div>
+                {.end}
+              </div>
+            </a>
+            <div class="post-content">
+              <div class="post-meta">
+                <span class="post-cat">{.section categories}{.section 0}{@}{.end}{.end}</span>
+                <span class="dot-sep">·</span>
+                <span class="post-date">{addedOn|date %b %d, %Y}</span>
+              </div>
+              <h3><a href="{fullUrl}">{title}</a></h3>
+              <p>{excerpt}</p>
+              <a href="{fullUrl}" class="read-more">Read Article</a>
+            </div>
+          </article>
+          {.end}
+        {.end}
+      </div>
+    </div>
+  </section>
+  {.end}
+{.end}
