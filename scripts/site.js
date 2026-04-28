@@ -92,12 +92,19 @@
     });
   }
 
+  // ── Auto-update copyright year ──────────────────────────
+  function initCopyYear() {
+    var el = document.querySelector('.copy-year');
+    if (el) el.textContent = new Date().getFullYear();
+  }
+
   // ── Init ────────────────────────────────────────────────
   ready(function () {
     initNav();
     initReveal();
     initHeaderScroll();
     initFAQ();
+    initCopyYear();
   });
 
 }());
