@@ -10,9 +10,16 @@
 <section class="blog-list">
   <div class="container">
 
-    {.section items}
+    {.section empty}
+      <!-- Empty state -->
+      <div class="blog-empty">
+        <p class="eyebrow">Nothing to read here yet</p>
+        <h2>The first article is on its way.</h2>
+        <p>Check back soon — or follow along on the channels in the footer.</p>
+      </div>
+    {.or}
       <ul class="post-grid post-grid-3">
-        {.repeated section @}
+        {.repeated section items}
           <li class="post-card reveal">
             <a class="post-card-media" href="{fullUrl}" aria-label="{title}">
               {.section assetUrl}
@@ -56,14 +63,6 @@
           {.end}
         </nav>
       {.end}
-
-    {.or}
-      <!-- Empty state -->
-      <div class="blog-empty">
-        <p class="eyebrow">Nothing to read here yet</p>
-        <h2>The first article is on its way.</h2>
-        <p>Check back soon — or follow along on the channels in the footer.</p>
-      </div>
     {.end}
 
   </div>
