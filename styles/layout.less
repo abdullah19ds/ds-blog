@@ -243,14 +243,6 @@
   &:hover { color: @paper; }
 }
 
-// Footer never shows the orange active-link styling — it's a different context
-.site-footer .nav-item.is-active > a {
-  color: @paper;
-  &::after { display: none; }
-}
-.site-footer .nav-item > a { color: rgba(255,255,255,0.60); }
-.site-footer .nav-item > a:hover { color: @paper; }
-
 .footer-bottom {
   display: flex; justify-content: space-between; align-items: center;
   font-family: @font-mono; font-size: 0.72rem;

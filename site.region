@@ -25,7 +25,7 @@
     <div class="site-header-inner">
       <a class="brand" href="/" aria-label="DesignShifu — home">
         <span class="brand-mark" aria-hidden="true">DS</span>
-        <span class="brand-name">DS Blog</span>
+        <span class="brand-name">{website.siteTitle}</span>
       </a>
 
       <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
@@ -73,7 +73,7 @@
         <div class="footer-brand">
           <a class="brand" href="/">
             <span class="brand-mark" aria-hidden="true">DS</span>
-            <span class="brand-name">DS Blog</span>
+            <span class="brand-name">{website.siteTitle}</span>
           </a>
           <p class="footer-tagline">Design that ships.<br>Strategy that compounds.</p>
         </div>
@@ -90,7 +90,7 @@
       </div>
 
       <div class="footer-bottom">
-        <span>&copy; <span class="copy-year">2026</span> DS Blog. All rights reserved.</span>
+        <span>&copy; {website.siteTitle}. All rights reserved.</span>
         <span>Built on Squarespace Developer Mode.</span>
       </div>
     </div>

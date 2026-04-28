@@ -3,25 +3,25 @@
   min-height: 92vh;
   display: grid;
   grid-template-columns: 55fr 45fr;
-  align-items: stretch;
+  align-items: center;
   border-bottom: 1px solid @hairline;
   overflow: hidden;
 
   @media (max-width: @bp-md) {
     grid-template-columns: 1fr;
     min-height: auto;
-    padding: @s-9 0 0;
+    padding: @s-9 0 @s-7;
   }
 }
 
 .hero-content {
   padding: @s-10 @s-8;
-  align-self: center;
 
   .avail-badge { margin-bottom: @s-5; }
 
   h1 {
     margin-bottom: @s-5;
+    // Fraunces is most dramatic at large optical size
     font-variation-settings: 'opsz' 144, 'SOFT' 0;
   }
 
@@ -31,66 +31,40 @@
     display: flex; gap: @s-3; flex-wrap: wrap; align-items: center;
     margin-bottom: @s-7;
   }
-
-  @media (max-width: @bp-md) {
-    padding: 0 @s-5 @s-7;
-  }
 }
 
 .hero-visual {
-  position: relative;
   align-self: stretch;
   background: @paper-deep;
   border-left: 1px solid @hairline;
+  display: flex; align-items: center; justify-content: center;
   overflow: hidden;
-  min-height: 60vh;
+  position: relative;
 
-  @media (max-width: @bp-md) {
-    border-left: 0;
-    border-top: 1px solid @hairline;
-    aspect-ratio: 4 / 3;
-    min-height: 0;
+  // large background letterform as decorative element
+  &::after {
+    content: 'DS';
+    position: absolute;
+    font-family: @font-display;
+    font-size: ~"clamp(14rem, 28vw, 28rem)";
+    font-weight: 400;
+    font-variation-settings: 'opsz' 144;
+    letter-spacing: -0.06em;
+    color: @ink;
+    opacity: 0.04;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
   }
-}
 
-.hero-visual-img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  // Two-tone duotone-ish treatment (warm shadows so it sits in the palette)
-  filter: ~"grayscale(35%) contrast(1.05) brightness(0.92)";
-  mix-blend-mode: multiply;
-  opacity: 0.92;
-}
-
-// large background letterform overlay
-.hero-visual-letter {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: @font-display;
-  font-size: ~"clamp(14rem, 28vw, 26rem)";
-  font-weight: 400;
-  font-variation-settings: 'opsz' 144;
-  letter-spacing: -0.06em;
-  color: @paper;
-  opacity: 0.82;
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-  text-shadow: 0 24px 60px fade(@ink, 18%);
-  mix-blend-mode: overlay;
+  @media (max-width: @bp-md) { display: none; }
 }
 
 .hero-marquee-label {
   position: absolute; bottom: @s-6; left: @s-6;
   font-family: @font-mono; font-size: 0.65rem;
-  letter-spacing: 0.1em; text-transform: uppercase; color: @paper;
+  letter-spacing: 0.1em; text-transform: uppercase; color: @ink-muted;
   writing-mode: vertical-rl; transform: rotate(180deg);
-  background: fade(@ink, 70%);
-  padding: 8px 6px;
-  border-radius: 2px;
-  z-index: 2;
 }
 
 // ─── Services section ─────────────────────────────────────────────────────────
@@ -125,120 +99,19 @@
   letter-spacing: -0.03em; color: @paper;
   font-variation-settings: 'opsz' 72;
   display: block; margin-bottom: @s-2;
-  em { color: @accent; font-variation-settings: 'opsz' 9; font-style: italic; }
+  em { color: @accent; font-variation-settings: 'opsz' 9; }
 }
 .result-label {
   font-size: 0.82rem; color: rgba(255,255,255,0.4);
   letter-spacing: 0.02em;
 }
 
-// ─── Testimonial section + slider ─────────────────────────────────────────────
+// ─── Testimonial section ──────────────────────────────────────────────────────
 .section-testimonial {
   background: @paper-deep;
   border-top: 1px solid @hairline;
   border-bottom: 1px solid @hairline;
-  overflow: hidden; // contain the slide track
-
-  .section-head { max-width: 640px; margin-bottom: @s-7; }
-}
-
-.testimonial-slider {
-  position: relative;
-}
-
-.testimonial-track {
-  display: flex;
-  gap: @s-6;
-  transition: transform 600ms @ease-spring;
-  will-change: transform;
-}
-
-.testimonial-slide {
-  flex: 0 0 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: @s-6 0 @s-4;
-
-  blockquote {
-    font-family: @font-display;
-    font-size: ~"clamp(1.4rem, 2.8vw, 2.2rem)";
-    font-weight: 400;
-    line-height: 1.28;
-    letter-spacing: -0.02em;
-    color: @ink;
-    font-style: italic;
-    font-variation-settings: 'opsz' 24;
-    margin: 0 0 @s-5;
-    max-width: 50ch;
-
-    // Decorative open quote mark
-    &::before {
-      content: '\201C';
-      display: block;
-      font-family: @font-display;
-      font-size: 4rem;
-      line-height: 0.5;
-      color: @accent;
-      margin-bottom: @s-2;
-      font-variation-settings: 'opsz' 144;
-      font-style: normal;
-    }
-  }
-  figcaption {
-    display: flex; align-items: center; gap: @s-3;
-    .avatar {
-      width: 48px; height: 48px; border-radius: 50%;
-      object-fit: cover;
-      border: 1px solid @hairline-strong;
-      background: @paper;
-      flex-shrink: 0;
-    }
-    strong { font-family: @font-body; font-weight: 600; font-size: 0.95rem; color: @ink; display: block; }
-    span   { color: @ink-muted; font-size: 0.85rem; display: block; }
-  }
-}
-
-.testimonial-controls {
-  display: flex; align-items: center; gap: @s-4;
-  margin-top: @s-5;
-  padding-top: @s-5;
-  border-top: 1px solid @hairline;
-}
-
-.testimonial-btn {
-  display: inline-grid; place-items: center;
-  width: 44px; height: 44px;
-  background: @paper;
-  border: 1px solid @hairline-strong;
-  border-radius: 50%;
-  color: @ink;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 200ms @ease-spring, border-color 200ms @ease-spring, transform 200ms @ease-spring;
-
-  &:hover { background: @ink; color: @paper; border-color: @ink; }
-  &:active { transform: scale(0.94); }
-  &:focus-visible { outline: 2px solid @accent; outline-offset: 3px; }
-}
-
-.testimonial-dots {
-  display: flex; align-items: center; gap: @s-2;
-  margin-left: auto;
-
-  button {
-    width: 26px; height: 6px;
-    border: 0; border-radius: 3px;
-    background: @hairline-strong;
-    cursor: pointer;
-    padding: 0;
-    transition: background 240ms @ease-spring, width 240ms @ease-spring;
-
-    &.is-active { background: @ink; width: 36px; }
-    &:hover { background: @ink-muted; }
-    &:focus-visible { outline: 2px solid @accent; outline-offset: 3px; }
-  }
 }
 
 // ─── CTA section ──────────────────────────────────────────────────────────────
 .section-cta { padding: @s-9 0 @s-10; }
-.section-cta-bordered { border-top: 1px solid fade(@ink, 10%); }

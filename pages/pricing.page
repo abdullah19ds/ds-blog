@@ -1,37 +1,25 @@
 <!-- Pricing hero -->
 <section class="pricing-page-hero">
   <div class="container">
-    <p class="eyebrow reveal-up">Pricing</p>
-    <h1 class="reveal-up">Flat fees.<br>No lock-ins.</h1>
-    <p class="lead reveal-up">Three ways to work with us. Pick the one that fits your shipping calendar. Yearly billing saves 18% on retained engagements.</p>
+    <p class="eyebrow reveal">Pricing</p>
+    <h1 class="reveal">Flat fees.<br>No lock-ins.</h1>
+    <p class="lead reveal">Three ways to work with us. Pick the one that fits your shipping calendar. All prices in USD.</p>
   </div>
 </section>
 
 <!-- Pricing plans -->
 <section class="section-pricing">
   <div class="container">
-
-    <!-- Billing-period toggle -->
-    <div class="billing-toggle reveal-up" data-billing-toggle>
-      <button type="button" class="billing-option is-active" data-billing="monthly" aria-pressed="true">
-        Monthly
-      </button>
-      <button type="button" class="billing-option" data-billing="yearly" aria-pressed="false">
-        Yearly
-        <span class="billing-save">save 18%</span>
-      </button>
-    </div>
-
     <div class="pricing-grid">
 
-      <!-- Sprint — flat, doesn't change between monthly/yearly -->
-      <article class="plan-card reveal-up">
+      <!-- Sprint -->
+      <article class="plan-card reveal">
         <div class="plan-head">
           <p class="plan-name">Sprint</p>
           <p class="plan-tagline">One thing, shipped fast.</p>
           <div class="plan-price">
             <span class="plan-currency">$</span>
-            <span class="plan-amount" data-monthly="4,800" data-yearly="4,800">4,800</span>
+            <span class="plan-amount">4,800</span>
             <span class="plan-period">flat</span>
           </div>
         </div>
@@ -45,16 +33,16 @@
         <a class="btn btn-outline plan-cta" href="mailto:hello@designshifu.com?subject=Sprint%20enquiry">Start a sprint</a>
       </article>
 
-      <!-- Studio — featured. Yearly drops to ~$11,500 -->
-      <article class="plan-card plan-card-featured reveal-up">
+      <!-- Studio — featured -->
+      <article class="plan-card plan-card-featured reveal">
         <span class="plan-badge">Most popular</span>
         <div class="plan-head">
           <p class="plan-name">Studio</p>
           <p class="plan-tagline">A full launch, end to end.</p>
           <div class="plan-price">
             <span class="plan-currency">$</span>
-            <span class="plan-amount" data-monthly="14,000" data-yearly="11,480">14,000</span>
-            <span class="plan-period" data-monthly-label="flat" data-yearly-label="flat">flat</span>
+            <span class="plan-amount">14,000</span>
+            <span class="plan-period">flat</span>
           </div>
         </div>
         <hr class="plan-divider">
@@ -68,15 +56,15 @@
         <a class="btn btn-primary plan-cta" href="mailto:hello@designshifu.com?subject=Studio%20enquiry">Book Studio</a>
       </article>
 
-      <!-- Partner — retained. Monthly $7,200 / Yearly $5,900 -->
-      <article class="plan-card reveal-up">
+      <!-- Partner -->
+      <article class="plan-card reveal">
         <div class="plan-head">
           <p class="plan-name">Partner</p>
           <p class="plan-tagline">Your design team, on tap.</p>
           <div class="plan-price">
             <span class="plan-currency">$</span>
-            <span class="plan-amount" data-monthly="7,200" data-yearly="5,900">7,200</span>
-            <span class="plan-period" data-monthly-label="/ mo" data-yearly-label="/ mo, billed yearly">/ mo</span>
+            <span class="plan-amount">7,200</span>
+            <span class="plan-period">/ mo</span>
           </div>
         </div>
         <hr class="plan-divider">
@@ -101,7 +89,7 @@
       <div class="faq-intro reveal">
         <p class="eyebrow">FAQ</p>
         <h2>Honest answers.</h2>
-        <p>If your question isn&rsquo;t here, email <a class="link-underline" href="mailto:hello@designshifu.com">hello@designshifu.com</a> — we reply same day.</p>
+        <p>If your question isn&rsquo;t here, email <a href="mailto:hello@designshifu.com" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">hello@designshifu.com</a> — we reply same day.</p>
       </div>
 
       <dl class="faq-list">
@@ -141,7 +129,7 @@
 </section>
 
 <!-- CTA -->
-<section class="section section-cta section-cta-bordered">
+<section class="section section-cta" style="border-top:1px solid rgba(20,16,9,.1);">
   <div class="container">
     <div class="cta-card reveal">
       <div>

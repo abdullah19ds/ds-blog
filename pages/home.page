@@ -1,14 +1,14 @@
-<!-- Split hero: left content / right photographic panel -->
+<!-- Split hero: left content / right decorative panel -->
 <section class="hero" aria-label="Hero">
   <div class="hero-content">
     <p class="avail-badge"><span class="avail-dot" aria-hidden="true"></span>Booking Q3 projects now</p>
-    <h1 class="reveal-up">We design for the<br><em>metric that moves.</em></h1>
-    <p class="lead reveal-up">DesignShifu is a boutique studio for ambitious brands. We turn complicated products into clear stories — and clear stories into compounding growth.</p>
-    <div class="hero-actions reveal-up">
+    <h1>We design for the<br><em>metric that moves.</em></h1>
+    <p class="lead">DesignShifu is a boutique studio for ambitious brands. We turn complicated products into clear stories — and clear stories into compounding growth.</p>
+    <div class="hero-actions">
       <a class="btn btn-primary" href="/pricing">View pricing</a>
       <a class="btn btn-ghost" href="/about">How we work <span class="arrow" aria-hidden="true">→</span></a>
     </div>
-    <div class="stat-row reveal-up" role="list">
+    <div class="stat-row" role="list">
       <div class="stat" role="listitem">
         <span class="stat-value">120+</span>
         <span class="stat-label">Brands shipped</span>
@@ -23,10 +23,7 @@
       </div>
     </div>
   </div>
-
   <div class="hero-visual" aria-hidden="true">
-    <img class="hero-visual-img" src="https://picsum.photos/seed/dsblog-hero/1200/1400" alt="" loading="eager">
-    <span class="hero-visual-letter">DS</span>
     <span class="hero-marquee-label">Selected work — 2024</span>
   </div>
 </section>
@@ -34,20 +31,20 @@
 <!-- Results strip -->
 <div class="results-strip">
   <div class="container">
-    <div class="result-item reveal-up">
-      <span class="result-value" data-count="2" data-suffix="×">0<em>×</em></span>
+    <div class="result-item reveal">
+      <span class="result-value">2<em>×</em></span>
       <span class="result-label">Average landing-page conversion lift</span>
     </div>
-    <div class="result-item reveal-up">
-      <span class="result-value" data-count="47" data-suffix="%">0<em>%</em></span>
+    <div class="result-item reveal">
+      <span class="result-value">47<em>%</em></span>
       <span class="result-label">Faster time-to-first-design vs in-house hire</span>
     </div>
-    <div class="result-item reveal-up">
-      <span class="result-value" data-count="38" data-suffix="k">0<em>k</em></span>
+    <div class="result-item reveal">
+      <span class="result-value">38<em>k</em></span>
       <span class="result-label">Design hours delivered since 2019</span>
     </div>
-    <div class="result-item reveal-up">
-      <span class="result-value" data-count="93" data-suffix="%">0<em>%</em></span>
+    <div class="result-item reveal">
+      <span class="result-value">93<em>%</em></span>
       <span class="result-label">Clients who renew or refer within 6 months</span>
     </div>
   </div>
@@ -57,12 +54,12 @@
 <section class="section section-services">
   <div class="container">
     <header class="section-head section-head-left">
-      <p class="eyebrow reveal-up">What we do</p>
-      <h2 class="reveal-up">Three practices,<br>one taste.</h2>
+      <p class="eyebrow">What we do</p>
+      <h2>Three practices,<br>one taste.</h2>
     </header>
 
     <div class="services-list">
-      <article class="service-item reveal-up">
+      <article class="service-item reveal">
         <div class="service-content">
           <p class="service-num">01</p>
           <h3>Brand identity</h3>
@@ -74,12 +71,12 @@
           </ul>
           <a class="btn btn-ghost btn-sm" href="/pricing">See pricing <span class="arrow" aria-hidden="true">→</span></a>
         </div>
-        <div class="service-visual">
-          <img src="https://picsum.photos/seed/dsblog-brand/900/700" alt="Brand identity work" loading="lazy">
+        <div class="service-visual" aria-hidden="true">
+          <span class="service-visual-icon">Aa</span>
         </div>
       </article>
 
-      <article class="service-item reveal-up">
+      <article class="service-item reveal">
         <div class="service-content">
           <p class="service-num">02</p>
           <h3>Web &amp; product</h3>
@@ -91,12 +88,12 @@
           </ul>
           <a class="btn btn-ghost btn-sm" href="/pricing">See pricing <span class="arrow" aria-hidden="true">→</span></a>
         </div>
-        <div class="service-visual">
-          <img src="https://picsum.photos/seed/dsblog-product/900/700" alt="Product design work" loading="lazy">
+        <div class="service-visual" aria-hidden="true">
+          <span class="service-visual-icon">[]</span>
         </div>
       </article>
 
-      <article class="service-item reveal-up">
+      <article class="service-item reveal">
         <div class="service-content">
           <p class="service-num">03</p>
           <h3>Design partner</h3>
@@ -108,8 +105,8 @@
           </ul>
           <a class="btn btn-ghost btn-sm" href="/pricing">See pricing <span class="arrow" aria-hidden="true">→</span></a>
         </div>
-        <div class="service-visual">
-          <img src="https://picsum.photos/seed/dsblog-partner/900/700" alt="Design partner work" loading="lazy">
+        <div class="service-visual" aria-hidden="true">
+          <span class="service-visual-icon">∞</span>
         </div>
       </article>
     </div>
@@ -120,26 +117,26 @@
 <section class="section">
   <div class="container">
     <header class="section-head section-head-left">
-      <p class="eyebrow reveal-up">How it ships</p>
-      <h2 class="reveal-up">Four weeks,<br>start to live.</h2>
+      <p class="eyebrow">How it ships</p>
+      <h2>Four weeks,<br>start to live.</h2>
     </header>
     <ol class="process-grid">
-      <li class="process-step reveal-up">
+      <li class="process-step reveal">
         <span class="step-num">01 — Map</span>
         <h3>Strategy first</h3>
         <p>We audit the product, audience, and the metric. You get a one-page strategy brief, not a slide deck.</p>
       </li>
-      <li class="process-step reveal-up">
+      <li class="process-step reveal">
         <span class="step-num">02 — Sketch</span>
         <h3>Two directions, fast</h3>
         <p>We commit early and iterate in the open. Nothing is precious; everything is reviewable on day three.</p>
       </li>
-      <li class="process-step reveal-up">
+      <li class="process-step reveal">
         <span class="step-num">03 — Build</span>
         <h3>Production design</h3>
         <p>Production-ready files, front-end if needed, reviewed daily, approved weekly, shipped on Friday.</p>
       </li>
-      <li class="process-step reveal-up">
+      <li class="process-step reveal">
         <span class="step-num">04 — Compound</span>
         <h3>Launch is week one</h3>
         <p>Everything after launch is iteration with data, not opinion. We stay on until the metric moves.</p>
@@ -148,88 +145,28 @@
   </div>
 </section>
 
-<!-- Testimonial slider -->
+<!-- Testimonial -->
 <section class="section section-testimonial">
   <div class="container">
-    <header class="section-head section-head-left">
-      <p class="eyebrow reveal-up">Words from the bench</p>
-      <h2 class="reveal-up">What founders say after we&rsquo;ve shipped.</h2>
-    </header>
-
-    <div class="testimonial-slider" data-slider data-slider-autoplay="6500">
-      <div class="testimonial-track" data-slider-track>
-
-        <figure class="testimonial-slide" data-slider-slide>
-          <blockquote>
-            &ldquo;DesignShifu rewrote our landing page in nine days. Trial conversion doubled the same week. They&rsquo;re the most efficient design investment we&rsquo;ve made.&rdquo;
-          </blockquote>
-          <figcaption>
-            <img class="avatar" src="https://i.pravatar.cc/96?img=47" alt="" loading="lazy">
-            <div>
-              <strong>Miriam Osei-Bonsu</strong>
-              <span>Head of Growth · Lumen</span>
-            </div>
-          </figcaption>
-        </figure>
-
-        <figure class="testimonial-slide" data-slider-slide>
-          <blockquote>
-            &ldquo;We came in with a half-finished rebrand and a board meeting in three weeks. They built the whole identity system, shipped the site, and made our team look like a real category leader.&rdquo;
-          </blockquote>
-          <figcaption>
-            <img class="avatar" src="https://i.pravatar.cc/96?img=12" alt="" loading="lazy">
-            <div>
-              <strong>Tomás Reinert-Lehrke</strong>
-              <span>Co-founder · Cobalt Labs</span>
-            </div>
-          </figcaption>
-        </figure>
-
-        <figure class="testimonial-slide" data-slider-slide>
-          <blockquote>
-            &ldquo;The best part isn&rsquo;t the work — it&rsquo;s the rhythm. Friday ships, Monday review, no theatre. Our marketing velocity tripled the quarter we onboarded them.&rdquo;
-          </blockquote>
-          <figcaption>
-            <img class="avatar" src="https://i.pravatar.cc/96?img=32" alt="" loading="lazy">
-            <div>
-              <strong>Sienna Pirelli-Vargas</strong>
-              <span>VP Marketing · Northshore Health</span>
-            </div>
-          </figcaption>
-        </figure>
-
-        <figure class="testimonial-slide" data-slider-slide>
-          <blockquote>
-            &ldquo;I&rsquo;ve used six agencies in eight years. DesignShifu is the only one that produced work I didn&rsquo;t have to redirect. They show up with a hypothesis, not a moodboard.&rdquo;
-          </blockquote>
-          <figcaption>
-            <img class="avatar" src="https://i.pravatar.cc/96?img=68" alt="" loading="lazy">
-            <div>
-              <strong>Rashida Bakhtiari-Coen</strong>
-              <span>Founder · Ember &amp; Ash</span>
-            </div>
-          </figcaption>
-        </figure>
-
-      </div>
-
-      <div class="testimonial-controls">
-        <button class="testimonial-btn" data-slider-prev aria-label="Previous testimonial">
-          <span aria-hidden="true">←</span>
-        </button>
-        <div class="testimonial-dots" role="tablist" data-slider-dots aria-label="Choose testimonial"></div>
-        <button class="testimonial-btn" data-slider-next aria-label="Next testimonial">
-          <span aria-hidden="true">→</span>
-        </button>
-      </div>
-    </div>
+    <figure class="testimonial-wrap reveal">
+      <blockquote>
+        &ldquo;DesignShifu rewrote our landing page in nine days. Trial conversion doubled the same week. They&rsquo;re the most efficient design investment we&rsquo;ve made.&rdquo;
+      </blockquote>
+      <figcaption>
+        <div class="avatar" aria-hidden="true">MO</div>
+        <div>
+          <strong>Miriam Osei-Bonsu</strong>
+          <span>Head of Growth, Lumen</span>
+        </div>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="section section-cta">
   <div class="container">
-    <div class="cta-card reveal-up">
+    <div class="cta-card reveal">
       <div>
         <p class="eyebrow eyebrow-accent">Ready to ship?</p>
         <h2>Have a launch on the calendar?</h2>
