@@ -1,94 +1,263 @@
-// Buttons
+// ─── Buttons ──────────────────────────────────────────────────────────────────
+// Directional-fill on hover (Design-taste rule: enter from left)
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: @space-2;
-  padding: 12px 22px;
-  border-radius: 999px;
-  font-weight: 500; font-size: 0.95rem;
-  white-space: nowrap;
-  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, color 160ms ease;
+  position: relative; overflow: hidden;
+  display: inline-flex; align-items: center; justify-content: center; gap: @s-2;
+  padding: 13px 26px;
+  border-radius: @r-sm;
+  font-family: @font-body; font-weight: 600; font-size: 0.88rem;
+  letter-spacing: -0.01em; white-space: nowrap;
+  cursor: pointer; text-decoration: none;
+  transition: color 240ms @ease-spring, transform 200ms @ease-spring, box-shadow 200ms @ease-spring;
+
+  &::before {
+    content: '';
+    position: absolute; inset: 0;
+    transform: translateX(-100%);
+    transition: transform 360ms @ease-spring;
+  }
+  &:hover::before { transform: translateX(0); }
+  &:active { transform: scale(0.98); }
 }
 
 .btn-primary {
-  background: @gradient;
-  color: white;
-  box-shadow: 0 8px 24px fade(@accent, 30%);
+  background: @ink; color: @paper;
+  border: 1.5px solid @ink;
+  box-shadow: 0 2px 0 @ink;
+
+  &::before { background: @accent; }
+  &:hover { border-color: @accent; color: @paper; box-shadow: 0 2px 0 @accent; }
 }
-.btn-primary:hover { color: white; transform: translateY(-1px); box-shadow: 0 12px 32px fade(@accent, 40%); }
+
+.btn-outline {
+  background: transparent; color: @ink;
+  border: 1.5px solid @hairline-strong;
+
+  &::before { background: @paper-deep; }
+  &:hover { color: @ink; border-color: @hairline-strong; }
+}
 
 .btn-ghost {
-  background: transparent;
-  color: @text;
-  border: 1px solid @border-strong;
-}
-.btn-ghost:hover { background: @bg-card; color: @text; }
+  background: transparent; color: @ink-muted;
+  border: 0; padding-left: 0; padding-right: 0;
 
-// Status dot (live indicator)
-.status-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #4ade80;
-  box-shadow: 0 0 0 0 fade(#4ade80, 60%);
-  animation: pulse 1.8s ease-out infinite;
-}
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 fade(#4ade80, 60%); }
-  70% { box-shadow: 0 0 0 8px fade(#4ade80, 0%); }
-  100% { box-shadow: 0 0 0 0 fade(#4ade80, 0%); }
+  span.arrow {
+    display: inline-block;
+    transition: transform 240ms @ease-spring;
+  }
+  &:hover { color: @ink; }
+  &:hover span.arrow { transform: translateX(4px); }
+  &::before { display: none; }
 }
 
-// Card-like surfaces
-.card {
-  background: @bg-card;
-  border: 1px solid @border;
-  border-radius: @r-lg;
-  padding: @space-6;
-  transition: border-color 200ms ease, transform 200ms ease;
-}
-.card:hover { border-color: @border-strong; }
+.btn-sm { padding: 9px 18px; font-size: 0.82rem; }
+.btn-lg { padding: 16px 34px; font-size: 1rem; }
 
-// CTA card (used at end of pages)
-.cta-card {
-  background: linear-gradient(135deg, fade(@accent, 14%), fade(@accent-2, 10%)), @bg-card;
-  border: 1px solid @border-strong;
+// ─── Stat row ─────────────────────────────────────────────────────────────────
+.stat-row {
+  display: flex; align-items: center; gap: @s-7; flex-wrap: wrap;
+  padding: @s-4 0;
+  border-top: 1px solid @hairline;
+}
+.stat {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.stat-value {
+  font-family: @font-mono; font-size: 1.6rem; font-weight: 500;
+  color: @ink; letter-spacing: -0.03em; line-height: 1;
+}
+.stat-label {
+  font-size: 0.78rem; color: @ink-muted; letter-spacing: 0.03em;
+}
+
+// ─── Availability badge ───────────────────────────────────────────────────────
+.avail-badge {
+  display: inline-flex; align-items: center; gap: @s-2;
+  padding: 6px 12px 6px 8px;
+  background: @paper-deep; border: 1px solid @hairline-strong;
+  border-radius: 999px;
+  font-family: @font-mono; font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; color: @ink-muted;
+}
+.avail-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #4ade80; flex-shrink: 0;
+  animation: pulse-dot 2s ease-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 fade(#4ade80, 55%); }
+  50%       { box-shadow: 0 0 0 5px fade(#4ade80, 0%); }
+}
+
+// ─── Service card (zig-zag, no 3-equal-col) ───────────────────────────────────
+.service-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: @s-8;
+  align-items: center;
+  padding: @s-8 0;
+  border-top: 1px solid @hairline;
+
+  &:last-child { border-bottom: 1px solid @hairline; }
+
+  &:nth-child(even) .service-content { order: 2; }
+  &:nth-child(even) .service-visual  { order: 1; }
+
+  @media (max-width: @bp-md) {
+    grid-template-columns: 1fr;
+    .service-visual { display: none; }
+    &:nth-child(even) .service-content { order: 1; }
+  }
+}
+
+.service-num {
+  font-family: @font-mono; font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase; color: @accent;
+  margin-bottom: @s-3;
+}
+.service-content h3 {
+  font-family: @font-display; font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 400; line-height: 1.1;
+  font-variation-settings: 'opsz' 36;
+  margin-bottom: @s-4;
+}
+.service-content p { max-width: 44ch; margin-bottom: @s-5; }
+.service-list {
+  display: flex; flex-direction: column; gap: @s-2;
+  margin-bottom: @s-5;
+  li {
+    font-size: 0.88rem; color: @ink-muted;
+    padding-left: @s-4; position: relative;
+    &::before {
+      content: '→'; position: absolute; left: 0;
+      color: @accent; font-size: 0.75rem;
+    }
+  }
+}
+.service-visual {
+  background: @paper-deep;
   border-radius: @r-xl;
-  padding: @space-8;
-  text-align: center;
-
-  h2 { margin-bottom: @space-3; }
-  p { margin-bottom: @space-5; max-width: 520px; margin-left: auto; margin-right: auto; }
+  aspect-ratio: 4 / 3;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid @hairline;
+  overflow: hidden;
 }
-.cta-actions {
-  display: inline-flex; gap: @space-3; flex-wrap: wrap; justify-content: center;
+.service-visual-icon {
+  font-family: @font-mono; font-size: 4rem;
+  color: @ink; opacity: 0.06;
+  letter-spacing: -0.05em;
 }
 
-// Testimonial
-.testimonial {
-  text-align: center;
-  padding: @space-7 @space-5;
+// ─── Process steps ────────────────────────────────────────────────────────────
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid @hairline;
+  border-radius: @r-lg;
+  overflow: hidden;
+
+  @media (max-width: @bp-md) { grid-template-columns: 1fr 1fr; }
+  @media (max-width: @bp-sm) { grid-template-columns: 1fr; }
+}
+.process-step {
+  padding: @s-6 @s-5;
+  border-right: 1px solid @hairline;
+  transition: background 200ms @ease-spring;
+  &:last-child { border-right: 0; }
+  &:hover { background: @paper-deep; }
+
+  @media (max-width: @bp-md) {
+    border-right: 0;
+    border-bottom: 1px solid @hairline;
+    &:last-child { border-bottom: 0; }
+  }
+}
+.process-step .step-num {
+  font-family: @font-mono; font-size: 0.68rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: @accent; margin-bottom: @s-4; display: block;
+}
+.process-step h3 { margin-bottom: @s-2; }
+.process-step p { font-size: 0.9rem; max-width: none; }
+
+// ─── Testimonial ──────────────────────────────────────────────────────────────
+.testimonial-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: left;
 
   blockquote {
-    .heading-font();
-    font-size: clamp(1.4rem, 2.6vw, 2rem);
-    line-height: 1.35;
-    color: @text;
-    margin-bottom: @space-5;
-    text-wrap: balance;
+    font-family: @font-display;
+    font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: @ink;
+    font-style: italic;
+    font-variation-settings: 'opsz' 24;
+    margin-bottom: @s-5;
   }
   figcaption {
-    display: flex; flex-direction: column; gap: @space-1;
-    color: @text-muted; font-size: 0.95rem;
+    display: flex; align-items: center; gap: @s-3;
+    .avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: @paper-deep; border: 1px solid @hairline-strong;
+      display: grid; place-items: center;
+      font-family: @font-mono; font-size: 0.7rem; color: @ink-muted;
+      flex-shrink: 0;
+    }
+    strong { font-family: @font-body; font-weight: 600; font-size: 0.9rem; }
+    span   { color: @ink-muted; font-size: 0.85rem; display: block; }
   }
-  figcaption strong { color: @text; }
 }
 
-// Tag / pill
+// ─── CTA card ─────────────────────────────────────────────────────────────────
+.cta-card {
+  background: @ink; color: @paper;
+  border-radius: @r-xl;
+  padding: @s-9 @s-8;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: @s-6;
+  align-items: center;
+  position: relative; overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 260px; height: 260px; border-radius: 50%;
+    background: @accent; opacity: 0.08;
+    pointer-events: none;
+  }
+
+  h2 { color: @paper; max-width: 18ch; font-size: clamp(1.8rem, 3.5vw, 3rem); }
+  p  { color: rgba(255,255,255,0.55); margin-bottom: @s-5; max-width: 44ch; }
+
+  .cta-actions {
+    display: flex; gap: @s-3; flex-wrap: wrap; align-items: center;
+    .btn-primary { background: @paper; color: @ink; border-color: @paper;
+      &::before { background: @accent-soft; } }
+    .btn-outline { border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.7);
+      &::before { background: rgba(255,255,255,0.08); } }
+  }
+
+  @media (max-width: @bp-md) {
+    grid-template-columns: 1fr;
+    padding: @s-7 @s-5;
+  }
+}
+
+// ─── Post tag / pill ──────────────────────────────────────────────────────────
 .post-tag {
   display: inline-block;
-  padding: 2px 10px;
-  background: fade(@accent, 14%);
-  color: lighten(@accent, 20%);
+  padding: 3px 10px;
+  background: @paper-deep; border: 1px solid @hairline-strong;
   border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-family: @font-mono; font-size: 0.65rem;
+  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  color: @ink-muted;
 }
+
+// accent soft (for light bg on dark card)
+@accent-soft: #f5bda4;

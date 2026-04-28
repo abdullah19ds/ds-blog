@@ -1,53 +1,81 @@
 {.section item}
-<article class="post" data-content-field="main-content">
+<article class="post-single" data-content-field="main-content">
 
+  <!-- Post header -->
   <header class="post-header">
     <div class="container container-narrow">
-      <p class="post-breadcrumb"><a href="{collection.fullUrl}">&larr; {collection.title}</a></p>
+      <p class="post-breadcrumb">
+        <a href="{collection.fullUrl}">← {collection.title}</a>
+      </p>
       <p class="post-meta">
         <time datetime="{addedOn|date %Y-%m-%d}">{addedOn|date %B %d, %Y}</time>
         {.section author.displayName}
-          <span class="post-meta-sep" aria-hidden="true">&middot;</span>
+          <span aria-hidden="true">·</span>
           <span>By {author.displayName}</span>
         {.end}
       </p>
-      <h1 class="post-title">{title}</h1>
+      <h1>{title}</h1>
       {.section categories}
-        <p class="post-tags">
-          {.repeated section @}<span class="post-tag">{@}</span>{.end}
-        </p>
+        <div class="post-tags" role="list">
+          {.repeated section @}<span class="post-tag" role="listitem">{@}</span>{.end}
+        </div>
       {.end}
     </div>
   </header>
 
+  <!-- Cover image -->
   {.section assetUrl}
     <figure class="post-cover">
-      <img src="{assetUrl}?format=2000w" alt="{title}">
+      <div class="container">
+        <img src="{assetUrl}?format=2000w" alt="{title}" loading="eager">
+      </div>
     </figure>
   {.end}
 
-  <div class="container container-narrow">
-    <div class="post-body">
-      {body|safe}
+  <!-- Body + sidebar -->
+  <div class="container">
+    <div class="post-body-wrap">
+      <!-- Main prose -->
+      <div class="prose">
+        {body|safe}
+      </div>
+
+      <!-- Sidebar CTA (sticky) -->
+      <aside class="post-sidebar" aria-label="Studio CTA">
+        <p class="post-sidebar-label">From the studio</p>
+        <div class="post-sidebar-cta">
+          <h4>Want this kind of thinking for your brand?</h4>
+          <p>We help design-led teams ship work that actually performs.</p>
+          <a class="btn btn-primary btn-sm" href="/pricing">See pricing</a>
+        </div>
+      </aside>
     </div>
 
+    <!-- Post footer -->
     <footer class="post-footer">
       {.section sourceUrl}
-        <p class="post-source"><a href="{sourceUrl}" target="_blank" rel="noopener">View original source &rarr;</a></p>
+        <a href="{sourceUrl}" target="_blank" rel="noopener noreferrer">View source →</a>
       {.end}
-      <div class="post-share">
-        {@|apply sqs-share-buttons}
-      </div>
+      <div>{@|apply sqs-share-buttons}</div>
     </footer>
   </div>
 
 </article>
 
-<section class="post-cta">
+<!-- Post CTA strip -->
+<section class="post-cta-strip">
   <div class="container container-narrow">
-    <h2>Want this kind of clarity for your brand?</h2>
-    <p>We help design-led teams ship work that actually performs. Let's talk.</p>
-    <a href="/pricing" class="btn btn-primary">See pricing</a>
+    <div class="cta-card">
+      <div>
+        <p class="eyebrow eyebrow-accent">Work with us</p>
+        <h2>Want this clarity for your brand?</h2>
+        <p>Tell us the deadline and the metric. We reply the same day.</p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="/pricing">See pricing</a>
+          <a class="btn btn-outline" href="{collection.fullUrl}">More articles</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 {.end}

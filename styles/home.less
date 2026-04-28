@@ -1,119 +1,117 @@
-// Hero
+// ─── Split hero (DESIGN_VARIANCE 8 — left-aligned, asymmetric) ────────────────
 .hero {
-  position: relative;
-  padding: clamp(@space-8, 12vw, @space-9 + @space-7) 0 @space-9;
-  text-align: center;
+  min-height: 92vh;
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  align-items: center;
+  border-bottom: 1px solid @hairline;
   overflow: hidden;
-  background: radial-gradient(ellipse 60% 80% at 50% 0%, fade(@accent, 16%) 0%, transparent 60%),
-              radial-gradient(ellipse 40% 60% at 80% 30%, fade(@accent-2, 12%) 0%, transparent 60%);
-}
 
-.hero-inner > * + * { margin-top: @space-5; }
-
-.hero-title {
-  font-size: clamp(2.6rem, 6vw, 4.6rem);
-  max-width: 920px;
-  margin-left: auto; margin-right: auto;
-}
-.hero-lead {
-  font-size: 1.15rem;
-  max-width: 600px;
-  margin-left: auto; margin-right: auto;
-  color: @text-muted;
-}
-
-.hero-actions {
-  display: inline-flex; gap: @space-3; flex-wrap: wrap; justify-content: center;
-}
-
-.hero-trust {
-  display: inline-flex; gap: @space-7;
-  margin-top: @space-7;
-  padding: @space-4 @space-6;
-  background: @bg-card;
-  border: 1px solid @border;
-  border-radius: 999px;
-  flex-wrap: wrap; justify-content: center;
-
-  li { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-  strong { .heading-font(); font-size: 1.4rem; color: @text; }
-  span { font-size: 0.78rem; color: @text-muted; text-transform: uppercase; letter-spacing: 0.06em; }
-}
-
-@media (max-width: @bp-sm) {
-  .hero-trust { gap: @space-5; padding: @space-4; border-radius: @r-lg; }
-}
-
-// Services
-.section-services { background: @bg-elev; border-top: 1px solid @border; border-bottom: 1px solid @border; }
-
-.service-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: @space-4;
-}
-@media (max-width: @bp-md) { .service-grid { grid-template-columns: 1fr; } }
-
-.service-card {
-  .card();
-  padding: @space-6;
-
-  .service-icon {
-    width: 44px; height: 44px;
-    display: grid; place-items: center;
-    background: fade(@accent, 14%);
-    color: lighten(@accent, 12%);
-    border-radius: @r-sm;
-    margin-bottom: @space-4;
-
-    svg { width: 22px; height: 22px; }
-  }
-
-  h3 { margin-bottom: @space-2; }
-  > p { margin-bottom: @space-4; }
-}
-
-.service-card-feature {
-  background: linear-gradient(160deg, fade(@accent, 16%), fade(@accent-2, 8%)), @bg-card;
-  border-color: @border-strong;
-  .service-icon { background: white; color: @bg; }
-}
-
-.service-list {
-  display: flex; flex-direction: column; gap: @space-2;
-  font-size: 0.92rem;
-  color: @text-muted;
-
-  li { padding-left: @space-4; position: relative; }
-  li::before {
-    content: ''; position: absolute; left: 0; top: 0.55rem;
-    width: 6px; height: 6px;
-    background: @accent; border-radius: 50%;
+  @media (max-width: @bp-md) {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: @s-9 0 @s-7;
   }
 }
 
-// Process
-.process-steps {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: @space-4;
-  counter-reset: step;
-}
-@media (max-width: @bp-md) { .process-steps { grid-template-columns: 1fr 1fr; } }
-@media (max-width: @bp-sm) { .process-steps { grid-template-columns: 1fr; } }
+.hero-content {
+  padding: @s-10 @s-6 @s-10 max(calc((100vw - 1320px) / 2 + 32px), 32px);
 
-.process-steps li {
-  .card();
-  padding: @space-6 @space-5;
+  .avail-badge { margin-bottom: @s-5; }
 
-  .step-num {
-    .heading-font();
-    font-size: 0.85rem; color: @accent-2; letter-spacing: 0.1em;
-    margin-bottom: @space-3; display: block;
+  h1 {
+    margin-bottom: @s-5;
+    // Fraunces is most dramatic at large optical size
+    font-variation-settings: 'opsz' 144, 'SOFT' 0;
   }
-  h3 { margin-bottom: @space-2; }
+
+  .lead { margin-bottom: @s-6; }
+
+  .hero-actions {
+    display: flex; gap: @s-3; flex-wrap: wrap; align-items: center;
+    margin-bottom: @s-7;
+  }
 }
 
-// Testimonial section background
+.hero-visual {
+  align-self: stretch;
+  background: @paper-deep;
+  border-left: 1px solid @hairline;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  position: relative;
+
+  // large background letterform as decorative element
+  &::after {
+    content: 'DS';
+    position: absolute;
+    font-family: @font-display;
+    font-size: clamp(14rem, 28vw, 28rem);
+    font-weight: 400;
+    font-variation-settings: 'opsz' 144;
+    letter-spacing: -0.06em;
+    color: @ink;
+    opacity: 0.04;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  @media (max-width: @bp-md) { display: none; }
+}
+
+.hero-marquee-label {
+  position: absolute; bottom: @s-6; left: @s-6;
+  font-family: @font-mono; font-size: 0.65rem;
+  letter-spacing: 0.1em; text-transform: uppercase; color: @ink-muted;
+  writing-mode: vertical-rl; transform: rotate(180deg);
+}
+
+// ─── Services section ─────────────────────────────────────────────────────────
+.section-services {
+  .section-head { max-width: 600px; }
+}
+
+// ─── Work/results proof strip ─────────────────────────────────────────────────
+.results-strip {
+  background: @ink; color: @paper;
+  padding: @s-8 0;
+}
+.results-strip .container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: @s-1;
+
+  @media (max-width: @bp-md) { grid-template-columns: 1fr 1fr; gap: @s-5; }
+  @media (max-width: @bp-sm) { grid-template-columns: 1fr 1fr; }
+}
+.result-item {
+  padding: @s-6 @s-5;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  &:last-child { border-right: 0; }
+
+  @media (max-width: @bp-md) { border-right: 0; }
+}
+.result-value {
+  font-family: @font-display;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 400; line-height: 1;
+  letter-spacing: -0.03em; color: @paper;
+  font-variation-settings: 'opsz' 72;
+  display: block; margin-bottom: @s-2;
+  em { color: @accent; font-variation-settings: 'opsz' 9; }
+}
+.result-label {
+  font-size: 0.82rem; color: rgba(255,255,255,0.4);
+  letter-spacing: 0.02em;
+}
+
+// ─── Testimonial section ──────────────────────────────────────────────────────
 .section-testimonial {
-  background: radial-gradient(ellipse at center, fade(@accent, 8%) 0%, transparent 60%);
+  background: @paper-deep;
+  border-top: 1px solid @hairline;
+  border-bottom: 1px solid @hairline;
 }
 
-// Final CTA section padding
-.section-cta { padding-top: @space-8; padding-bottom: @space-9; }
+// ─── CTA section ──────────────────────────────────────────────────────────────
+.section-cta { padding: @s-9 0 @s-10; }

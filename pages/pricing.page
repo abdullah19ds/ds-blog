@@ -1,109 +1,146 @@
-<section class="page-hero">
-  <div class="container container-narrow">
-    <p class="eyebrow">Pricing</p>
-    <h1>Flat fees. No retainers you can&rsquo;t cancel.</h1>
-    <p class="lead">
-      Three ways to work with us. Pick the one that fits your shipping calendar.
-    </p>
+<!-- Pricing hero -->
+<section class="pricing-page-hero">
+  <div class="container">
+    <p class="eyebrow reveal">Pricing</p>
+    <h1 class="reveal">Flat fees.<br>No lock-ins.</h1>
+    <p class="lead reveal">Three ways to work with us. Pick the one that fits your shipping calendar. All prices in USD.</p>
   </div>
 </section>
 
-<section class="section section-pricing">
+<!-- Pricing plans -->
+<section class="section-pricing">
   <div class="container">
     <div class="pricing-grid">
 
-      <article class="plan-card">
-        <header class="plan-head">
-          <h2 class="plan-name">Sprint</h2>
+      <!-- Sprint -->
+      <article class="plan-card reveal">
+        <div class="plan-head">
+          <p class="plan-name">Sprint</p>
           <p class="plan-tagline">One thing, shipped fast.</p>
-          <p class="plan-price"><span class="plan-currency">$</span>4,800<span class="plan-period">flat</span></p>
-        </header>
+          <div class="plan-price">
+            <span class="plan-currency">$</span>
+            <span class="plan-amount">4,800</span>
+            <span class="plan-period">flat</span>
+          </div>
+        </div>
+        <hr class="plan-divider">
         <ul class="plan-features">
           <li>One landing page or feature flow</li>
           <li>Strategy + design + front-end</li>
           <li>Two-week delivery</li>
           <li>One round of revisions</li>
         </ul>
-        <a class="btn btn-ghost plan-cta" href="mailto:hello@designshifu.com?subject=Sprint%20enquiry">Start a sprint</a>
+        <a class="btn btn-outline plan-cta" href="mailto:hello@designshifu.com?subject=Sprint%20enquiry">Start a sprint</a>
       </article>
 
-      <article class="plan-card plan-card-feature">
+      <!-- Studio — featured -->
+      <article class="plan-card plan-card-featured reveal">
         <span class="plan-badge">Most popular</span>
-        <header class="plan-head">
-          <h2 class="plan-name">Studio</h2>
+        <div class="plan-head">
+          <p class="plan-name">Studio</p>
           <p class="plan-tagline">A full launch, end to end.</p>
-          <p class="plan-price"><span class="plan-currency">$</span>14,000<span class="plan-period">flat</span></p>
-        </header>
+          <div class="plan-price">
+            <span class="plan-currency">$</span>
+            <span class="plan-amount">14,000</span>
+            <span class="plan-period">flat</span>
+          </div>
+        </div>
+        <hr class="plan-divider">
         <ul class="plan-features">
-          <li>Brand system + 5-page marketing site</li>
-          <li>Strategy doc + visual identity</li>
+          <li>Brand system + 5-page site</li>
+          <li>Strategy + identity + front-end</li>
           <li>Four-week delivery</li>
           <li>Two rounds of revisions</li>
-          <li>Two weeks of post-launch support</li>
+          <li>Two weeks post-launch support</li>
         </ul>
-        <a class="btn btn-primary plan-cta" href="mailto:hello@designshifu.com?subject=Studio%20enquiry">Book the Studio</a>
+        <a class="btn btn-primary plan-cta" href="mailto:hello@designshifu.com?subject=Studio%20enquiry">Book Studio</a>
       </article>
 
-      <article class="plan-card">
-        <header class="plan-head">
-          <h2 class="plan-name">Partner</h2>
+      <!-- Partner -->
+      <article class="plan-card reveal">
+        <div class="plan-head">
+          <p class="plan-name">Partner</p>
           <p class="plan-tagline">Your design team, on tap.</p>
-          <p class="plan-price"><span class="plan-currency">$</span>7,200<span class="plan-period">/ month</span></p>
-        </header>
+          <div class="plan-price">
+            <span class="plan-currency">$</span>
+            <span class="plan-amount">7,200</span>
+            <span class="plan-period">/ mo</span>
+          </div>
+        </div>
+        <hr class="plan-divider">
         <ul class="plan-features">
           <li>One senior designer, dedicated</li>
           <li>Weekly delivery rhythm</li>
           <li>Slack + Notion workflow</li>
-          <li>Pause anytime, no notice</li>
+          <li>Pause anytime, no notice period</li>
         </ul>
-        <a class="btn btn-ghost plan-cta" href="mailto:hello@designshifu.com?subject=Partner%20enquiry">Become a partner</a>
+        <a class="btn btn-outline plan-cta" href="mailto:hello@designshifu.com?subject=Partner%20enquiry">Become a partner</a>
       </article>
 
     </div>
-
-    <p class="pricing-footnote">All plans are invoiced in USD. Production-ready files delivered in Figma, Squarespace, or your stack of choice.</p>
+    <p class="pricing-note">All files delivered in Figma, Squarespace, or your stack of choice. Invoiced in USD.</p>
   </div>
 </section>
 
-<section class="section section-faq">
-  <div class="container container-narrow">
-    <header class="section-head">
-      <p class="eyebrow">FAQ</p>
-      <h2>Common questions, honest answers.</h2>
-    </header>
+<!-- FAQ — side-by-side layout, not accordion dump -->
+<section class="section-faq">
+  <div class="container">
+    <div class="faq-grid">
+      <div class="faq-intro reveal">
+        <p class="eyebrow">FAQ</p>
+        <h2>Honest answers.</h2>
+        <p>If your question isn&rsquo;t here, email <a href="mailto:hello@designshifu.com" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">hello@designshifu.com</a> — we reply same day.</p>
+      </div>
 
-    <div class="faq-list">
-      <details class="faq-item" open>
-        <summary>What if we need something between Sprint and Studio?</summary>
-        <p>Tell us the scope. If it doesn&rsquo;t fit a tier, we&rsquo;ll quote a flat fee within 24 hours. We don&rsquo;t do hourly billing.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Do you sign NDAs?</summary>
-        <p>Yes. Send yours at the start of the engagement and we&rsquo;ll counter-sign the same day.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Can you work with our existing brand?</summary>
-        <p>Of course. About a third of our work is layered on top of an existing identity. We&rsquo;ll respect what&rsquo;s working and only push on what isn&rsquo;t.</p>
-      </details>
-      <details class="faq-item">
-        <summary>What happens after launch?</summary>
-        <p>Studio includes two weeks of post-launch support. After that, most clients move into a Partner engagement. You&rsquo;re never locked in.</p>
-      </details>
-      <details class="faq-item">
-        <summary>How do we get started?</summary>
-        <p>Email <a href="mailto:hello@designshifu.com">hello@designshifu.com</a> with the metric you&rsquo;re trying to move and the deadline. We&rsquo;ll reply with a yes, a no, or a referral the same day.</p>
-      </details>
+      <dl class="faq-list">
+        <div class="faq-item reveal">
+          <details open>
+            <summary>What if my scope is between Sprint and Studio?</summary>
+            <p>Tell us what you need. If it doesn&rsquo;t fit a tier, we&rsquo;ll quote a flat fee within 24 hours. We don&rsquo;t do hourly billing.</p>
+          </details>
+        </div>
+        <div class="faq-item reveal">
+          <details>
+            <summary>Do you sign NDAs?</summary>
+            <p>Yes. Send yours at the start of the engagement and we&rsquo;ll counter-sign the same day.</p>
+          </details>
+        </div>
+        <div class="faq-item reveal">
+          <details>
+            <summary>Can you work with our existing brand?</summary>
+            <p>Of course — about a third of our work layers on top of an existing identity. We respect what&rsquo;s working and only push on what isn&rsquo;t.</p>
+          </details>
+        </div>
+        <div class="faq-item reveal">
+          <details>
+            <summary>What happens after launch?</summary>
+            <p>Studio includes two weeks of post-launch support. After that, most clients move into a Partner engagement. You&rsquo;re never locked in.</p>
+          </details>
+        </div>
+        <div class="faq-item reveal">
+          <details>
+            <summary>How do we get started?</summary>
+            <p>Email <a href="mailto:hello@designshifu.com">hello@designshifu.com</a> with the metric you&rsquo;re trying to move and the deadline. We&rsquo;ll reply with a yes, a no, or a referral the same day.</p>
+          </details>
+        </div>
+      </dl>
     </div>
   </div>
 </section>
 
-<section class="section section-cta">
-  <div class="container container-narrow cta-card">
-    <h2>Ready to brief us?</h2>
-    <p>Send the deadline, the metric, and the audience. We&rsquo;ll do the rest.</p>
-    <div class="cta-actions">
-      <a class="btn btn-primary" href="mailto:hello@designshifu.com">Email us</a>
-      <a class="btn btn-ghost" href="/about">Read about us</a>
+<!-- CTA -->
+<section class="section section-cta" style="border-top:1px solid rgba(20,16,9,.1);">
+  <div class="container">
+    <div class="cta-card reveal">
+      <div>
+        <p class="eyebrow eyebrow-accent">Ready to brief us?</p>
+        <h2>Send us the deadline.<br>We do the rest.</h2>
+        <p>No RFPs, no pitch decks. Just a short email with your metric and your timeline.</p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="mailto:hello@designshifu.com">Email us directly</a>
+          <a class="btn btn-outline" href="/about">About the studio</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>

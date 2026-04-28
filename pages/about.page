@@ -1,89 +1,150 @@
-<section class="page-hero">
-  <div class="container container-narrow">
+<!-- About hero — asymmetric grid -->
+<section class="about-page-hero">
+  <div class="about-hero-text reveal">
     <p class="eyebrow">About</p>
-    <h1>A small studio with strong opinions about clarity.</h1>
-    <p class="lead">
-      DesignShifu was founded on a simple bet: design is the cheapest growth lever most companies never pull. We&rsquo;ve spent the last six years pulling it for our clients.
-    </p>
+    <h1>Small studio.<br><em>Strong opinions</em><br>about clarity.</h1>
+    <p class="lead">DesignShifu was founded on a simple bet: design is the cheapest growth lever most companies never pull. We&rsquo;ve spent six years pulling it for our clients.</p>
+    <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
+      <a class="btn btn-primary" href="/pricing">Work with us</a>
+      <a class="btn btn-ghost" href="/blog">Read the blog <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+  <div class="about-hero-aside reveal">
+    <p class="aside-label">Quick facts</p>
+    <dl class="quick-facts">
+      <div class="fact">
+        <dt class="fact-key">Founded</dt>
+        <dd class="fact-val">2019</dd>
+      </div>
+      <div class="fact">
+        <dt class="fact-key">Location</dt>
+        <dd class="fact-val">Remote-first</dd>
+      </div>
+      <div class="fact">
+        <dt class="fact-key">Team size</dt>
+        <dd class="fact-val">3 principals</dd>
+      </div>
+      <div class="fact">
+        <dt class="fact-key">Clients served</dt>
+        <dd class="fact-val">120+</dd>
+      </div>
+      <div class="fact">
+        <dt class="fact-key">Avg delivery</dt>
+        <dd class="fact-val">10 days</dd>
+      </div>
+    </dl>
   </div>
 </section>
 
-<section class="section">
-  <div class="container container-narrow prose">
-    <h2>Our point of view</h2>
-    <p>
-      Most design work fails because the brief is wrong. Teams ask for a redesign when they need positioning. They ask for a logo when they need a customer. We start by asking which decision the design has to make easier, then we work backwards from there.
-    </p>
-    <p>
-      We&rsquo;re partial to short engagements with clear deliverables. We&rsquo;d rather ship something useful in two weeks than something polished in two quarters. If you need a 90-page brand bible, we are not the right studio.
-    </p>
-  </div>
-</section>
-
-<section class="section section-values">
+<!-- Point of view -->
+<section class="section section-pov">
   <div class="container">
-    <header class="section-head">
-      <p class="eyebrow">How we operate</p>
-      <h2>Four rules we won&rsquo;t bend.</h2>
+    <header class="section-head section-head-left">
+      <p class="eyebrow">Our point of view</p>
+      <h2>Design that earns its keep.</h2>
     </header>
-    <ul class="value-grid">
-      <li>
+    <div class="pov-grid">
+      <div class="prose reveal">
+        <p>Most design work fails because the brief is wrong. Teams ask for a redesign when they need positioning. They ask for a logo when they need a customer. We start by asking which decision the design has to make easier — then work backwards from there.</p>
+        <p>We&rsquo;re partial to short engagements with clear deliverables. We&rsquo;d rather ship something useful in two weeks than something polished in two quarters. If you need a 90-page brand bible, we are not the right studio.</p>
+        <p>Every project we take on has a stated metric and a stated deadline. If we can&rsquo;t write both in one sentence, we&rsquo;re not ready to start.</p>
+      </div>
+      <div class="reveal" style="align-self:start;">
+        <div class="stat-row" style="flex-direction:column;align-items:flex-start;border-top:0;padding-top:0;gap:20px;">
+          <div class="stat">
+            <span class="stat-value">6 yrs</span>
+            <span class="stat-label">In business</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">93%</span>
+            <span class="stat-label">Clients who renew or refer</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">$0</span>
+            <span class="stat-label">Spent on outbound sales, ever</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Values — bordered grid, no boxed cards -->
+<section class="section" style="background:var(--paper-deep,#e9e0d0);border-top:1px solid rgba(20,16,9,.1);border-bottom:1px solid rgba(20,16,9,.1);">
+  <div class="container">
+    <header class="section-head section-head-left">
+      <p class="eyebrow">How we operate</p>
+      <h2>Four rules<br>we won&rsquo;t bend.</h2>
+    </header>
+    <ul class="value-grid" role="list">
+      <li class="value-item reveal" role="listitem">
+        <p class="value-num">01</p>
         <h3>Ship the obvious thing first</h3>
-        <p>The boring 80% always beats the clever 100%. We design what users actually need before we design what would look good in a portfolio.</p>
+        <p>The boring 80% always beats the clever 100%. We design what users actually need before we design what looks good in a portfolio.</p>
       </li>
-      <li>
+      <li class="value-item reveal" role="listitem">
+        <p class="value-num">02</p>
         <h3>Strategy is a deliverable</h3>
-        <p>Every engagement starts with a one-page strategy doc. If we can&rsquo;t write the why in one page, we&rsquo;re not ready to design.</p>
+        <p>Every engagement starts with a one-page strategy brief. If we can&rsquo;t write the why in one page, we&rsquo;re not ready to design.</p>
       </li>
-      <li>
+      <li class="value-item reveal" role="listitem">
+        <p class="value-num">03</p>
         <h3>Async by default</h3>
-        <p>We protect maker time. Most communication happens in Notion and Slack threads, not on calls. Calls are reserved for decisions.</p>
+        <p>We protect maker time. Communication happens in Notion and Slack threads, not calls. Calls are reserved for decisions only.</p>
       </li>
-      <li>
+      <li class="value-item reveal" role="listitem">
+        <p class="value-num">04</p>
         <h3>One throat to choke</h3>
-        <p>You get one senior designer as your partner from kickoff to launch. No account managers, no handoffs, no junior shadow team.</p>
+        <p>You get one senior designer from kickoff to launch. No account managers, no handoffs, no junior shadow team working off-screen.</p>
       </li>
     </ul>
   </div>
 </section>
 
-<section class="section section-team">
+<!-- Team -->
+<section class="section">
   <div class="container">
-    <header class="section-head">
+    <header class="section-head section-head-left">
       <p class="eyebrow">The team</p>
-      <h2>Senior, by design.</h2>
-      <p class="section-lead">Three principals, no juniors. Every project is led by someone with at least eight years of in-house and agency experience.</p>
+      <h2>Senior designers,<br>no juniors.</h2>
+      <p class="section-lead">Every project is led by someone with at least eight years of in-house and agency experience. No handoffs.</p>
     </header>
     <div class="team-grid">
-      <article class="team-card">
+      <article class="team-card reveal">
         <div class="team-avatar" aria-hidden="true">AS</div>
-        <h3>Abdullah S.</h3>
+        <p class="team-name">Abdullah S.</p>
         <p class="team-role">Founder &amp; design lead</p>
         <p>Brand systems, marketing sites, and the occasional pricing page rewrite that pays for itself in a week.</p>
       </article>
-      <article class="team-card">
+      <article class="team-card reveal">
         <div class="team-avatar" aria-hidden="true">RP</div>
-        <h3>Rina P.</h3>
+        <p class="team-name">Rina P.</p>
         <p class="team-role">Product designer</p>
-        <p>Onboarding flows, dashboard UX, and turning vague PRDs into shipped features.</p>
+        <p>Onboarding flows, dashboard UX, and turning vague PRDs into shipped features on time.</p>
       </article>
-      <article class="team-card">
+      <article class="team-card reveal">
         <div class="team-avatar" aria-hidden="true">JC</div>
-        <h3>Jonas C.</h3>
+        <p class="team-name">Jonas C.</p>
         <p class="team-role">Front-end engineer</p>
-        <p>Webflow, Squarespace, Next.js. He keeps Lighthouse green so you don&rsquo;t have to.</p>
+        <p>Squarespace, Webflow, Next.js. He keeps Lighthouse green so you don&rsquo;t have to think about it.</p>
       </article>
     </div>
   </div>
 </section>
 
+<!-- CTA -->
 <section class="section section-cta">
-  <div class="container container-narrow cta-card">
-    <h2>Curious if we&rsquo;re a fit?</h2>
-    <p>Send us the deadline and the metric. We&rsquo;ll come back the same day.</p>
-    <div class="cta-actions">
-      <a class="btn btn-primary" href="/pricing">See pricing</a>
-      <a class="btn btn-ghost" href="/blog">Read the blog</a>
+  <div class="container">
+    <div class="cta-card reveal">
+      <div>
+        <p class="eyebrow eyebrow-accent">Get started</p>
+        <h2>Curious if we&rsquo;re a fit?</h2>
+        <p>Send us the deadline and the metric. We&rsquo;ll reply the same day — yes, no, or a referral.</p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="/pricing">See pricing</a>
+          <a class="btn btn-outline" href="/blog">Read the blog</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>

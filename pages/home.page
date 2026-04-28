@@ -1,130 +1,181 @@
-<section class="hero">
-  <div class="container hero-inner">
-    <p class="eyebrow">
-      <span class="status-dot" aria-hidden="true"></span>
-      Booking projects for next quarter
-    </p>
-    <h1 class="hero-title">
-      Design that <em>moves</em> the metric that matters.
-    </h1>
-    <p class="hero-lead">
-      DesignShifu is a small studio for ambitious brands. We turn complicated products into clear stories, and clear stories into compounding growth.
-    </p>
+<!-- Split hero: left content / right decorative panel -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-content">
+    <p class="avail-badge"><span class="avail-dot" aria-hidden="true"></span>Booking Q3 projects now</p>
+    <h1>We design for the<br><em>metric that moves.</em></h1>
+    <p class="lead">DesignShifu is a boutique studio for ambitious brands. We turn complicated products into clear stories — and clear stories into compounding growth.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="/pricing">View pricing</a>
-      <a class="btn btn-ghost" href="/about">How we work</a>
+      <a class="btn btn-ghost" href="/about">How we work <span class="arrow" aria-hidden="true">→</span></a>
     </div>
-    <ul class="hero-trust">
-      <li><strong>120+</strong><span>brands shipped</span></li>
-      <li><strong>4.9</strong><span>avg client rating</span></li>
-      <li><strong>10 days</strong><span>typical first launch</span></li>
-    </ul>
+    <div class="stat-row" role="list">
+      <div class="stat" role="listitem">
+        <span class="stat-value">120+</span>
+        <span class="stat-label">Brands shipped</span>
+      </div>
+      <div class="stat" role="listitem">
+        <span class="stat-value">4.9</span>
+        <span class="stat-label">Avg client rating</span>
+      </div>
+      <div class="stat" role="listitem">
+        <span class="stat-value">10d</span>
+        <span class="stat-label">Typical first launch</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual" aria-hidden="true">
+    <span class="hero-marquee-label">Selected work — 2024</span>
   </div>
 </section>
 
+<!-- Results strip -->
+<div class="results-strip">
+  <div class="container">
+    <div class="result-item reveal">
+      <span class="result-value">2<em>×</em></span>
+      <span class="result-label">Average landing-page conversion lift</span>
+    </div>
+    <div class="result-item reveal">
+      <span class="result-value">47<em>%</em></span>
+      <span class="result-label">Faster time-to-first-design vs in-house hire</span>
+    </div>
+    <div class="result-item reveal">
+      <span class="result-value">38<em>k</em></span>
+      <span class="result-label">Design hours delivered since 2019</span>
+    </div>
+    <div class="result-item reveal">
+      <span class="result-value">93<em>%</em></span>
+      <span class="result-label">Clients who renew or refer within 6 months</span>
+    </div>
+  </div>
+</div>
+
+<!-- Services — zig-zag, no 3-equal-col -->
 <section class="section section-services">
   <div class="container">
-    <header class="section-head">
+    <header class="section-head section-head-left">
       <p class="eyebrow">What we do</p>
-      <h2>Three practices, one taste.</h2>
-      <p class="section-lead">Pick a track, or combine them. We move fast because the work is the proposal.</p>
+      <h2>Three practices,<br>one taste.</h2>
     </header>
 
-    <div class="service-grid">
-      <article class="service-card">
-        <div class="service-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h10M4 17h16"/></svg>
+    <div class="services-list">
+      <article class="service-item reveal">
+        <div class="service-content">
+          <p class="service-num">01</p>
+          <h3>Brand identity</h3>
+          <p>Logos, systems, and guidelines that hold at every size. We ship a working brand kit, not a 90-page deck.</p>
+          <ul class="service-list">
+            <li>Wordmark + monogram</li>
+            <li>Type, color, and motion tokens</li>
+            <li>Launch-ready template set</li>
+          </ul>
+          <a class="btn btn-ghost btn-sm" href="/pricing">See pricing <span class="arrow" aria-hidden="true">→</span></a>
         </div>
-        <h3>Brand identity</h3>
-        <p>Logos, systems, and guidelines that hold up at every size. We ship a working brand kit, not a 90-page deck.</p>
-        <ul class="service-list">
-          <li>Wordmark + monogram</li>
-          <li>Type, color, motion tokens</li>
-          <li>Launch templates</li>
-        </ul>
+        <div class="service-visual" aria-hidden="true">
+          <span class="service-visual-icon">Aa</span>
+        </div>
       </article>
 
-      <article class="service-card service-card-feature">
-        <div class="service-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 14h6"/></svg>
+      <article class="service-item reveal">
+        <div class="service-content">
+          <p class="service-num">02</p>
+          <h3>Web &amp; product</h3>
+          <p>Marketing sites, dashboards, and onboarding flows. Designed for conversion, built to ship on Squarespace, Webflow, or your stack.</p>
+          <ul class="service-list">
+            <li>Landing &amp; marketing sites</li>
+            <li>Product UI &amp; flows</li>
+            <li>Performance &amp; SEO baseline</li>
+          </ul>
+          <a class="btn btn-ghost btn-sm" href="/pricing">See pricing <span class="arrow" aria-hidden="true">→</span></a>
         </div>
-        <h3>Web &amp; product</h3>
-        <p>Marketing sites, dashboards, and onboarding flows. Designed for conversion, built to ship on Squarespace, Webflow, or your stack.</p>
-        <ul class="service-list">
-          <li>Landing &amp; marketing</li>
-          <li>Product UI &amp; flows</li>
-          <li>Performance &amp; SEO baseline</li>
-        </ul>
+        <div class="service-visual" aria-hidden="true">
+          <span class="service-visual-icon">[]</span>
+        </div>
       </article>
 
-      <article class="service-card">
-        <div class="service-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M3 12h18"/></svg>
+      <article class="service-item reveal">
+        <div class="service-content">
+          <p class="service-num">03</p>
+          <h3>Design partner</h3>
+          <p>Continuous design support for teams without an in-house lead. Async, predictable, flat monthly fee. Pause anytime.</p>
+          <ul class="service-list">
+            <li>Weekly delivery rhythm</li>
+            <li>Slack + Notion workflow</li>
+            <li>One senior designer, always</li>
+          </ul>
+          <a class="btn btn-ghost btn-sm" href="/pricing">See pricing <span class="arrow" aria-hidden="true">→</span></a>
         </div>
-        <h3>Design partner</h3>
-        <p>Continuous design support for teams without an in-house lead. Async, predictable, on a flat monthly fee.</p>
-        <ul class="service-list">
-          <li>Weekly delivery rhythm</li>
-          <li>Slack + Notion workflow</li>
-          <li>Pause anytime</li>
-        </ul>
+        <div class="service-visual" aria-hidden="true">
+          <span class="service-visual-icon">∞</span>
+        </div>
       </article>
     </div>
   </div>
 </section>
 
-<section class="section section-process">
+<!-- Process — bordered grid cells, not cards -->
+<section class="section">
   <div class="container">
-    <header class="section-head">
+    <header class="section-head section-head-left">
       <p class="eyebrow">How it ships</p>
-      <h2>Four weeks from kickoff to launch.</h2>
+      <h2>Four weeks,<br>start to live.</h2>
     </header>
-    <ol class="process-steps">
-      <li>
-        <span class="step-num">01</span>
-        <h3>Map</h3>
-        <p>We audit the product, the audience, and the metric. You get a one-page strategy, not a slide deck.</p>
+    <ol class="process-grid">
+      <li class="process-step reveal">
+        <span class="step-num">01 — Map</span>
+        <h3>Strategy first</h3>
+        <p>We audit the product, audience, and the metric. You get a one-page strategy brief, not a slide deck.</p>
       </li>
-      <li>
-        <span class="step-num">02</span>
-        <h3>Sketch</h3>
-        <p>Two directions, fast. We commit early and iterate in the open so nothing is precious.</p>
+      <li class="process-step reveal">
+        <span class="step-num">02 — Sketch</span>
+        <h3>Two directions, fast</h3>
+        <p>We commit early and iterate in the open. Nothing is precious; everything is reviewable on day three.</p>
       </li>
-      <li>
-        <span class="step-num">03</span>
-        <h3>Build</h3>
-        <p>Production design and front-end. Reviewed daily, approved weekly, shipped on Friday.</p>
+      <li class="process-step reveal">
+        <span class="step-num">03 — Build</span>
+        <h3>Production design</h3>
+        <p>Production-ready files, front-end if needed, reviewed daily, approved weekly, shipped on Friday.</p>
       </li>
-      <li>
-        <span class="step-num">04</span>
-        <h3>Compound</h3>
-        <p>Launch is week one. Everything after is iteration with data, not opinion.</p>
+      <li class="process-step reveal">
+        <span class="step-num">04 — Compound</span>
+        <h3>Launch is week one</h3>
+        <p>Everything after launch is iteration with data, not opinion. We stay on until the metric moves.</p>
       </li>
     </ol>
   </div>
 </section>
 
+<!-- Testimonial -->
 <section class="section section-testimonial">
-  <div class="container container-narrow">
-    <figure class="testimonial">
+  <div class="container">
+    <figure class="testimonial-wrap reveal">
       <blockquote>
-        &ldquo;DesignShifu rewrote our landing page in nine days. Conversion to trial doubled the same week. They are the cheapest senior designer we&rsquo;ve ever hired.&rdquo;
+        &ldquo;DesignShifu rewrote our landing page in nine days. Trial conversion doubled the same week. They&rsquo;re the most efficient design investment we&rsquo;ve made.&rdquo;
       </blockquote>
       <figcaption>
-        <strong>Maya Okonkwo</strong>
-        <span>Head of Growth, Lumen</span>
+        <div class="avatar" aria-hidden="true">MO</div>
+        <div>
+          <strong>Miriam Osei-Bonsu</strong>
+          <span>Head of Growth, Lumen</span>
+        </div>
       </figcaption>
     </figure>
   </div>
 </section>
 
+<!-- CTA -->
 <section class="section section-cta">
-  <div class="container container-narrow cta-card">
-    <h2>Have a launch on the calendar?</h2>
-    <p>Tell us the deadline and the metric. We&rsquo;ll come back the same day with a plan.</p>
-    <div class="cta-actions">
-      <a class="btn btn-primary" href="/pricing">See pricing</a>
-      <a class="btn btn-ghost" href="/blog">Read the blog</a>
+  <div class="container">
+    <div class="cta-card reveal">
+      <div>
+        <p class="eyebrow eyebrow-accent">Ready to ship?</p>
+        <h2>Have a launch on the calendar?</h2>
+        <p>Tell us the deadline and the metric. We come back the same day with a plan.</p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="/pricing">See pricing</a>
+          <a class="btn btn-outline" href="/blog">Read the blog</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>

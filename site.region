@@ -6,52 +6,90 @@
   <title>{website.siteTitle}</title>
   <meta name="description" content="{website.siteDescription}">
 
+  <!-- Fonts: Fraunces variable + Outfit + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <squarespace:script src="site.js" combo="true" />
 </head>
 <body class="{squarespace.page-classes}" id="{squarespace.page-id}">
 
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-  <header class="site-header" data-sqsp-section="header">
-    <div class="container site-header-inner">
-      <a class="brand" href="/" aria-label="{website.siteTitle} home">
+  <!-- ── Header ─────────────────────────────────────────────── -->
+  <header class="site-header" role="banner">
+    <div class="site-header-inner">
+      <a class="brand" href="/" aria-label="DesignShifu — home">
         <span class="brand-mark" aria-hidden="true">DS</span>
         <span class="brand-name">{website.siteTitle}</span>
       </a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
-      <div id="primary-nav" class="primary-nav">
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Main">
         <squarespace:navigation navigationId="mainNav" template="navigation" />
-        <a class="btn btn-primary nav-cta" href="/pricing">Start a project</a>
-      </div>
+        <a class="btn btn-primary btn-sm nav-cta" href="/pricing">Start a project</a>
+      </nav>
     </div>
   </header>
 
+  <!-- ── Marquee (below header, before page content) ─────────── -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <!-- First set -->
+      <span class="marquee-item">Brand identity <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">Web &amp; product design <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">Design partner <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">4.9 / 5 avg rating <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">120+ brands shipped <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">10 days avg first launch <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">Squarespace &amp; Webflow <span class="marquee-sep">◆</span></span>
+      <!-- Duplicate for seamless loop -->
+      <span class="marquee-item">Brand identity <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">Web &amp; product design <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">Design partner <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">4.9 / 5 avg rating <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">120+ brands shipped <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">10 days avg first launch <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">Squarespace &amp; Webflow <span class="marquee-sep">◆</span></span>
+    </div>
+  </div>
+
+  <!-- ── Main content ─────────────────────────────────────────── -->
   <main id="main" role="main" data-content-field="main-content">
     {squarespace.main-content}
   </main>
 
-  <footer class="site-footer" data-sqsp-section="footer">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <span class="brand-mark" aria-hidden="true">DS</span>
-        <p class="footer-tagline">Design that ships. Strategy that compounds.</p>
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a class="brand" href="/">
+            <span class="brand-mark" aria-hidden="true">DS</span>
+            <span class="brand-name">{website.siteTitle}</span>
+          </a>
+          <p class="footer-tagline">Design that ships.<br>Strategy that compounds.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <squarespace:navigation navigationId="mainNav" template="navigation" />
+        </div>
+
+        <div class="footer-col">
+          <h4>More</h4>
+          <squarespace:navigation navigationId="footerNav" template="navigation" />
+        </div>
       </div>
-      <nav class="footer-nav" aria-label="Footer">
-        <squarespace:navigation navigationId="footerNav" template="navigation" />
-      </nav>
-      <div class="footer-meta">
-        <squarespace:block-field id="footerBlocks" columns="12" label="Footer Content" />
+
+      <div class="footer-bottom">
+        <span>&copy; {website.siteTitle}. All rights reserved.</span>
+        <span>Built on Squarespace Developer Mode.</span>
       </div>
-    </div>
-    <div class="container footer-bottom">
-      <p>&copy; {website.siteTitle}. All rights reserved.</p>
-      <p class="muted">Built with care, shipped on Squarespace.</p>
     </div>
   </footer>
 
