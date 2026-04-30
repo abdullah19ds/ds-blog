@@ -194,27 +194,6 @@
     } catch (e) { /* fail silent — native scroll continues */ }
   }
 
-  // ── GSAP-enhanced reveals (replaces the IO version when GSAP is available)
-  function enhanceRevealsWithGSAP() {
-    if (!window.gsap) return false;
-    try {
-      if (window.ScrollTrigger) gsap.registerPlugin(window.ScrollTrigger);
-      var els = document.querySelectorAll('.reveal');
-      els.forEach(function (el) {
-        // override the CSS transition with a GSAP tween for nicer easing
-        gsap.fromTo(el,
-          { opacity: 0, y: 28 },
-          {
-            opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
-            scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-            onStart: function () { el.classList.add('is-visible'); }
-          }
-        );
-      });
-      return true;
-    } catch (e) { return false; }
-  }
-
   // ── Page-transition curtain ─────────────────────────────
   function initPageTransition() {
     if (prefersReducedMotion || !window.gsap) return;
@@ -429,10 +408,11 @@
     initBillingToggle();
     initCounters();
 
-    // Try to upgrade reveals + page transition with GSAP, then start Lenis
-    // smooth scroll. All non-fatal on failure — IO/native scroll keep working.
+    // GSAP is loaded ONLY for the page-transition curtain — section reveals
+    // run on the CSS-only IntersectionObserver path above. Lenis loads
+    // separately for smooth wheel scroll. Both are non-fatal on failure.
     loadGSAP()
-      .then(function () { enhanceRevealsWithGSAP(); initPageTransition(); })
+      .then(function () { initPageTransition(); })
       .catch(function () {})
       .then(function () { return loadLenis(); })
       .then(function () { initSmoothScroll(); })
