@@ -59,12 +59,12 @@ You also need:
 ### 3.1 Clone the repo
 
 ```bash
-git clone git@github.com:abdullahdesignshifu/ds-blog.git
+git clone git@github.com:abdullah19ds/ds-blog.git
 cd ds-blog
 ```
 
 > If you only have HTTPS access, use:
-> `git clone https://github.com/abdullahdesignshifu/ds-blog.git`
+> `git clone https://github.com/abdullah19ds/ds-blog.git`
 
 ### 3.2 Install the Squarespace dev server (global, one-time)
 
