@@ -136,6 +136,11 @@ html.lenis body { height: auto; }
   animation: curtain-enter 900ms @ease-spring forwards;
   animation-delay: 50ms;
 }
+// When GSAP is driving the curtain, suppress the CSS @keyframes so they
+// don't double-animate. JS adds .is-gsap right before the GSAP tween.
+.page-curtain.is-gsap {
+  animation: none;
+}
 .page-curtain.is-leaving {
   animation: curtain-leave 550ms @ease-spring forwards;
   pointer-events: auto;

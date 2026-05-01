@@ -359,14 +359,54 @@
     });
   }
 
-  // ── Page curtain — pure CSS @keyframes; JS only handles link clicks ──
+  // ── Page curtain — GSAP-driven (with CSS @keyframes fallback) ──────────
   function initPageCurtain() {
     if (prefersReducedMotion) return;
     var curtain = document.createElement('div');
     curtain.className = 'page-curtain';
     document.body.appendChild(curtain);
 
-    // Ensure the curtain stops being interactive after the entry animation
+    // GSAP path — smoother spring, full timeline control
+    if (window.gsap) {
+      // Replace the CSS @keyframes entry with a GSAP tween. Mark the
+      // element so the CSS animation rule doesn't double-fire.
+      curtain.classList.add('is-gsap');
+
+      gsap.set(curtain, { y: 0 });
+      gsap.to(curtain, {
+        y: '-100%',
+        duration: 0.85,
+        ease: 'power3.inOut',
+        delay: 0.05,
+        onComplete: function () {
+          gsap.set(curtain, { y: '100%', display: 'none' });
+        }
+      });
+
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href');
+        if (!href) return;
+        var sameOrigin = !/^(https?:|\/\/)/.test(href) || href.indexOf(location.host) !== -1;
+        if (!sameOrigin || href.charAt(0) === '#') return;
+        if (/^(mailto:|tel:)/.test(href)) return;
+        if (a.target === '_blank') return;
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+        e.preventDefault();
+        gsap.set(curtain, { display: 'block', y: '100%' });
+        gsap.to(curtain, {
+          y: 0,
+          duration: 0.55,
+          ease: 'power3.inOut',
+          onComplete: function () { window.location.href = href; }
+        });
+      });
+      return;
+    }
+
+    // Fallback: CSS @keyframes (already declared in global.less)
     curtain.addEventListener('animationend', function () {
       if (curtain.classList.contains('is-leaving')) return;
       curtain.style.display = 'none';
@@ -378,15 +418,13 @@
       var href = a.getAttribute('href');
       if (!href) return;
       var sameOrigin = !/^(https?:|\/\/)/.test(href) || href.indexOf(location.host) !== -1;
-      if (!sameOrigin) return;
-      if (href.charAt(0) === '#') return;
+      if (!sameOrigin || href.charAt(0) === '#') return;
       if (/^(mailto:|tel:)/.test(href)) return;
       if (a.target === '_blank') return;
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
       e.preventDefault();
       curtain.style.display = '';
-      // Force reflow before adding the leaving class so the @keyframes plays
       void curtain.offsetWidth;
       curtain.classList.add('is-leaving');
       curtain.addEventListener('animationend', function leave() {
