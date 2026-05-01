@@ -57,26 +57,61 @@
     onScroll();
   }
 
-  // ── Scroll reveal — fail-open: arm only when we can guarantee delivery ──
-  // CSS hides the element only if it has [data-reveal-pending]. We add that
-  // attribute ourselves before observing, then remove it (along with adding
-  // .is-visible) on intersection. If JS errors out before this runs, content
-  // stays visible.
+  // ── Scroll reveal — GSAP ScrollTrigger when available, fail-open otherwise
+  // The CSS hide rule is gated on [data-reveal-pending] so if GSAP fails
+  // to load (deleted file, wrong path, etc.), content stays visible.
   function initReveal() {
     var els = document.querySelectorAll('.reveal, .reveal-up');
     if (!els.length) return;
 
-    // No IO support OR user prefers reduced motion → just mark visible
-    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    // Reduced motion → no fade, just mark visible
+    if (prefersReducedMotion) {
       els.forEach(function (el) { el.classList.add('is-visible'); });
       return;
     }
 
-    // Arm the hide state, then observe. Use rAF so the browser definitely
-    // paints the initial visible frame before we hide.
+    // Prefer GSAP ScrollTrigger if both are present
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      els.forEach(function (el) {
+        // Above-the-fold elements: reveal immediately without animation
+        var rect = el.getBoundingClientRect();
+        var aboveFold = rect.top < window.innerHeight * 0.9;
+
+        // Arm hide state ONLY for elements we'll animate
+        if (!aboveFold) el.setAttribute('data-reveal-pending', '');
+
+        gsap.fromTo(el,
+          { opacity: aboveFold ? 1 : 0, y: aboveFold ? 0 : 28 },
+          {
+            opacity: 1, y: 0,
+            duration: 0.95,
+            ease: 'power3.out',
+            delay: aboveFold ? 0 : 0,
+            scrollTrigger: aboveFold ? null : {
+              trigger: el,
+              start: 'top 88%',
+              once: true
+            },
+            onStart: function () {
+              el.classList.add('is-visible');
+              el.removeAttribute('data-reveal-pending');
+            }
+          }
+        );
+      });
+      return;
+    }
+
+    // Fallback: IntersectionObserver + CSS transition (same fail-open pattern)
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+
     requestAnimationFrame(function () {
       els.forEach(function (el) {
-        // If element is already in viewport at boot, just reveal — no fade.
         var rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight * 0.9) {
           el.classList.add('is-visible');
@@ -97,12 +132,8 @@
           }
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
       pending.forEach(function (el) { io.observe(el); });
 
-      // Safety net: if anything is still pending after 4s, force-show it.
-      // Catches edge cases where IO never fires (e.g. element hidden by an
-      // ancestor at observe-time, then later revealed without scroll event).
       setTimeout(function () {
         document.querySelectorAll('[data-reveal-pending]').forEach(function (el) {
           el.classList.add('is-visible');
@@ -110,6 +141,32 @@
         });
       }, 4000);
     });
+  }
+
+  // ── Lenis smooth scroll ─────────────────────────────────
+  function initLenis() {
+    if (prefersReducedMotion || !window.Lenis) return;
+    try {
+      var lenis = new window.Lenis({
+        duration: 1.15,
+        easing: function (t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); },
+        smoothWheel: true,
+        smoothTouch: false,
+        touchMultiplier: 1.6
+      });
+
+      // Sync ScrollTrigger to Lenis if both are present
+      if (window.gsap && window.ScrollTrigger) {
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
+        gsap.ticker.lagSmoothing(0);
+      } else {
+        function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+      }
+
+      window.__lenis = lenis;
+    } catch (e) { /* native scroll continues */ }
   }
 
   // ── FAQ accordion — smooth height transition (CSS) ───────────────────
@@ -391,5 +448,6 @@
     safe('slider', initSlider);
     safe('billing', initBillingToggle);
     safe('curtain', initPageCurtain);
+    safe('lenis', initLenis);
   });
 }());

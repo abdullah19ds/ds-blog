@@ -34,12 +34,9 @@
 // ─── Base ─────────────────────────────────────────────────────────────────────
 html {
   background: @paper;
-  // Native smooth scroll — works on Squarespace published sites without
-  // an external library. Replaces Lenis (jsdelivr CDN was being blocked).
-  scroll-behavior: smooth;
-}
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  // Lenis (vendored at /scripts/vendor/lenis.min.js) drives smooth wheel
+  // scroll. We DON'T set 'scroll-behavior: smooth' here because Lenis
+  // hijacks the scroll position and the two compete.
 }
 
 body {
