@@ -11,6 +11,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
+  <!-- Vendored animation libraries — self-hosted to bypass Squarespace's
+       CSP, which blocks third-party CDN script tags on published sites.
+       Order matters: GSAP and ScrollTrigger before site.js, Lenis before
+       site.js, Swiper before site.js. -->
+  <squarespace:script src="vendor/gsap.min.js" combo="true" />
+  <squarespace:script src="vendor/ScrollTrigger.min.js" combo="true" />
+  <squarespace:script src="vendor/lenis.min.js" combo="true" />
+  <squarespace:script src="vendor/swiper-bundle.min.js" combo="true" />
+
   <squarespace:script src="site.js" combo="true" />
 
   <!-- Squarespace auto-injects site.css, CSRF token, statistics, social meta -->
