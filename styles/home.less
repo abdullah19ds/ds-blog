@@ -143,17 +143,15 @@
 
 .testimonial-slider { position: relative; }
 
-.testimonial-track {
-  display: flex;
-  transition: transform 600ms @ease-spring;
-  will-change: transform;
-}
+// Swiper owns layout for .swiper / .swiper-wrapper / .swiper-slide via the
+// vendored CSS. We only style the slide CONTENT here.
+.testimonial-slider .swiper { overflow: hidden; }
 
 .testimonial-slide {
-  flex: 0 0 100%;
-  max-width: 100%;
   margin: 0;
   padding: @s-6 0 @s-4;
+  // Match Swiper's expected 'auto' height behaviour for variable-content slides
+  height: auto;
 
   blockquote {
     font-family: @font-display;
@@ -215,20 +213,26 @@
   &:active { transform: scale(0.94); }
 }
 
-.testimonial-dots {
+// Swiper pagination — re-skinned to match the original dot styling.
+.testimonial-controls .swiper-pagination {
+  position: static; // override Swiper's default absolute positioning
   display: flex; align-items: center; gap: @s-2;
   margin-left: auto;
-
-  button {
-    width: 26px; height: 6px;
-    border: 0; border-radius: 3px;
-    background: @hairline-strong;
-    cursor: pointer;
-    padding: 0;
-    transition: background 240ms @ease-spring, width 240ms @ease-spring;
-    &.is-active { background: @ink; width: 36px; }
-    &:hover { background: @ink-muted; }
-  }
+  width: auto;
+  transform: none;
+  bottom: auto; left: auto;
+}
+.testimonial-dot {
+  width: 26px; height: 6px;
+  border: 0; border-radius: 3px;
+  background: @hairline-strong;
+  cursor: pointer;
+  padding: 0;
+  display: inline-block;
+  opacity: 1;
+  transition: background 240ms @ease-spring, width 240ms @ease-spring;
+  &.is-active { background: @ink; width: 36px; }
+  &:hover { background: @ink-muted; }
 }
 
 // ─── CTA section ──────────────────────────────────────────────────────────────

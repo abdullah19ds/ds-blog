@@ -155,61 +155,63 @@
       <h2 class="reveal">What founders say after we&rsquo;ve shipped.</h2>
     </header>
 
-    <div class="testimonial-slider" data-slider data-slider-autoplay="6500">
-      <div class="testimonial-track" data-slider-track>
+    <div class="testimonial-slider">
+      <div class="swiper" data-testimonial-swiper>
+        <div class="swiper-wrapper">
 
-        <figure class="testimonial-slide" data-slider-slide>
-          <blockquote>DesignShifu rewrote our landing page in nine days. Trial conversion doubled the same week. They&rsquo;re the most efficient design investment we&rsquo;ve made.</blockquote>
-          <figcaption>
-            <img class="avatar" src="https://i.pravatar.cc/96?img=47" alt="" loading="lazy">
-            <div>
-              <strong>Miriam Osei-Bonsu</strong>
-              <span>Head of Growth &middot; Lumen</span>
-            </div>
-          </figcaption>
-        </figure>
+          <figure class="swiper-slide testimonial-slide">
+            <blockquote>DesignShifu rewrote our landing page in nine days. Trial conversion doubled the same week. They&rsquo;re the most efficient design investment we&rsquo;ve made.</blockquote>
+            <figcaption>
+              <img class="avatar" src="https://i.pravatar.cc/96?img=47" alt="" loading="lazy">
+              <div>
+                <strong>Miriam Osei-Bonsu</strong>
+                <span>Head of Growth &middot; Lumen</span>
+              </div>
+            </figcaption>
+          </figure>
 
-        <figure class="testimonial-slide" data-slider-slide>
-          <blockquote>We came in with a half-finished rebrand and a board meeting in three weeks. They built the whole identity, shipped the site, and made our team look like a real category leader.</blockquote>
-          <figcaption>
-            <img class="avatar" src="https://i.pravatar.cc/96?img=12" alt="" loading="lazy">
-            <div>
-              <strong>Tom&aacute;s Reinert-Lehrke</strong>
-              <span>Co-founder &middot; Cobalt Labs</span>
-            </div>
-          </figcaption>
-        </figure>
+          <figure class="swiper-slide testimonial-slide">
+            <blockquote>We came in with a half-finished rebrand and a board meeting in three weeks. They built the whole identity, shipped the site, and made our team look like a real category leader.</blockquote>
+            <figcaption>
+              <img class="avatar" src="https://i.pravatar.cc/96?img=12" alt="" loading="lazy">
+              <div>
+                <strong>Tom&aacute;s Reinert-Lehrke</strong>
+                <span>Co-founder &middot; Cobalt Labs</span>
+              </div>
+            </figcaption>
+          </figure>
 
-        <figure class="testimonial-slide" data-slider-slide>
-          <blockquote>The best part isn&rsquo;t the work — it&rsquo;s the rhythm. Friday ships, Monday review, no theatre. Our marketing velocity tripled the quarter we onboarded them.</blockquote>
-          <figcaption>
-            <img class="avatar" src="https://i.pravatar.cc/96?img=32" alt="" loading="lazy">
-            <div>
-              <strong>Sienna Pirelli-Vargas</strong>
-              <span>VP Marketing &middot; Northshore Health</span>
-            </div>
-          </figcaption>
-        </figure>
+          <figure class="swiper-slide testimonial-slide">
+            <blockquote>The best part isn&rsquo;t the work — it&rsquo;s the rhythm. Friday ships, Monday review, no theatre. Our marketing velocity tripled the quarter we onboarded them.</blockquote>
+            <figcaption>
+              <img class="avatar" src="https://i.pravatar.cc/96?img=32" alt="" loading="lazy">
+              <div>
+                <strong>Sienna Pirelli-Vargas</strong>
+                <span>VP Marketing &middot; Northshore Health</span>
+              </div>
+            </figcaption>
+          </figure>
 
-        <figure class="testimonial-slide" data-slider-slide>
-          <blockquote>I&rsquo;ve used six agencies in eight years. DesignShifu is the only one that produced work I didn&rsquo;t have to redirect. They show up with a hypothesis, not a moodboard.</blockquote>
-          <figcaption>
-            <img class="avatar" src="https://i.pravatar.cc/96?img=68" alt="" loading="lazy">
-            <div>
-              <strong>Rashida Bakhtiari-Coen</strong>
-              <span>Founder &middot; Ember &amp; Ash</span>
-            </div>
-          </figcaption>
-        </figure>
+          <figure class="swiper-slide testimonial-slide">
+            <blockquote>I&rsquo;ve used six agencies in eight years. DesignShifu is the only one that produced work I didn&rsquo;t have to redirect. They show up with a hypothesis, not a moodboard.</blockquote>
+            <figcaption>
+              <img class="avatar" src="https://i.pravatar.cc/96?img=68" alt="" loading="lazy">
+              <div>
+                <strong>Rashida Bakhtiari-Coen</strong>
+                <span>Founder &middot; Ember &amp; Ash</span>
+              </div>
+            </figcaption>
+          </figure>
 
+        </div>
       </div>
 
       <div class="testimonial-controls">
-        <button class="testimonial-btn" data-slider-prev aria-label="Previous testimonial">
+        <button class="testimonial-btn" data-testimonial-prev aria-label="Previous testimonial">
           <span aria-hidden="true">&larr;</span>
         </button>
-        <div class="testimonial-dots" role="tablist" data-slider-dots aria-label="Choose testimonial"></div>
-        <button class="testimonial-btn" data-slider-next aria-label="Next testimonial">
+        <div class="swiper-pagination" data-testimonial-pagination></div>
+        <button class="testimonial-btn" data-testimonial-next aria-label="Next testimonial">
           <span aria-hidden="true">&rarr;</span>
         </button>
       </div>

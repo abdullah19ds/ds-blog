@@ -286,73 +286,41 @@
     if (el) el.textContent = new Date().getFullYear();
   }
 
-  // ── Testimonial slider ──────────────────────────────────
+  // ── Testimonial slider — Swiper-driven ──────────────────
   function initSlider() {
-    document.querySelectorAll('[data-slider]').forEach(function (root) {
-      var track  = root.querySelector('[data-slider-track]');
-      var slides = root.querySelectorAll('[data-slider-slide]');
-      var prev   = root.querySelector('[data-slider-prev]');
-      var next   = root.querySelector('[data-slider-next]');
-      var dotsEl = root.querySelector('[data-slider-dots]');
-      if (!track || slides.length === 0) return;
+    if (!window.Swiper) return; // graceful no-op if vendor file failed
+    document.querySelectorAll('[data-testimonial-swiper]').forEach(function (root) {
+      var prev = document.querySelector('[data-testimonial-prev]');
+      var next = document.querySelector('[data-testimonial-next]');
+      var pagination = document.querySelector('[data-testimonial-pagination]');
 
-      var index = 0;
-      var autoplayMs = parseInt(root.getAttribute('data-slider-autoplay') || '0', 10);
-      var timer = null;
-
-      var dots = [];
-      if (dotsEl) {
-        Array.prototype.forEach.call(slides, function (_, i) {
-          var b = document.createElement('button');
-          b.type = 'button';
-          b.setAttribute('role', 'tab');
-          b.setAttribute('aria-label', 'Go to testimonial ' + (i + 1));
-          if (i === 0) b.classList.add('is-active');
-          b.addEventListener('click', function () { go(i); restartAutoplay(); });
-          dotsEl.appendChild(b);
-          dots.push(b);
-        });
-      }
-
-      function go(i) {
-        index = (i + slides.length) % slides.length;
-        track.style.transform = 'translateX(' + (-index * 100) + '%)';
-        dots.forEach(function (d, di) { d.classList.toggle('is-active', di === index); });
-      }
-      function nextSlide() { go(index + 1); }
-      function prevSlide() { go(index - 1); }
-
-      if (prev) prev.addEventListener('click', function () { prevSlide(); restartAutoplay(); });
-      if (next) next.addEventListener('click', function () { nextSlide(); restartAutoplay(); });
-
-      root.addEventListener('keydown', function (e) {
-        if (e.key === 'ArrowLeft')  { prevSlide(); restartAutoplay(); }
-        if (e.key === 'ArrowRight') { nextSlide(); restartAutoplay(); }
+      new Swiper(root, {
+        speed: 650,
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 0,
+        grabCursor: true,
+        autoplay: prefersReducedMotion ? false : {
+          delay: 6500,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true
+        },
+        keyboard: { enabled: true, onlyInViewport: true },
+        a11y: {
+          prevSlideMessage: 'Previous testimonial',
+          nextSlideMessage: 'Next testimonial'
+        },
+        navigation: prev && next ? { prevEl: prev, nextEl: next } : false,
+        pagination: pagination ? {
+          el: pagination,
+          clickable: true,
+          bulletClass: 'testimonial-dot',
+          bulletActiveClass: 'is-active',
+          renderBullet: function (i, cls) {
+            return '<button type="button" class="' + cls + '" aria-label="Go to testimonial ' + (i + 1) + '"></button>';
+          }
+        } : false
       });
-
-      var touchX = null;
-      track.addEventListener('touchstart', function (e) { touchX = e.changedTouches[0].clientX; }, { passive: true });
-      track.addEventListener('touchend',   function (e) {
-        if (touchX === null) return;
-        var dx = e.changedTouches[0].clientX - touchX;
-        if (Math.abs(dx) > 40) { dx < 0 ? nextSlide() : prevSlide(); restartAutoplay(); }
-        touchX = null;
-      }, { passive: true });
-
-      function startAutoplay() {
-        if (!autoplayMs || prefersReducedMotion) return;
-        timer = setInterval(nextSlide, autoplayMs);
-      }
-      function stopAutoplay() { if (timer) { clearInterval(timer); timer = null; } }
-      function restartAutoplay() { stopAutoplay(); startAutoplay(); }
-
-      root.addEventListener('mouseenter', stopAutoplay);
-      root.addEventListener('mouseleave', startAutoplay);
-      root.addEventListener('focusin',  stopAutoplay);
-      root.addEventListener('focusout', startAutoplay);
-
-      go(0);
-      startAutoplay();
     });
   }
 
