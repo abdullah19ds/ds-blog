@@ -204,6 +204,12 @@
 .post-cta-strip {
   background: @paper-deep;
   border-top: 1px solid @hairline;
-  margin-top: @s-10;
-  padding: @s-9 0;
+  margin-top: @s-9;
+  padding: @s-9 0 @s-10;
+
+  // Card always uses the wide container regardless of where it's nested
+  .cta-card {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
 }

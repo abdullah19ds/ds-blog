@@ -64,17 +64,25 @@
 
 <!-- Post CTA strip -->
 <section class="post-cta-strip">
-  <div class="container container-narrow">
+  <div class="container">
     <div class="cta-card">
-      <div>
+      <div class="cta-main">
         <p class="eyebrow eyebrow-accent">Work with us</p>
-        <h2>Want this clarity for your brand?</h2>
-        <p>Tell us the deadline and the metric. We reply the same day.</p>
+        <h2>Want this clarity<br>for your brand?</h2>
+        <p>Tell us the deadline and the metric. We reply the same day — yes, no, or a referral.</p>
         <div class="cta-actions">
           <a class="btn btn-primary" href="/pricing">See pricing</a>
           <a class="btn btn-outline" href="{collection.fullUrl}">More articles</a>
         </div>
       </div>
+      <aside class="cta-aside" aria-hidden="true">
+        <span class="cta-aside-label">From the studio</span>
+        <span class="cta-aside-signature">DS<em>&nbsp;&rarr;</em></span>
+        <span class="cta-aside-meta">
+          <span class="avail-dot"></span>
+          Booking Q3 &middot; Reply within 24h
+        </span>
+      </aside>
     </div>
   </div>
 </section>
