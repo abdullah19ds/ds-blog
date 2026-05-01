@@ -57,26 +57,59 @@
     onScroll();
   }
 
-  // ── Scroll reveal — IntersectionObserver toggles .is-visible ─────────
+  // ── Scroll reveal — fail-open: arm only when we can guarantee delivery ──
+  // CSS hides the element only if it has [data-reveal-pending]. We add that
+  // attribute ourselves before observing, then remove it (along with adding
+  // .is-visible) on intersection. If JS errors out before this runs, content
+  // stays visible.
   function initReveal() {
     var els = document.querySelectorAll('.reveal, .reveal-up');
     if (!els.length) return;
 
+    // No IO support OR user prefers reduced motion → just mark visible
     if (prefersReducedMotion || !('IntersectionObserver' in window)) {
       els.forEach(function (el) { el.classList.add('is-visible'); });
       return;
     }
 
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
+    // Arm the hide state, then observe. Use rAF so the browser definitely
+    // paints the initial visible frame before we hide.
+    requestAnimationFrame(function () {
+      els.forEach(function (el) {
+        // If element is already in viewport at boot, just reveal — no fade.
+        var rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.9) {
+          el.classList.add('is-visible');
+          return;
         }
+        el.setAttribute('data-reveal-pending', '');
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    els.forEach(function (el) { io.observe(el); });
+      var pending = document.querySelectorAll('[data-reveal-pending]');
+      if (!pending.length) return;
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            entry.target.removeAttribute('data-reveal-pending');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      pending.forEach(function (el) { io.observe(el); });
+
+      // Safety net: if anything is still pending after 4s, force-show it.
+      // Catches edge cases where IO never fires (e.g. element hidden by an
+      // ancestor at observe-time, then later revealed without scroll event).
+      setTimeout(function () {
+        document.querySelectorAll('[data-reveal-pending]').forEach(function (el) {
+          el.classList.add('is-visible');
+          el.removeAttribute('data-reveal-pending');
+        });
+      }, 4000);
+    });
   }
 
   // ── FAQ accordion — smooth height transition (CSS) ───────────────────
@@ -338,48 +371,25 @@
     });
   }
 
-  // ── Lenis smooth scroll (loaded from jsdelivr — works on Squarespace) ─
-  function loadScript(src) {
-    return new Promise(function (resolve, reject) {
-      var s = document.createElement('script');
-      s.src = src; s.async = false;
-      s.onload = resolve; s.onerror = reject;
-      document.head.appendChild(s);
-    });
-  }
-  function loadLenis() {
-    if (window.Lenis) return Promise.resolve();
-    if (prefersReducedMotion) return Promise.reject(new Error('reduced-motion'));
-    return loadScript('https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/bundled/lenis.min.js');
-  }
-  function initSmoothScroll() {
-    if (prefersReducedMotion || !window.Lenis) return;
-    try {
-      var lenis = new window.Lenis({
-        duration: 1.15,
-        easing: function (t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); },
-        smoothWheel: true,
-        smoothTouch: false,
-        touchMultiplier: 1.6
-      });
-      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-      requestAnimationFrame(raf);
-      window.__lenis = lenis;
-    } catch (e) { /* fall back to native scroll */ }
-  }
-
   // ── Init ────────────────────────────────────────────────
-  ready(function () {
-    initNav();
-    initHeaderScroll();
-    initFAQ();
-    initReveal();
-    initCounters();
-    initCopyYear();
-    initSlider();
-    initBillingToggle();
-    initPageCurtain();
+  // Each module is wrapped in try/catch so one failing module never aborts
+  // the rest. (On production a single error in initSlider was breaking
+  // initBillingToggle / initPageCurtain — wrapping makes that impossible.)
+  function safe(name, fn) {
+    try { fn(); } catch (e) {
+      if (window.console && console.warn) console.warn('[ds-blog] ' + name, e);
+    }
+  }
 
-    loadLenis().then(initSmoothScroll).catch(function () {});
+  ready(function () {
+    safe('nav', initNav);
+    safe('header', initHeaderScroll);
+    safe('faq', initFAQ);
+    safe('reveal', initReveal);
+    safe('counters', initCounters);
+    safe('copyYear', initCopyYear);
+    safe('slider', initSlider);
+    safe('billing', initBillingToggle);
+    safe('curtain', initPageCurtain);
   });
 }());

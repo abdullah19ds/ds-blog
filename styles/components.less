@@ -15,17 +15,28 @@
   &:active { transform: translateY(1px); }
 }
 
+// Explicit color on every :hover rule — defends against the body-link
+// `a:not(.btn):hover { color: @accent }` cascade if specificity ever changes.
 .btn-primary {
   background: @ink; color: @paper;
   border: 1.5px solid @ink;
   box-shadow: 0 2px 0 @ink;
-  &:hover { background: @accent; border-color: @accent; box-shadow: 0 2px 0 @accent; }
+  &:hover {
+    background: @accent;
+    border-color: @accent;
+    color: @paper;
+    box-shadow: 0 2px 0 @accent;
+  }
 }
 
 .btn-outline {
   background: transparent; color: @ink;
   border: 1.5px solid @hairline-strong;
-  &:hover { background: @paper-deep; border-color: @ink; }
+  &:hover {
+    background: @paper-deep;
+    border-color: @ink;
+    color: @ink;
+  }
 }
 
 .btn-ghost {

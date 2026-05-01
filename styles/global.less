@@ -32,7 +32,15 @@
 @bp-sm: 640px; @bp-md: 900px; @bp-lg: 1200px; @bp-xl: 1440px;
 
 // ─── Base ─────────────────────────────────────────────────────────────────────
-html { background: @paper; }
+html {
+  background: @paper;
+  // Native smooth scroll — works on Squarespace published sites without
+  // an external library. Replaces Lenis (jsdelivr CDN was being blocked).
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
 
 body {
   background: @paper;
@@ -55,8 +63,11 @@ body {
 
 main, header, footer, section { position: relative; z-index: 2; }
 
-a                { color: inherit; text-decoration: none; transition: color 200ms @ease-spring; }
-a:hover          { color: @accent; }
+// Generic links — body copy / inline anchors only. .btn elements have their
+// own color rules and must not inherit the accent hover (which made
+// .btn-primary's white text turn orange on hover).
+a               { color: inherit; text-decoration: none; transition: color 200ms @ease-spring; }
+a:not(.btn):not(.brand):hover { color: @accent; }
 ::selection      { background: @accent; color: @paper; }
 
 :focus-visible {
@@ -89,8 +100,15 @@ html.lenis body { height: auto; }
 .lenis.lenis-stopped { overflow: hidden; }
 .lenis.lenis-scrolling iframe { pointer-events: none; }
 
-// ─── Scroll reveals — CSS-only, IntersectionObserver toggles .is-visible ─────
-.reveal, .reveal-up {
+// ─── Scroll reveals — fail-open ──────────────────────────────────────────────
+// Content is visible by DEFAULT. JS sets [data-reveal-pending] on each
+// .reveal/.reveal-up before observing it; that attribute hides the element
+// and arms the transition. The IntersectionObserver removes the attribute
+// AND adds .is-visible when the element scrolls into view.
+//
+// If JS doesn't run (slow load, blocked, parser error, etc.) the attribute
+// is never set and content shows immediately — no half-built page.
+.reveal[data-reveal-pending], .reveal-up[data-reveal-pending] {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 700ms @ease-spring, transform 700ms @ease-spring;
@@ -100,17 +118,18 @@ html.lenis body { height: auto; }
   transform: none;
 }
 
-// Stagger siblings so a row of cards/items don't all slide in together
-.reveal:nth-child(1) { transition-delay: 0ms; }
-.reveal:nth-child(2) { transition-delay: 80ms; }
-.reveal:nth-child(3) { transition-delay: 160ms; }
-.reveal:nth-child(4) { transition-delay: 240ms; }
-.reveal:nth-child(5) { transition-delay: 320ms; }
-.reveal:nth-child(6) { transition-delay: 400ms; }
+// Stagger siblings — only applies while pending
+.reveal[data-reveal-pending]:nth-child(1) { transition-delay: 0ms; }
+.reveal[data-reveal-pending]:nth-child(2) { transition-delay: 80ms; }
+.reveal[data-reveal-pending]:nth-child(3) { transition-delay: 160ms; }
+.reveal[data-reveal-pending]:nth-child(4) { transition-delay: 240ms; }
+.reveal[data-reveal-pending]:nth-child(5) { transition-delay: 320ms; }
+.reveal[data-reveal-pending]:nth-child(6) { transition-delay: 400ms; }
 
-// ─── Page-entry curtain — pure CSS, no GSAP ──────────────────────────────────
-// Renders covering the screen, then slides off on load.
-// JS adds .is-leaving when a same-origin link is clicked to play the exit.
+// ─── Page-entry curtain — JS injects .page-curtain into <body> on load ──────
+// CSS is only declarative; the element exists ONLY when JS creates it.
+// (No naked .page-curtain in markup → no risk of a permanent black overlay
+// if scripts fail.)
 .page-curtain {
   position: fixed; inset: 0;
   background: @ink;
