@@ -20,6 +20,12 @@
   <squarespace:script src="vendor/lenis.min.js" combo="true" />
   <squarespace:script src="vendor/swiper-bundle.min.js" combo="true" />
 
+  <!-- Swiper bundled CSS — served from /assets/, NOT through the LESS
+       pipeline. The Java LESS compiler chokes on Swiper's calc(var(...)/n)
+       expressions ('Operation / cannot be applied to FUNCTION_CALL and
+       DIMENSION'). Static asset path is same-origin so CSP is fine. -->
+  <link rel="stylesheet" href="/assets/vendor-swiper.css">
+
   <squarespace:script src="site.js" combo="true" />
 
   <!-- Squarespace auto-injects site.css, CSRF token, statistics, social meta -->
