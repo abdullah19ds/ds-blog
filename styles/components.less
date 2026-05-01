@@ -1,62 +1,35 @@
 // ─── Buttons ──────────────────────────────────────────────────────────────────
 // Directional-fill on hover (Design-taste rule: enter from left)
+// Button: solid, no directional-fill animation (instant hover state).
 .btn {
-  position: relative; overflow: hidden;
-  // isolation creates a new stacking context so ::before with z-index:-1 sits
-  // BEHIND text content but ON TOP of the parent background. Fixes "text
-  // disappears on hover" caused by the directional fill covering the label.
-  isolation: isolate;
+  position: relative;
   display: inline-flex; align-items: center; justify-content: center; gap: @s-2;
   padding: 13px 26px;
   border-radius: @r-sm;
   font-family: @font-body; font-weight: 600; font-size: 0.88rem;
   letter-spacing: -0.01em; white-space: nowrap;
   cursor: pointer; text-decoration: none;
-  transition: color 240ms @ease-spring, transform 200ms @ease-spring, box-shadow 200ms @ease-spring;
-
-  &::before {
-    content: '';
-    position: absolute; inset: 0;
-    z-index: -1;
-    transform: translateX(-100%);
-    transition: transform 360ms @ease-spring;
-  }
-  &:hover::before { transform: translateX(0); }
-  &:active { transform: scale(0.98); }
 }
 
 .btn-primary {
   background: @ink; color: @paper;
   border: 1.5px solid @ink;
   box-shadow: 0 2px 0 @ink;
-
-  &::before { background: @accent; }
-  &:hover { border-color: @accent; color: @paper; box-shadow: 0 2px 0 @accent; }
+  &:hover { background: @accent; border-color: @accent; box-shadow: 0 2px 0 @accent; }
 }
 
 .btn-outline {
   background: transparent; color: @ink;
   border: 1.5px solid @hairline-strong;
-
-  &::before { background: @paper-deep; }
-  &:hover { color: @ink; border-color: @hairline-strong; }
+  &:hover { background: @paper-deep; border-color: @ink; }
 }
 
-// Ghost button: unboxed, arrow can translate without clipping
 .btn-ghost {
   background: transparent; color: @ink-muted;
   border: 0;
   padding: @s-2 0;
-  overflow: visible;
-  isolation: auto;
-
-  span.arrow {
-    display: inline-block;
-    transition: transform 240ms @ease-spring;
-  }
+  span.arrow { display: inline-block; }
   &:hover { color: @ink; }
-  &:hover span.arrow { transform: translateX(6px); }
-  &::before { display: none; }
 }
 
 .btn-sm { padding: 10px 20px; font-size: 0.82rem; }
@@ -92,11 +65,6 @@
 .avail-dot {
   width: 7px; height: 7px; border-radius: 50%;
   background: #4ade80; flex-shrink: 0;
-  animation: pulse-dot 2s ease-out infinite;
-}
-@keyframes pulse-dot {
-  0%, 100% { box-shadow: 0 0 0 0 fade(#4ade80, 55%); }
-  50%       { box-shadow: 0 0 0 5px fade(#4ade80, 0%); }
 }
 
 // ─── Service card (zig-zag, no 3-equal-col) ───────────────────────────────────
@@ -157,12 +125,10 @@
     width: 100%; height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 700ms @ease-spring, filter 700ms @ease-spring;
     filter: ~"grayscale(20%) contrast(1.05)";
   }
 }
 .service-item:hover .service-visual img {
-  transform: scale(1.04);
   filter: ~"grayscale(0%) contrast(1.05)";
 }
 
@@ -181,7 +147,6 @@
 .process-step {
   padding: @s-6 @s-5;
   border-right: 1px solid @hairline;
-  transition: background 200ms @ease-spring;
   &:last-child { border-right: 0; }
   &:hover { background: @paper-deep; }
 

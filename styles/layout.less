@@ -35,7 +35,6 @@
   backdrop-filter: ~"blur(20px) saturate(160%)";
   -webkit-backdrop-filter: ~"blur(20px) saturate(160%)";
   border-bottom: 1px solid @hairline;
-  transition: background 300ms @ease-spring;
 }
 
 .site-header-inner {
@@ -73,7 +72,6 @@
     padding: @s-5 @s-5 @s-6;
     gap: 0;
     transform: translateY(-110%);
-    transition: transform 280ms @ease-spring;
     z-index: 200;
     &.is-open { transform: translateY(0); }
   }
@@ -90,7 +88,6 @@
   font-size: 0.9rem; font-weight: 500; color: @ink-muted;
   padding: @s-2 0;
   position: relative;
-  transition: color 200ms @ease-spring;
 }
 .nav-item > a:hover { color: @ink; }
 .nav-item.is-active > a {
@@ -117,7 +114,7 @@
   flex-direction: column; justify-content: space-between;
   cursor: pointer;
 
-  span { display: block; height: 1.5px; background: @ink; border-radius: 2px; transition: transform 240ms @ease-spring, opacity 200ms ease; }
+  span { display: block; height: 1.5px; background: @ink; border-radius: 2px; }
 
   &[aria-expanded="true"] {
     span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
@@ -149,7 +146,7 @@
   &:hover { background: @paper-deep; color: @ink; }
 }
 
-// ─── Marquee ──────────────────────────────────────────────────────────────────
+// ─── Marquee — static row (animation removed) ────────────────────────────────
 .marquee-wrap {
   overflow: hidden;
   background: @ink;
@@ -160,10 +157,7 @@
 .marquee-track {
   display: flex; gap: @s-7;
   width: max-content;
-  animation: marquee-scroll 28s linear infinite;
 }
-.marquee-wrap:hover .marquee-track { animation-play-state: paused; }
-
 .marquee-item {
   display: flex; align-items: center; gap: @s-3;
   font-family: @font-mono; font-size: 0.72rem;
@@ -174,11 +168,6 @@
 }
 .marquee-sep {
   color: @accent; font-size: 0.55rem; opacity: 1;
-}
-
-@keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
 }
 
 // ─── Page hero (inner pages: About, Pricing) ──────────────────────────────────
@@ -282,9 +271,7 @@
   &:hover { color: @paper; border-color: @accent; }
   .arrow {
     display: inline-block;
-    transition: transform 240ms @ease-spring;
   }
-  &:hover .arrow { transform: translateX(4px); }
 }
 
 .footer-col h4 {
@@ -300,9 +287,8 @@
   list-style: none; padding: 0; margin: 0;
 }
 
-// Footer link state: matches navbar pattern (muted on rest, ink-on-hover with
-// orange underline reveal on active/hover — but in the dark footer we use
-// a paper-on-rest-muted, paper-on-hover, accent underline).
+// Footer link state: muted-on-rest, paper-on-hover, accent underline appears
+// instantly on hover/active (no transition).
 .site-footer .nav-item > a,
 .footer-contact-list a {
   position: relative;
@@ -311,21 +297,19 @@
   font-size: 0.95rem;
   padding: 2px 0;
   text-decoration: none;
-  transition: color 200ms @ease-spring;
 
   &::after {
     content: ''; position: absolute; left: 0; right: 0; bottom: -3px;
     height: 2px; background: @accent; border-radius: 2px;
-    transform: scaleX(0); transform-origin: left center;
-    transition: transform 280ms @ease-spring;
+    display: none;
   }
   &:hover { color: @paper; }
-  &:hover::after { transform: scaleX(1); }
+  &:hover::after { display: block; }
 }
 
 .site-footer .nav-item.is-active > a {
   color: @paper;
-  &::after { transform: scaleX(1); }
+  &::after { display: block; }
 }
 
 .footer-bottom {

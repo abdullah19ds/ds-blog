@@ -145,8 +145,6 @@
 
 .testimonial-track {
   display: flex;
-  transition: transform 600ms @ease-spring;
-  will-change: transform;
 }
 
 .testimonial-slide {
@@ -209,10 +207,7 @@
   color: @ink;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 200ms @ease-spring, border-color 200ms @ease-spring, transform 200ms @ease-spring;
-
   &:hover { background: @ink; color: @paper; border-color: @ink; }
-  &:active { transform: scale(0.94); }
 }
 
 .testimonial-dots {
@@ -225,8 +220,6 @@
     background: @hairline-strong;
     cursor: pointer;
     padding: 0;
-    transition: background 240ms @ease-spring, width 240ms @ease-spring;
-
     &.is-active { background: @ink; width: 36px; }
     &:hover { background: @ink-muted; }
   }
