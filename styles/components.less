@@ -1,6 +1,6 @@
 // ─── Buttons ──────────────────────────────────────────────────────────────────
 // Directional-fill on hover (Design-taste rule: enter from left)
-// Button: solid, no directional-fill animation (instant hover state).
+// Button: solid base, smooth color/background hover.
 .btn {
   position: relative;
   display: inline-flex; align-items: center; justify-content: center; gap: @s-2;
@@ -9,6 +9,10 @@
   font-family: @font-body; font-weight: 600; font-size: 0.88rem;
   letter-spacing: -0.01em; white-space: nowrap;
   cursor: pointer; text-decoration: none;
+  transition: background 240ms @ease-spring, border-color 240ms @ease-spring,
+              color 240ms @ease-spring, box-shadow 240ms @ease-spring,
+              transform 200ms @ease-spring;
+  &:active { transform: translateY(1px); }
 }
 
 .btn-primary {
@@ -28,8 +32,12 @@
   background: transparent; color: @ink-muted;
   border: 0;
   padding: @s-2 0;
-  span.arrow { display: inline-block; }
+  span.arrow {
+    display: inline-block;
+    transition: transform 240ms @ease-spring;
+  }
   &:hover { color: @ink; }
+  &:hover span.arrow { transform: translateX(6px); }
 }
 
 .btn-sm { padding: 10px 20px; font-size: 0.82rem; }
@@ -65,6 +73,11 @@
 .avail-dot {
   width: 7px; height: 7px; border-radius: 50%;
   background: #4ade80; flex-shrink: 0;
+  animation: pulse-dot 2s ease-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 fade(#4ade80, 55%); }
+  50%      { box-shadow: 0 0 0 5px fade(#4ade80, 0%); }
 }
 
 // ─── Service card (zig-zag, no 3-equal-col) ───────────────────────────────────
@@ -126,9 +139,11 @@
     object-fit: cover;
     display: block;
     filter: ~"grayscale(20%) contrast(1.05)";
+    transition: transform 700ms @ease-spring, filter 700ms @ease-spring;
   }
 }
 .service-item:hover .service-visual img {
+  transform: scale(1.04);
   filter: ~"grayscale(0%) contrast(1.05)";
 }
 
@@ -147,6 +162,7 @@
 .process-step {
   padding: @s-6 @s-5;
   border-right: 1px solid @hairline;
+  transition: background 220ms @ease-spring;
   &:last-child { border-right: 0; }
   &:hover { background: @paper-deep; }
 

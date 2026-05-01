@@ -38,7 +38,9 @@
     width: 100%; height: 100%;
     object-fit: cover; display: block;
     filter: ~"grayscale(15%) contrast(1.05)";
+    transition: transform 800ms @ease-spring;
   }
+  &:hover img { transform: scale(1.03); }
 
   figcaption {
     position: absolute; left: 0; right: 0; bottom: 0;
@@ -158,6 +160,7 @@
   color: @ink-muted;
   align-self: start;
   padding-top: 6px;
+  transition: color 240ms @ease-spring, transform 320ms @ease-spring;
 }
 .pov-tenet-body { min-width: 0; }
 .pov-tenet-headline {
@@ -168,6 +171,7 @@
   letter-spacing: -0.02em;
   line-height: 1.2;
   margin: 0 0 @s-3;
+  transition: color 240ms @ease-spring;
 }
 .pov-tenet-body p {
   margin: 0;
@@ -248,6 +252,7 @@
   padding: @s-7 @s-6;
   border-right: 1px solid @hairline;
   border-bottom: 1px solid @hairline;
+  transition: background 220ms @ease-spring;
   &:nth-child(2n) { border-right: 0; }
   &:nth-child(n+3) { border-bottom: 0; }
   &:hover { background: @paper-deep; }
@@ -281,7 +286,14 @@
   border-radius: @r-lg;
   overflow: hidden;
   background: @paper;
-  &:hover { border-color: @ink; }
+  transition: border-color 220ms @ease-spring, transform 320ms @ease-spring,
+              box-shadow 320ms @ease-spring;
+  &:hover {
+    border-color: @ink;
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px -22px fade(@ink, 28%);
+  }
+  &:hover .team-photo img { transform: scale(1.05); filter: ~"grayscale(0%)"; }
 }
 .team-photo {
   aspect-ratio: 4 / 5;
@@ -292,6 +304,7 @@
     width: 100%; height: 100%;
     object-fit: cover;
     filter: ~"grayscale(60%) contrast(1.05)";
+    transition: transform 700ms @ease-spring, filter 700ms @ease-spring;
   }
 }
 .team-meta { padding: @s-5 @s-5 @s-6; }

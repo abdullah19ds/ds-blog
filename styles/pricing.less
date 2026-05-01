@@ -29,6 +29,7 @@
   font-family: @font-body; font-weight: 600; font-size: 0.85rem;
   color: @ink-muted; letter-spacing: -0.005em;
   cursor: pointer;
+  transition: color 240ms @ease-spring, background 240ms @ease-spring;
   &:hover { color: @ink; }
 
   &.is-active {
@@ -64,7 +65,8 @@
   padding: @s-6 @s-6 @s-7;
   background: @paper;
   display: flex; flex-direction: column;
-  &:hover { border-color: @hairline-strong; }
+  transition: border-color 220ms @ease-spring, transform 320ms @ease-spring;
+  &:hover { border-color: @hairline-strong; transform: translateY(-3px); }
 }
 .plan-card-featured {
   border-color: @ink;
@@ -111,6 +113,8 @@
   font-size: ~"clamp(2.8rem, 5vw, 3.8rem)";
   letter-spacing: -0.03em;
   display: inline-block;
+  transition: opacity 200ms @ease-spring, transform 320ms @ease-spring;
+  &.is-flipping { opacity: 0; transform: translateY(-8px); }
 }
 .plan-period   { font-size: 0.9rem; font-family: @font-body; color: @ink-muted; margin-left: 6px; }
 
@@ -166,6 +170,7 @@
     padding: @s-5 0;
     font-family: @font-body; font-weight: 600; font-size: 1rem;
     color: @ink; cursor: pointer; list-style: none; gap: @s-5;
+    transition: color 200ms @ease-spring;
     &::-webkit-details-marker { display: none; }
 
     &:hover { color: @accent; }
@@ -178,11 +183,22 @@
       background:
         linear-gradient(@accent, @accent) center / 100% 1.5px no-repeat,
         linear-gradient(@accent, @accent) center / 1.5px 100% no-repeat;
+      transition: transform 360ms @ease-spring;
     }
   }
   details[open] > summary::after { transform: rotate(45deg); }
 
-  // Native <details> drives open/close — wrapper stays unstyled
+  // Animated content wrapper — height set in JS for smooth open/close.
+  // While JS hasn't booted, .faq-panel:not([data-faq-bound]) defaults to
+  // the natural [open]/[closed] behaviour so SEO/no-JS users see content.
+  .faq-panel {
+    overflow: hidden;
+    transition: height 360ms @ease-spring, opacity 280ms @ease-spring;
+    will-change: height, opacity;
+  }
+  .faq-panel[data-faq-bound] { height: 0; opacity: 0; }
+  details[open] > .faq-panel[data-faq-bound] { opacity: 1; }
+
   .faq-panel > p {
     padding: 0 0 @s-5;
     margin: 0;

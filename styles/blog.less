@@ -31,7 +31,15 @@
   border: 1px solid @hairline;
   border-radius: @r-lg; overflow: hidden;
   background: @paper;
-  &:hover { border-color: @ink; }
+  transition: border-color 220ms @ease-spring, transform 320ms @ease-spring,
+              box-shadow 320ms @ease-spring;
+  &:hover {
+    border-color: @ink;
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px -22px fade(@ink, 30%);
+  }
+  &:hover .post-card-media img { transform: scale(1.05); }
+  &:hover .post-read-more .arrow { transform: translateX(4px); }
 }
 
 .post-card-media {
@@ -43,6 +51,7 @@
 
   img {
     width: 100%; height: 100%; object-fit: cover;
+    transition: transform 500ms @ease-spring;
   }
 }
 
@@ -95,6 +104,7 @@
 
   .arrow {
     display: inline-block;
+    transition: transform 240ms @ease-spring;
   }
   &:hover { color: @accent; }
 }
@@ -109,7 +119,8 @@
   letter-spacing: 0.08em; text-transform: uppercase;
   padding: @s-3 @s-5; border: 1px solid @hairline-strong;
   border-radius: @r-sm; color: @ink;
-  &:hover { background: @paper-deep; color: @ink; }
+  transition: background 200ms @ease-spring, border-color 200ms @ease-spring;
+  &:hover { background: @paper-deep; border-color: @ink; }
   &.is-disabled { opacity: 0.35; pointer-events: none; }
 }
 

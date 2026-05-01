@@ -1,13 +1,11 @@
 /* DS Blog — site interactions
- * Animations have been stripped per request. The only motion library
- * left is Lenis smooth scroll (loaded at runtime). All other modules
- * apply their effects instantly:
- * - reveals: visible immediately (no fade/slide-in)
- * - testimonial slider: snaps between slides (no tween)
- * - billing toggle: instant price swap (no flip)
- * - counters: render final value on view (no tick-up)
- * - accordion: native <details> open/close (no height anim)
- * - page transition: removed entirely (no curtain)
+ * All animations are CSS-driven (transitions + @keyframes). JS only adds
+ * trigger classes (.is-visible, .is-leaving, .is-flipping) and runs the
+ * counter rAF loop + the FAQ height measurement. No external animation
+ * libraries — those get blocked by Squarespace's CSP on production.
+ *
+ * The one external library kept is Lenis (smooth wheel scroll) loaded
+ * from jsdelivr — it works on Squarespace published sites.
  */
 (function () {
   'use strict';
@@ -59,9 +57,77 @@
     onScroll();
   }
 
-  // ── FAQ: keyboard support only — accordion uses native <details> ────
+  // ── Scroll reveal — IntersectionObserver toggles .is-visible ─────────
+  function initReveal() {
+    var els = document.querySelectorAll('.reveal, .reveal-up');
+    if (!els.length) return;
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    els.forEach(function (el) { io.observe(el); });
+  }
+
+  // ── FAQ accordion — smooth height transition (CSS) ───────────────────
   function initFAQ() {
-    document.querySelectorAll('.faq-item summary').forEach(function (summary) {
+    document.querySelectorAll('.faq-item details').forEach(function (details) {
+      var summary = details.querySelector('summary');
+      var panel   = details.querySelector('.faq-panel');
+      if (!summary || !panel) return;
+      panel.setAttribute('data-faq-bound', '');
+
+      // Prime initial state (no flash)
+      if (details.open) {
+        panel.style.height = panel.scrollHeight + 'px';
+        panel.style.opacity = '1';
+      } else {
+        panel.style.height = '0px';
+        panel.style.opacity = '0';
+      }
+
+      summary.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (details.open) {
+          // CLOSE
+          var startH = panel.scrollHeight;
+          panel.style.height = startH + 'px';
+          panel.offsetHeight; // reflow
+          panel.style.height = '0px';
+          panel.style.opacity = '0';
+          var onEnd = function (ev) {
+            if (ev.propertyName !== 'height') return;
+            details.removeAttribute('open');
+            panel.removeEventListener('transitionend', onEnd);
+          };
+          panel.addEventListener('transitionend', onEnd);
+        } else {
+          // OPEN
+          details.setAttribute('open', '');
+          var endH = panel.scrollHeight;
+          panel.style.height = '0px';
+          panel.offsetHeight; // reflow
+          panel.style.height = endH + 'px';
+          panel.style.opacity = '1';
+          var onEnd = function (ev) {
+            if (ev.propertyName !== 'height') return;
+            panel.style.height = 'auto';
+            panel.removeEventListener('transitionend', onEnd);
+          };
+          panel.addEventListener('transitionend', onEnd);
+        }
+      });
+
       summary.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
@@ -71,20 +137,57 @@
     });
   }
 
-  // ── Mark all reveal elements visible (no enter animation) ────────────
-  function initReveal() {
-    document.querySelectorAll('.reveal, .reveal-up').forEach(function (el) {
-      el.classList.add('is-visible');
-    });
-  }
-
-  // ── Counters: render final value immediately ────────────
+  // ── Animated number counters ────────────────────────────
   function initCounters() {
-    document.querySelectorAll('[data-count]').forEach(function (el) {
+    var els = document.querySelectorAll('[data-count]');
+    if (!els.length) return;
+
+    function setFinal(el) {
       var target = parseFloat(el.getAttribute('data-count'));
       var suffix = el.getAttribute('data-suffix') || '';
       el.innerHTML = target + '<em>' + suffix + '</em>';
-    });
+    }
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      els.forEach(setFinal);
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var target = parseFloat(el.getAttribute('data-count'));
+        var suffix = el.getAttribute('data-suffix') || '';
+        var duration = 2000;
+        var start = performance.now();
+        var lastVal = -1;
+
+        function tick(now) {
+          var t = Math.min(1, (now - start) / duration);
+          var eased = 1 - Math.pow(1 - t, 5); // easeOutQuint
+          var val = target >= 10
+            ? Math.floor(eased * target)
+            : Math.round(eased * target * 10) / 10;
+          if (val !== lastVal) {
+            el.innerHTML = val + '<em>' + suffix + '</em>';
+            lastVal = val;
+          }
+          if (t < 1) requestAnimationFrame(tick);
+          else setFinal(el);
+        }
+
+        // Stagger sibling counters in the same parent row
+        var siblings = el.parentElement && el.parentElement.parentElement
+          ? el.parentElement.parentElement.querySelectorAll('[data-count]')
+          : [];
+        var ix = Array.prototype.indexOf.call(siblings, el);
+        var stagger = ix > -1 ? ix * 90 : 0;
+        setTimeout(function () { requestAnimationFrame(tick); }, stagger);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.45 });
+    els.forEach(function (el) { io.observe(el); });
   }
 
   // ── Auto-update copyright year ──────────────────────────
@@ -93,7 +196,7 @@
     if (el) el.textContent = new Date().getFullYear();
   }
 
-  // ── Testimonial slider — instant snap, no tween ─────────
+  // ── Testimonial slider ──────────────────────────────────
   function initSlider() {
     document.querySelectorAll('[data-slider]').forEach(function (root) {
       var track  = root.querySelector('[data-slider-track]');
@@ -163,7 +266,7 @@
     });
   }
 
-  // ── Pricing monthly/yearly toggle — instant swap ────────
+  // ── Pricing monthly/yearly toggle with animated flip ─────
   function initBillingToggle() {
     var root = document.querySelector('[data-billing-toggle]');
     if (!root) return;
@@ -180,7 +283,12 @@
       });
       amounts.forEach(function (el) {
         var v = el.getAttribute('data-' + mode);
-        if (v) el.textContent = v;
+        if (!v) return;
+        el.classList.add('is-flipping');
+        setTimeout(function () {
+          el.textContent = v;
+          el.classList.remove('is-flipping');
+        }, 180);
       });
       periods.forEach(function (el) {
         var v = el.getAttribute('data-' + mode + '-label');
@@ -193,7 +301,44 @@
     });
   }
 
-  // ── Lenis smooth scroll (the only motion library kept) ──
+  // ── Page curtain — pure CSS @keyframes; JS only handles link clicks ──
+  function initPageCurtain() {
+    if (prefersReducedMotion) return;
+    var curtain = document.createElement('div');
+    curtain.className = 'page-curtain';
+    document.body.appendChild(curtain);
+
+    // Ensure the curtain stops being interactive after the entry animation
+    curtain.addEventListener('animationend', function () {
+      if (curtain.classList.contains('is-leaving')) return;
+      curtain.style.display = 'none';
+    });
+
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a');
+      if (!a) return;
+      var href = a.getAttribute('href');
+      if (!href) return;
+      var sameOrigin = !/^(https?:|\/\/)/.test(href) || href.indexOf(location.host) !== -1;
+      if (!sameOrigin) return;
+      if (href.charAt(0) === '#') return;
+      if (/^(mailto:|tel:)/.test(href)) return;
+      if (a.target === '_blank') return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+      e.preventDefault();
+      curtain.style.display = '';
+      // Force reflow before adding the leaving class so the @keyframes plays
+      void curtain.offsetWidth;
+      curtain.classList.add('is-leaving');
+      curtain.addEventListener('animationend', function leave() {
+        curtain.removeEventListener('animationend', leave);
+        window.location.href = href;
+      });
+    });
+  }
+
+  // ── Lenis smooth scroll (loaded from jsdelivr — works on Squarespace) ─
   function loadScript(src) {
     return new Promise(function (resolve, reject) {
       var s = document.createElement('script');
@@ -233,6 +378,7 @@
     initCopyYear();
     initSlider();
     initBillingToggle();
+    initPageCurtain();
 
     loadLenis().then(initSmoothScroll).catch(function () {});
   });
