@@ -286,6 +286,65 @@
     if (el) el.textContent = new Date().getFullYear();
   }
 
+  // ── Buttons: directional fill on hover/unhover ──────────
+  // Detect which edge of the button the cursor entered from / left from,
+  // then set --fill-x / --fill-y CSS custom properties so the ::before
+  // panel can slide in from that side and slide out toward the exit side.
+  // Pure CSS handles the actual animation; this just chooses the angle.
+  function initButtonHovers() {
+    if (prefersReducedMotion) return;
+
+    var EDGE = {
+      left:   ['-100%', '0%',   'left'],
+      right:  ['100%',  '0%',   'right'],
+      top:    ['0%',    '-100%','top'],
+      bottom: ['0%',    '100%', 'bottom']
+    };
+
+    function edgeFromEvent(e, el) {
+      var r = el.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width;   // 0..1
+      var y = (e.clientY - r.top)  / r.height;  // 0..1
+      // Map to centred -1..1 and pick the dominant axis
+      var dx = x * 2 - 1, dy = y * 2 - 1;
+      if (Math.abs(dx) > Math.abs(dy)) return dx < 0 ? 'left' : 'right';
+      return dy < 0 ? 'top' : 'bottom';
+    }
+
+    function applyEdge(el, edge) {
+      var spec = EDGE[edge];
+      el.style.setProperty('--fill-x', spec[0]);
+      el.style.setProperty('--fill-y', spec[1]);
+      el.style.setProperty('--ul-origin', spec[2]);
+    }
+
+    document.querySelectorAll('.btn').forEach(function (btn) {
+      btn.addEventListener('mouseenter', function (e) {
+        applyEdge(btn, edgeFromEvent(e, btn));
+        // Force layout so the next frame transitions FROM the new initial pos
+        void btn.offsetWidth;
+        btn.classList.add('is-hovered');
+      });
+
+      btn.addEventListener('mouseleave', function (e) {
+        // Set exit direction BEFORE removing the class so the fill slides out
+        // toward the exit edge instead of snapping back to the entry edge.
+        applyEdge(btn, edgeFromEvent(e, btn));
+        btn.classList.remove('is-hovered');
+      });
+
+      // Keyboard focus → fall back to a left-to-right wipe
+      btn.addEventListener('focus', function () {
+        applyEdge(btn, 'left');
+        btn.classList.add('is-hovered');
+      });
+      btn.addEventListener('blur', function () {
+        applyEdge(btn, 'right');
+        btn.classList.remove('is-hovered');
+      });
+    });
+  }
+
   // ── Testimonial slider — Swiper-driven ──────────────────
   function initSlider() {
     if (!window.Swiper) return; // graceful no-op if vendor file failed
@@ -455,5 +514,6 @@
     safe('billing', initBillingToggle);
     safe('curtain', initPageCurtain);
     safe('lenis', initLenis);
+    safe('buttons', initButtonHovers);
   });
 }());

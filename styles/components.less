@@ -1,59 +1,141 @@
 // ─── Buttons ──────────────────────────────────────────────────────────────────
-// Directional-fill on hover (Design-taste rule: enter from left)
-// Button: solid base, smooth color/background hover.
+// Hover behaviour:
+//   - Directional fill: a colored panel slides in from whichever edge the
+//     cursor entered (left/right/top/bottom) and slides OUT toward whichever
+//     edge the cursor left. JS sets the --fill-x / --fill-y custom props on
+//     enter/leave; CSS animates the ::before to translate(0, 0) when
+//     .is-hovered is on, or back to (--fill-x, --fill-y) when it's not.
+//   - Lift: the whole button rises 2px and the soft drop shadow expands.
+//   - Press: on :active, the button drops 1px + scales to 0.985 with a
+//     much shorter duration so it feels physical, not laggy.
+//
+// Defensive fallback: if JS never runs, --fill-x / --fill-y stay at their
+// CSS defaults (-100%, 0%) so the fill simply enters from the left every
+// time. No JS = still nice, just non-directional.
 .btn {
+  --fill-x: -100%;
+  --fill-y: 0%;
+  --lift-y: 0px;
+  --press-scale: 1;
+
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: inline-flex; align-items: center; justify-content: center; gap: @s-2;
   padding: 13px 26px;
   border-radius: @r-sm;
   font-family: @font-body; font-weight: 600; font-size: 0.88rem;
   letter-spacing: -0.01em; white-space: nowrap;
   cursor: pointer; text-decoration: none;
-  transition: background 240ms @ease-spring, border-color 240ms @ease-spring,
-              color 240ms @ease-spring, box-shadow 240ms @ease-spring,
-              transform 200ms @ease-spring;
-  &:active { transform: translateY(1px); }
+  transform: ~"translateY(var(--lift-y)) scale(var(--press-scale))";
+
+  transition:
+    transform 360ms @ease-spring,
+    border-color 280ms @ease-spring,
+    color 280ms @ease-spring,
+    box-shadow 360ms @ease-spring;
+
+  // Directional fill — sliding panel behind the label
+  &::before {
+    content: '';
+    position: absolute; inset: 0;
+    z-index: -1;
+    transform: ~"translate(var(--fill-x), var(--fill-y))";
+    transition: transform 460ms cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  &.is-hovered::before { transform: translate(0, 0); }
+  &.is-hovered { --lift-y: -2px; }
+
+  &:active {
+    --press-scale: 0.985;
+    --lift-y: 1px;
+    transition-duration: 90ms;
+  }
+
+  // Touch / no-hover fallback — still gets a clean color-swap state since
+  // .is-hovered is JS-driven and won't fire on touch tap.
+  @media (hover: none) {
+    &:active::before { transform: translate(0, 0); transition-duration: 200ms; }
+  }
 }
 
-// Explicit color on every :hover rule — defends against the body-link
-// `a:not(.btn):hover { color: @accent }` cascade if specificity ever changes.
+// PRIMARY — ink rest, accent fill, lifts with soft drop shadow on hover
 .btn-primary {
   background: @ink; color: @paper;
   border: 1.5px solid @ink;
   box-shadow: 0 2px 0 @ink;
-  &:hover {
-    background: @accent;
+
+  &::before { background: @accent; }
+
+  &.is-hovered {
     border-color: @accent;
     color: @paper;
-    box-shadow: 0 2px 0 @accent;
+    box-shadow:
+      0 2px 0 @accent,
+      0 14px 28px -10px fade(@accent, 50%);
   }
+  &:active { box-shadow: 0 1px 0 @accent; }
 }
 
+// OUTLINE — transparent rest, paper-deep fill, ink border on hover
 .btn-outline {
   background: transparent; color: @ink;
   border: 1.5px solid @hairline-strong;
-  &:hover {
-    background: @paper-deep;
+
+  &::before { background: @paper-deep; }
+
+  &.is-hovered {
     border-color: @ink;
     color: @ink;
+    box-shadow: 0 12px 24px -14px fade(@ink, 28%);
   }
 }
 
+// GHOST — no fill, animated underline + arrow nudge
+// Disable the directional-fill machinery on ghosts — they look unboxed.
 .btn-ghost {
   background: transparent; color: @ink-muted;
   border: 0;
   padding: @s-2 0;
+  isolation: auto;
+  overflow: visible;
+
+  &::before { display: none; }
+
+  // Underline that grows from cursor's entry side
+  &::after {
+    content: '';
+    position: absolute; left: 0; right: 0; bottom: -2px;
+    height: 1.5px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: ~"var(--ul-origin, left) center";
+    transition: transform 360ms @ease-spring;
+  }
+  &.is-hovered::after { transform: scaleX(1); }
+
   span.arrow {
     display: inline-block;
-    transition: transform 240ms @ease-spring;
+    transition: transform 320ms @ease-spring;
   }
-  &:hover { color: @ink; }
-  &:hover span.arrow { transform: translateX(6px); }
+  &.is-hovered { color: @ink; }
+  &.is-hovered span.arrow { transform: translateX(6px); }
+
+  // No lift on ghost — it would look like the underline is floating
+  &.is-hovered { --lift-y: 0px; }
+  &:active { --lift-y: 0px; --press-scale: 0.97; }
 }
 
 .btn-sm { padding: 10px 20px; font-size: 0.82rem; }
 .btn-lg { padding: 16px 34px; font-size: 1rem; }
 .btn-ghost.btn-sm { padding: @s-2 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .btn::before, .btn::after, .btn span.arrow {
+    transition: none !important;
+    transform: none !important;
+  }
+}
 
 // ─── Stat row ─────────────────────────────────────────────────────────────────
 .stat-row {
